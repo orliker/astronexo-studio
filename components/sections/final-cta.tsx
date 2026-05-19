@@ -11,34 +11,40 @@ import { SITE, WHATSAPP_URL } from "@/lib/site";
  */
 export function FinalCTA() {
   return (
-    <section className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36">
+    <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-36">
       <Reveal>
-        <div className="panel-edge grain relative overflow-hidden rounded-[2rem] px-6 py-20 text-center sm:px-16 sm:py-28">
+        <div className="panel-edge grain relative overflow-hidden rounded-[1.5rem] px-5 py-14 text-center sm:rounded-[2rem] sm:px-16 sm:py-28">
           <div className="pointer-events-none absolute -top-1/3 left-1/2 h-[50vh] w-[50vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.12),transparent_65%)] blur-3xl" />
 
           <p className="relative text-xs uppercase tracking-[0.3em] text-ink-mute">
-            Hablemos
+            Diagnóstico privado
           </p>
-          <h2 className="relative mx-auto mt-7 max-w-3xl font-display text-3xl font-semibold leading-[1.1] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            Envíanos tu Instagram o web,
+          <h2 className="relative mx-auto mt-6 max-w-3xl font-display text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance sm:mt-7 sm:text-5xl lg:text-6xl">
+            Envíanos tu web o Instagram,
             <br />
             y te decimos{" "}
-            <span className="text-gradient">qué podemos crear</span>.
+            <span className="text-gradient">qué está frenando la venta</span>.
           </h2>
           <p className="relative mx-auto mt-6 max-w-lg text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
-            Pide una propuesta rápida: revisamos tu presencia, aterrizamos una
-            idea visual y te marcamos el camino para tener una versión lista en
-            48-72 horas.
+            Revisamos tu presencia con mirada de diseño, estrategia y
+            conversión. Si vemos una oportunidad clara, te devolvemos una ruta
+            concreta para convertir tu web en un activo más serio.
           </p>
 
-          <div className="relative mt-10 flex flex-wrap items-center justify-center gap-3">
-            <MagneticButton href={WHATSAPP_URL} variant="primary" external>
+          <div className="relative mt-9 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
+            <MagneticButton
+              href={WHATSAPP_URL}
+              variant="primary"
+              className="w-full sm:w-auto"
+              external
+            >
               <MessageCircle size={17} />
-              Pedir propuesta rápida
+              Pedir auditoría por WhatsApp
             </MagneticButton>
             <MagneticButton
               href={`mailto:${SITE.email}`}
               variant="ghost"
+              className="w-full sm:w-auto"
             >
               <Mail size={16} />
               Enviar por email
@@ -46,7 +52,8 @@ export function FinalCTA() {
           </div>
 
           <p className="relative mt-8 text-sm text-ink-mute">
-            Normalmente respondemos el mismo día con una dirección concreta.
+            Normalmente respondemos el mismo día con una lectura directa, sin
+            reunión innecesaria.
           </p>
         </div>
       </Reveal>
@@ -63,7 +70,7 @@ export function SiteFooter() {
             AstroNexo <span className="text-ink-mute">Studio</span>
           </p>
           <p className="mt-1 text-sm text-ink-mute">
-            Webs premium, automatizaciones simples y embudos de WhatsApp.
+            Webs premium, estrategia visual, automatización y embudos de WhatsApp.
           </p>
         </div>
 
@@ -90,8 +97,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 pb-10 sm:px-8">
         <div className="hairline" />
         <p className="mt-6 text-xs text-ink-mute">
-          © {new Date().getFullYear()} AstroNexo Studio. Diseñado y
-          construido a mano.
+          © {new Date().getFullYear()} AstroNexo Studio. Diseñado con criterio,
+          probado con detalle y construido para vender confianza.
         </p>
       </div>
     </footer>

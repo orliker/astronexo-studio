@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "astronexo-lead-radar-*/**",
     "next-env.d.ts",
   ]),
 ]);

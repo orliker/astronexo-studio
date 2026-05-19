@@ -37,26 +37,26 @@ export function ManifestoSection() {
 
         <h2 className="mt-8 font-display text-4xl font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-[5rem]">
           <Reveal>
-            <span className="block">No vendemos páginas.</span>
+            <span className="block">No fabricamos páginas.</span>
           </Reveal>
           <Reveal delay={0.12}>
             <motion.span style={{ y: y1 }} className="block">
               Diseñamos{" "}
-              <span className="text-gradient">primeras</span>
+              <span className="text-gradient">percepción</span>
             </motion.span>
           </Reveal>
           <Reveal delay={0.2}>
             <motion.span style={{ y: y2 }} className="block text-ember">
-              impresiones.
+              que vende.
             </motion.span>
           </Reveal>
         </h2>
 
         <Reveal delay={0.28}>
           <p className="mx-auto mt-10 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
-            En los primeros 5 segundos tu cliente ya decidió si confía en
-            ti. Nosotros nos encargamos de que esos 5 segundos jueguen a tu
-            favor.
+            Cuando alguien con presupuesto entra en tu web, no está mirando
+            solo diseño. Está midiendo riesgo, criterio y confianza. Nosotros
+            hacemos que esos segundos trabajen a tu favor.
           </p>
         </Reveal>
       </div>

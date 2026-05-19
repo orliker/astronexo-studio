@@ -1,8 +1,10 @@
 import { CosmosBackdrop } from "@/components/cosmos-backdrop";
 import { SiteNav } from "@/components/site-nav";
 import { HeroCinematic } from "@/components/hero-cinematic";
+import { AuthorityStrip } from "@/components/sections/authority";
 import { ProblemSection } from "@/components/sections/problem";
 import { ServicesSection } from "@/components/sections/services";
+import { DeliverablesSection } from "@/components/sections/deliverables";
 import { AudienceSection } from "@/components/sections/audience";
 import { ProcessSection } from "@/components/sections/process";
 import { ProjectsSection } from "@/components/sections/projects";
@@ -17,8 +19,10 @@ export default function Home() {
       <SiteNav />
       <main className="relative">
         <HeroCinematic />
+        <AuthorityStrip />
         <ProblemSection />
         <ServicesSection />
+        <DeliverablesSection />
         <AudienceSection />
         <ProcessSection />
         <ProjectsSection />

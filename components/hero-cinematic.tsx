@@ -8,7 +8,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Eye, MessageCircle, ShieldCheck } from "lucide-react";
 import { PingPongVideo } from "@/components/pingpong-video";
 import { WHATSAPP_URL } from "@/lib/site";
 
@@ -39,9 +39,9 @@ export function HeroCinematic() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative h-[150vh] sm:h-[160vh]"
+      className="relative min-h-[100svh] pb-10 sm:h-[160vh] sm:pb-0"
     >
-      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
+      <div className="flex min-h-[100svh] items-center overflow-hidden sm:sticky sm:top-0 sm:min-h-screen">
         {reduce ? (
           <HeroContent />
         ) : (
@@ -83,43 +83,42 @@ function HeroContent({
   glow?: MotionValue<number>;
 }) {
   return (
-    <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-0 lg:pt-0">
+    <div className="mx-auto grid w-full max-w-7xl items-center gap-7 px-5 pb-8 pt-24 sm:gap-10 sm:px-8 sm:pb-16 sm:pt-28 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-0 lg:pt-0">
       {/* ── Copy (orden 2 en mobile para que el vídeo vaya arriba) ── */}
       <div className="order-1">
         <FadeUp delay={0}>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-deep/60 px-4 py-1.5 text-xs tracking-wide text-ink-soft backdrop-blur">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ember" />
-            Web premium + automatizaciones simples · Entrega 48-72h
+            Presencia premium · estrategia + conversión
           </span>
         </FadeUp>
 
         <FadeUp delay={0.08}>
-          <h1 className="mt-7 font-display text-[2.35rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.55rem]">
-            Webs premium que hacen que tu negocio
-            <br className="hidden sm:block" />{" "}
-            <span className="text-gradient">se vea y venda mejor</span>.
+          <h1 className="mt-6 font-display text-[2.2rem] font-semibold leading-[1.04] tracking-tight sm:mt-7 sm:text-5xl lg:text-[3.65rem]">
+            Tu negocio no necesita otra web.
+            <br className="hidden sm:block" /> Necesita un{" "}
+            <span className="text-gradient">activo digital</span>.
           </h1>
         </FadeUp>
 
         <FadeUp delay={0.16}>
-          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
-            Creamos webs visuales, embudos de WhatsApp y automatizaciones
-            simples para negocios que quieren verse más profesionales,
-            convertir visitas en contactos y tener una primera versión lista
-            en 48-72 horas.
+          <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg">
+            Diseñamos sistemas web para empresas que ya tienen valor, pero
+            necesitan que su presencia online transmita confianza, claridad
+            comercial y capacidad de cerrar oportunidades desde el primer clic.
           </p>
         </FadeUp>
 
         <FadeUp delay={0.24}>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white sm:min-h-0 sm:justify-start sm:px-7"
             >
               <MessageCircle size={17} />
-              Pedir propuesta rápida
+              Solicitar auditoría privada
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -127,19 +126,20 @@ function HeroContent({
             </a>
             <a
               href="#proyectos"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-3.5 text-sm text-ink-soft transition-colors hover:border-ink-soft hover:text-ink"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm text-ink-soft transition-colors hover:border-ink-soft hover:text-ink sm:min-h-0 sm:justify-start sm:px-7"
             >
-              Ver previews
+              <Eye size={16} />
+              Ver casos reales
             </a>
           </div>
         </FadeUp>
 
         <FadeUp delay={0.32}>
-          <div className="mt-10 grid max-w-xl gap-3 text-sm text-ink-mute sm:grid-cols-3">
+          <div className="mt-7 grid max-w-xl grid-cols-1 gap-2 text-sm text-ink-mute sm:mt-10 sm:grid-cols-3 sm:gap-3">
             {[
-              "Visual premium",
-              "Oferta clara",
-              "WhatsApp directo",
+              "Auditoría + estrategia",
+              "Diseño + copy",
+              "WhatsApp + automatización",
             ].map((item, index) => (
               <span
                 key={item}
@@ -153,10 +153,26 @@ function HeroContent({
             ))}
           </div>
         </FadeUp>
+
+        <FadeUp delay={0.4}>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs text-ink-mute sm:mt-8">
+            {["Sprint 48-72h", "Mobile-first", "Seguridad base"].map(
+              (item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-void/35 px-3 py-1.5"
+                >
+                  <ShieldCheck size={13} className="text-aurora" />
+                  {item}
+                </span>
+              ),
+            )}
+          </div>
+        </FadeUp>
       </div>
 
       {/* ── Vídeo de marca enmarcado como pieza editorial ── */}
-      <div className="order-2">
+      <div className="order-2 hidden sm:block">
         <FadeUp delay={0.12}>
           <BrandVideoFrame videoScale={videoScale} glow={glow} />
         </FadeUp>
@@ -190,6 +206,14 @@ function BrandVideoFrame({
         style={videoScale ? { scale: videoScale } : undefined}
         className="panel-edge group relative overflow-hidden rounded-[1.6rem] shadow-[0_40px_120px_-30px_rgba(8,10,25,0.9)]"
       >
+        <div className="absolute inset-x-4 top-4 z-10 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.18em] text-ink-soft">
+          <span className="rounded-full border border-line bg-void/55 px-3 py-1 backdrop-blur">
+            Executive cosmos
+          </span>
+          <span className="rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-ember backdrop-blur">
+            Live build
+          </span>
+        </div>
         <div className="aspect-video w-full overflow-hidden">
           <PingPongVideo
             src="/videos/astronexo-cinematic-smooth-loop.mp4"
@@ -205,11 +229,11 @@ function BrandVideoFrame({
       </motion.div>
 
       {/* Pie editorial discreto bajo el panel */}
-      <div className="mt-4 flex items-center justify-between px-1 text-[11px] uppercase tracking-[0.18em] text-ink-mute">
-        <span>Showreel · Estudio</span>
+      <div className="mt-4 flex items-center justify-between gap-4 px-1 text-[11px] uppercase tracking-[0.18em] text-ink-mute">
+        <span>Showreel · estrategia · interfaz</span>
         <span className="flex items-center gap-2">
           <span className="h-1 w-1 animate-pulse rounded-full bg-ember" />
-          En vivo
+          Sistema en vivo
         </span>
       </div>
     </div>

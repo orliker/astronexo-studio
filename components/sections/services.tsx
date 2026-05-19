@@ -1,39 +1,35 @@
 "use client";
 
 import {
-  Globe,
-  Rocket,
-  UtensilsCrossed,
-  Images,
+  Bot,
   CalendarCheck,
-  MessageCircle,
-  Workflow,
-  ScanSearch,
-  Inbox,
-  CreditCard,
   CheckCircle2,
   Clock3,
+  CreditCard,
+  FileText,
+  Globe,
+  Images,
+  Megaphone,
+  MessageCircle,
+  Palette,
+  ScanSearch,
+  Search,
+  UtensilsCrossed,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/motion-primitives";
 import { WHATSAPP_URL } from "@/lib/site";
 
-/**
- * Servicios con jerarquía editorial:
- * - 1 servicio "ancla" grande (web premium) ocupa 2 columnas y 2 filas.
- * - El resto entra en un bento de tamaños mixtos, no una rejilla plana.
- * El movimiento de luz sigue al cursor sobre cada panel (desktop).
- */
 export function ServicesSection() {
   return (
     <section
       id="servicios"
-      className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36"
+      className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-32"
     >
       <SectionHeading
         index="02"
-        kicker="Lo que diseñamos"
+        kicker="Capacidades del estudio"
         title={
           <>
             No vendemos páginas web sueltas.
@@ -42,18 +38,18 @@ export function ServicesSection() {
             venden.
           </>
         }
-        intro="Diseño premium, claridad comercial y contacto directo. Cada pieza está pensada para que tu cliente entienda, confíe y te escriba."
+        intro="Estrategia, web, contenido, automatización y conversión trabajando juntos. Menos piezas sueltas, más presencia digital capaz de sostener una conversación seria."
       />
 
-      <div className="mt-16 grid auto-rows-[minmax(170px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((s, i) => (
-          <ServiceCard key={s.title} {...s} index={i} />
+      <div className="mt-10 grid auto-rows-[minmax(150px,auto)] grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
+        {SERVICES.map((service, index) => (
+          <ServiceCard key={service.title} {...service} index={index} />
         ))}
       </div>
 
-      <div className="mt-16 grid gap-4 lg:grid-cols-3">
-        {PACKAGES.map((p, i) => (
-          <PackageCard key={p.title} {...p} index={i} />
+      <div className="mt-10 grid gap-4 sm:mt-14 lg:grid-cols-3">
+        {PACKAGES.map((pack, index) => (
+          <PackageCard key={pack.title} {...pack} index={index} />
         ))}
       </div>
     </section>
@@ -66,6 +62,7 @@ type Service = {
   icon: React.ComponentType<{ size?: number; className?: string }>;
   span: string;
   feature?: boolean;
+  tags?: string[];
 };
 
 function ServiceCard({
@@ -74,6 +71,7 @@ function ServiceCard({
   icon: Icon,
   span,
   feature,
+  tags = [],
   index,
 }: Service & { index: number }) {
   function onMove(e: React.MouseEvent<HTMLElement>) {
@@ -84,30 +82,28 @@ function ServiceCard({
   }
 
   return (
-    <Reveal
-      delay={Math.min(index * 0.05, 0.3)}
-      className={span}
-    >
+    <Reveal delay={Math.min(index * 0.045, 0.28)} className={span}>
       <motion.article
         onMouseMove={onMove}
         whileHover={{ y: -4 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-card border border-line p-6 sm:p-7 ${
+        className={`group relative flex h-full min-h-[170px] flex-col justify-start gap-8 overflow-hidden rounded-card border border-line p-5 sm:min-h-[190px] sm:justify-between sm:p-7 ${
           feature
-            ? "bg-[linear-gradient(160deg,#11132099,#0a0c14)]"
+            ? "bg-[linear-gradient(160deg,rgba(17,19,32,0.88),rgba(7,8,13,0.98))]"
             : "bg-deep/60"
         }`}
       >
-        {/* Luz que sigue al cursor */}
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background:
-              "radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(124,108,255,0.13), transparent 60%)",
+              "radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(255,157,87,0.12), transparent 62%)",
           }}
         />
 
-        <div className="relative flex items-start justify-between">
+        {feature && <FeatureSignal />}
+
+        <div className="relative flex items-start justify-between gap-4">
           <span
             className={`grid place-items-center rounded-xl border border-line ${
               feature ? "h-12 w-12 bg-panel" : "h-10 w-10 bg-panel/70"
@@ -118,14 +114,26 @@ function ServiceCard({
               className="text-nebula-soft transition-colors group-hover:text-ink"
             />
           </span>
-          {feature && (
-            <span className="rounded-full border border-line bg-deep/70 px-3 py-1 text-[11px] uppercase tracking-wider text-ember">
+          {feature ? (
+            <span className="rounded-full border border-line bg-deep/70 px-3 py-1 text-[10px] uppercase tracking-wider text-ember sm:text-[11px]">
               Lo más pedido
             </span>
-          )}
+          ) : null}
         </div>
 
-        <div className="relative mt-8">
+        <div className={`relative ${feature ? "mt-0 sm:mt-20" : "mt-0 sm:mt-8"}`}>
+          {tags.length > 0 ? (
+            <div className="mb-4 flex flex-wrap gap-2 sm:mb-5">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-line bg-void/35 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-ink-mute"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
           <h3
             className={`font-display font-semibold tracking-tight ${
               feature ? "text-2xl sm:text-3xl" : "text-lg"
@@ -135,7 +143,7 @@ function ServiceCard({
           </h3>
           <p
             className={`mt-2 text-pretty leading-relaxed text-ink-soft ${
-              feature ? "max-w-md text-base" : "text-sm"
+              feature ? "max-w-xl text-[15px] sm:text-base" : "text-sm"
             }`}
           >
             {desc}
@@ -143,6 +151,37 @@ function ServiceCard({
         </div>
       </motion.article>
     </Reveal>
+  );
+}
+
+function FeatureSignal() {
+  return (
+    <div className="pointer-events-none absolute inset-x-6 top-20 hidden h-28 sm:block">
+      <motion.div
+        animate={{ opacity: [0.42, 0.82, 0.42], x: [0, 10, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-0 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-ember/70 to-transparent"
+      />
+      <div className="absolute left-0 top-5 grid w-full grid-cols-3 gap-3">
+        {["Estrategia", "Interfaz", "Cierre"].map((label, i) => (
+          <motion.div
+            key={label}
+            animate={{ y: [0, i % 2 ? -5 : 5, 0] }}
+            transition={{
+              duration: 4 + i * 0.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="rounded-2xl border border-line bg-void/40 p-3"
+          >
+            <span className="block h-1.5 w-10 rounded-full bg-ember/55" />
+            <span className="mt-3 block text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+              {label}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -166,8 +205,10 @@ function PackageCard({
 }: Package & { index: number }) {
   return (
     <Reveal delay={0.12 + index * 0.06}>
-      <article
-        className={`flex h-full flex-col rounded-card border p-6 sm:p-7 ${
+      <motion.article
+        whileHover={{ y: -3 }}
+        transition={{ duration: 0.25 }}
+        className={`flex h-full flex-col rounded-card border p-5 sm:p-7 ${
           highlight
             ? "border-ember/45 bg-[linear-gradient(160deg,rgba(255,157,87,0.12),rgba(13,16,25,0.78))]"
             : "border-line bg-deep/55"
@@ -183,7 +224,7 @@ function PackageCard({
           </span>
         </div>
 
-        <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight">
+        <h3 className="mt-5 font-display text-[1.35rem] font-semibold tracking-tight sm:mt-6 sm:text-2xl">
           {title}
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-ink-soft">{desc}</p>
@@ -209,70 +250,83 @@ function PackageCard({
           <MessageCircle size={15} />
           Pedir este paquete
         </a>
-      </article>
+      </motion.article>
     </Reveal>
   );
 }
 
 const SERVICES: Service[] = [
   {
-    title: "Webs premium para negocios",
-    desc: "Una experiencia visual, rápida y memorable que posiciona tu negocio donde merece estar y lleva al cliente a escribirte.",
+    title: "Web premium para negocios",
+    desc: "Una presencia digital rápida, visual y vendible: propuesta clara, autoridad, prueba real y camino directo hacia contacto.",
     icon: Globe,
-    span: "sm:col-span-2 sm:row-span-2",
+    span: "sm:col-span-2 lg:col-span-2 sm:row-span-2",
     feature: true,
+    tags: ["Estrategia", "Copy", "Deploy"],
   },
   {
-    title: "Landing pages de venta",
-    desc: "Una sola página con un objetivo: convertir. Ideal para campañas, lanzamientos y captación.",
-    icon: Rocket,
+    title: "Propuestas comerciales",
+    desc: "Estructuramos tu oferta para que el cliente entienda qué vendes, cuánto valor tiene y cuál es el siguiente paso.",
+    icon: FileText,
     span: "",
   },
   {
-    title: "Menús digitales",
-    desc: "Para restaurantes y cafés. Carta visual, rápida, sin apps, que da hambre con solo verla.",
+    title: "WhatsApp y automatizacion",
+    desc: "Mensajes preescritos, formularios y flujos simples para convertir visitas en conversaciones sin perseguir leads.",
+    icon: Bot,
+    span: "",
+  },
+  {
+    title: "Marketing y campañas",
+    desc: "Landings y piezas de captación para promociones, lanzamientos, anuncios y ofertas con una ruta de conversión clara.",
+    icon: Megaphone,
+    span: "",
+  },
+  {
+    title: "SEO local y estructura",
+    desc: "Títulos, secciones, contenido y señales base para que Google y tus clientes entiendan rápido tu negocio.",
+    icon: Search,
+    span: "",
+  },
+  {
+    title: "Analizador de Instagram",
+    desc: "Revisamos biografía, highlights, oferta, confianza y coherencia visual para detectar por qué no te escriben.",
+    icon: ScanSearch,
+    span: "sm:col-span-2 lg:col-span-1",
+  },
+  {
+    title: "Identidad digital",
+    desc: "Ajustamos tono, visuales y mensajes para que tu presencia se sienta como una marca real, no como perfiles sueltos.",
+    icon: Palette,
+    span: "",
+  },
+  {
+    title: "Menus digitales",
+    desc: "Para restaurantes y cafés: carta visual, rápida, sin apps, con acceso fácil desde QR y WhatsApp.",
     icon: UtensilsCrossed,
     span: "",
   },
   {
-    title: "Catálogos visuales",
-    desc: "Tu oferta presentada como una marca, no como una lista de WhatsApp.",
+    title: "Catalogos visuales",
+    desc: "Tu producto presentado como una marca, con fotos, categorías y CTA de compra sin parecer una lista improvisada.",
     icon: Images,
-    span: "sm:col-span-2 lg:col-span-1",
+    span: "",
   },
   {
     title: "Reservas y contacto",
-    desc: "Sistemas para que reserven o te contacten sin fricción, directo a tu canal.",
+    desc: "Sistemas para que reserven, pidan información o te contacten con el mensaje correcto desde el primer toque.",
     icon: CalendarCheck,
     span: "",
   },
   {
-    title: "Integración con WhatsApp",
-    desc: "El cliente pasa de mirar a escribirte con un toque, con el mensaje correcto ya escrito.",
-    icon: MessageCircle,
-    span: "",
-  },
-  {
-    title: "Automatizaciones simples",
-    desc: "Respuestas, leads, avisos y pasos repetitivos conectados para que tu negocio parezca más ágil.",
-    icon: Workflow,
-    span: "",
-  },
-  {
-    title: "Auditoría y presencia digital",
-    desc: "Revisamos cómo te ve tu cliente hoy y qué cambiar para que confíe antes.",
+    title: "Auditoria premium anti IA",
+    desc: "Revisamos jerarquía, copy, mobile y confianza para quitar señales genéricas y hacer la web más humana.",
     icon: ScanSearch,
     span: "",
   },
   {
-    title: "Formularios y captación",
-    desc: "Convierte visitas en contactos reales con formularios que la gente sí completa.",
-    icon: Inbox,
-    span: "",
-  },
-  {
     title: "Pagos integrados",
-    desc: "Si tu negocio lo necesita, cobra online de forma simple y segura.",
+    desc: "Cuando tiene sentido, dejamos una ruta de cobro simple para reservas, productos o servicios concretos.",
     icon: CreditCard,
     span: "",
   },
@@ -280,31 +334,31 @@ const SERVICES: Service[] = [
 
 const PACKAGES: Package[] = [
   {
-    label: "Arranque",
-    title: "Propuesta Express",
-    desc: "Para saber qué crear sin perder semanas pensando. Revisamos tu Instagram, web o idea y te devolvemos una dirección clara.",
-    delivery: "48h",
+    label: "Diagnóstico",
+    title: "Radar de presencia digital",
+    desc: "Para saber qué cambiar antes de construir. Revisamos Instagram, web, oferta y CTA con mirada comercial.",
+    delivery: "24-48h",
     items: [
-      "Auditoría rápida de presencia digital",
-      "Idea visual y estructura de la página",
-      "CTA principal y embudo de WhatsApp",
+      "Auditoría de Instagram e identidad digital",
+      "Mapa de fricciones que frenan mensajes",
+      "Prioridades de web, copy y automatización",
     ],
   },
   {
     label: "Más pedido",
-    title: "Web Premium 72h",
-    desc: "Para negocios que necesitan verse profesionales ya: landing o web corta con copy, diseño, desarrollo y contacto listo.",
+    title: "Sistema Web Premium",
+    desc: "Para negocios que necesitan una presencia seria: landing o web corta con copy, diseño, desarrollo y contacto listo.",
     delivery: "48-72h",
     highlight: true,
     items: [
-      "Hero potente con propuesta de valor",
-      "Servicios, nichos, pruebas visuales y proceso",
+      "Hero con propuesta de valor real",
+      "Servicios, portfolio, proceso y prueba visual",
       "Publicación responsive y lista para compartir",
     ],
   },
   {
     label: "Conversión",
-    title: "WhatsApp + automatización",
+    title: "WhatsApp + automatizacion",
     desc: "Para convertir visitas en conversaciones sin perseguir manualmente a cada cliente.",
     delivery: "72h máx.",
     items: [

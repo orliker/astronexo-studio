@@ -16,13 +16,13 @@ const sans = Inter({
   display: "swap",
 });
 
-const SITE_URL = "https://astronexostudio.vercel.app";
+const SITE_URL = "https://astronexo-studio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "AstroNexo Studio | Webs premium y automatizaciones en 48-72h",
+  title: "AstroNexo Studio | Webs premium, estrategia y automatización",
   description:
-    "Creamos webs premium, landing pages, embudos de WhatsApp y automatizaciones simples para negocios que quieren verse más profesionales y convertir visitas en contactos.",
+    "Diseñamos activos digitales premium para negocios que necesitan verse más serios, explicar mejor su oferta y convertir visitas en oportunidades reales.",
   keywords: [
     "estudio diseño web",
     "web premium",
@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "experiencias digitales",
     "automatizaciones simples",
     "embudo WhatsApp",
+    "auditoría Instagram",
+    "presencia digital premium",
+    "SEO local",
     "desarrollo web Next.js",
     "AstroNexo Studio",
   ],
@@ -43,15 +46,15 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_URL,
     siteName: "AstroNexo Studio",
-    title: "AstroNexo Studio | Webs premium y automatizaciones en 48-72h",
+    title: "AstroNexo Studio | Activos digitales premium para negocios serios",
     description:
-      "Webs visuales, contacto por WhatsApp y propuestas rápidas para negocios que quieren verse más profesionales.",
+      "Webs premium, estrategia visual, WhatsApp y automatización para convertir una presencia floja en un activo de confianza.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AstroNexo Studio | Webs premium y automatizaciones en 48-72h",
+    title: "AstroNexo Studio | Activos digitales premium",
     description:
-      "Pide una propuesta rápida: envíanos tu Instagram o web y te decimos qué podemos crear.",
+      "Pide una auditoría: envíanos tu Instagram o web y te decimos qué está frenando tu presencia digital.",
   },
   robots: { index: true, follow: true },
 };

@@ -9,7 +9,7 @@ const LINKS = [
   { label: "Servicios", href: "#servicios" },
   { label: "Para quién", href: "#para-quien" },
   { label: "Proceso", href: "#proceso" },
-  { label: "Previews", href: "#proyectos" },
+  { label: "Casos", href: "#proyectos" },
 ];
 
 export function SiteNav() {
@@ -58,7 +58,7 @@ export function SiteNav() {
             rel="noopener noreferrer"
             className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-void transition-colors hover:bg-white sm:inline-flex"
           >
-            Propuesta rápida
+            Auditoría privada
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
@@ -95,7 +95,7 @@ export function SiteNav() {
               rel="noopener noreferrer"
               className="mt-1 block rounded-xl bg-ink px-4 py-3 text-center font-medium text-void"
             >
-              Pedir propuesta rápida
+              Pedir auditoría privada
             </a>
           </motion.nav>
         )}

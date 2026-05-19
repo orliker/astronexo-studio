@@ -7,7 +7,7 @@ export const SITE = {
   // Sustituye por tu número real en formato internacional sin "+" ni espacios.
   whatsappNumber: "34600000000",
   whatsappMessage:
-    "Hola AstroNexo. Vengo de vuestra web y quiero una propuesta rápida. Mi Instagram/web es: ",
+    "Hola AstroNexo. Vengo de vuestra web y quiero una auditoría de mi presencia digital. Mi Instagram/web es: ",
   email: "hola@astronexostudio.com",
 };
 

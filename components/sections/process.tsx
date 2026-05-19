@@ -21,22 +21,22 @@ export function ProcessSection() {
   return (
     <section
       id="proceso"
-      className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36"
+      className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-36"
     >
       <SectionHeading
         index="04"
         kicker="Cómo trabajamos"
         title={
           <>
-            Un proceso corto,
+            Un proceso de alto criterio,
             <br /> sin humo y{" "}
             <span className="text-gradient">sin sorpresas</span>.
           </>
         }
-        intro="Auditoría, propuesta, diseño, desarrollo y entrega. Todo enfocado a que puedas enseñar algo profesional en 48-72 horas."
+        intro="Auditoría, estrategia, diseño, desarrollo y entrega. El primer sprint puede ser rápido, pero la decisión detrás de cada sección es deliberada."
       />
 
-      <div ref={ref} className="relative mt-20">
+      <div ref={ref} className="relative mt-14 sm:mt-20">
         {/* Riel base */}
         <div className="absolute left-[22px] top-2 h-full w-px bg-line md:left-1/2 md:-translate-x-1/2" />
         {/* Riel iluminado */}
@@ -45,7 +45,7 @@ export function ProcessSection() {
           className="absolute left-[22px] top-2 h-full w-px origin-top bg-gradient-to-b from-nebula via-nebula-soft to-ember md:left-1/2 md:-translate-x-1/2"
         />
 
-        <ol className="space-y-12 md:space-y-0">
+        <ol className="space-y-10 md:space-y-0">
           {STEPS.map((s, i) => (
             <Step key={s.title} {...s} index={i} />
           ))}
@@ -86,7 +86,7 @@ function Step({
           <span className="text-xs uppercase tracking-[0.2em] text-ember">
             {tag}
           </span>
-          <h3 className="mt-2 font-display text-xl font-semibold tracking-tight sm:text-2xl">
+          <h3 className="mt-2 font-display text-lg font-semibold tracking-tight sm:text-2xl">
             <span className="mr-2 text-ink-mute tabular-nums">
               {String(index + 1).padStart(2, "0")}
             </span>
@@ -107,28 +107,28 @@ function Step({
 
 const STEPS = [
   {
-    tag: "Día 0",
-    title: "Auditoría rápida",
-    desc: "Nos envías tu Instagram, web o idea. Detectamos qué falta para que el cliente confíe antes y escriba antes.",
+    tag: "Fase 01",
+    title: "Diagnóstico de presencia",
+    desc: "Analizamos tu web, Instagram, oferta y ruta de contacto para detectar dónde se pierde confianza o intención de compra.",
   },
   {
-    tag: "Día 1",
-    title: "Propuesta clara",
-    desc: "Te devolvemos una dirección: qué crear, qué secciones necesita y cuál será el CTA principal.",
+    tag: "Fase 02",
+    title: "Estrategia de conversión",
+    desc: "Definimos mensaje, secciones, prueba visual, CTA principal y el camino que debe seguir un cliente interesado.",
   },
   {
-    tag: "Día 1-2",
-    title: "Diseño premium",
-    desc: "Convertimos la idea en una página visual, con copy directo, pruebas por nicho y una primera impresión fuerte.",
+    tag: "Fase 03",
+    title: "Dirección visual premium",
+    desc: "Diseñamos una interfaz con jerarquía, movimiento y copy para que la marca se perciba más seria desde el primer vistazo.",
   },
   {
-    tag: "Día 2-3",
-    title: "Desarrollo + WhatsApp",
-    desc: "Construimos la web responsive, conectamos el embudo de contacto y dejamos el mensaje de WhatsApp listo.",
+    tag: "Fase 04",
+    title: "Desarrollo y sistema de contacto",
+    desc: "Construimos la web responsive, conectamos WhatsApp, cuidamos rendimiento y dejamos cada enlace listo para convertir.",
   },
   {
-    tag: "48-72h",
-    title: "Entrega y próximos pasos",
-    desc: "Te entregamos una versión lista para compartir, con ajustes finales y recomendaciones para seguir creciendo.",
+    tag: "Sprint 48-72h",
+    title: "Entrega, seguridad y próximos pasos",
+    desc: "Publicamos una versión sólida, revisamos mobile, headers, metadata y dejamos recomendaciones para escalar el activo.",
   },
 ];

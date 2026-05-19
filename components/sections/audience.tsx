@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 
 /**
@@ -17,32 +18,32 @@ export function AudienceSection() {
       id="para-quien"
       className="relative border-y border-line bg-deep/40"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-28 sm:px-8 sm:py-36 lg:grid-cols-12 lg:gap-16">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-36 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-ink-mute">
               <span className="text-nebula-soft">03</span>
               <span className="mx-3 inline-block h-px w-8 align-middle bg-line" />
-              Cliente ideal
+              Clientes y escenarios
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mt-6 font-display text-3xl font-semibold leading-[1.12] tracking-tight text-balance sm:text-4xl lg:text-[3rem]">
-              Estas demos son para negocios que ya tienen algo bueno
+            <h2 className="mt-6 font-display text-[2rem] font-semibold leading-[1.12] tracking-tight text-balance sm:text-4xl lg:text-[3rem]">
+              Trabajamos con negocios pequeños, medianos y grandes
               <span className="text-ink-soft">
                 {" "}
-                y necesitan que se vea en segundos.
+                que necesitan vender confianza antes de hablar.
               </span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
-            <div className="mt-10 min-h-[7rem] border-l border-line pl-6">
+            <div className="mt-8 min-h-[6rem] border-l border-line pl-5 sm:mt-10 sm:min-h-[7rem] sm:pl-6">
               <motion.p
                 key={active}
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-pretty text-lg leading-relaxed text-ink-soft"
+                className="text-pretty text-base leading-relaxed text-ink-soft sm:text-lg"
               >
                 {AUDIENCE[active].note}
               </motion.p>
@@ -55,20 +56,31 @@ export function AudienceSection() {
             {AUDIENCE.map((a, i) => (
               <li key={a.label}>
                 <Reveal delay={Math.min(i * 0.04, 0.25)}>
-                  <button
+                  <a
+                    href={a.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onMouseEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    onClick={() => setActive(i)}
-                    className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                    className="group flex w-full items-center justify-between gap-5 py-5 text-left sm:gap-6 sm:py-6"
                   >
-                    <span
-                      className={`font-display text-2xl font-medium tracking-tight transition-colors sm:text-4xl ${
-                        active === i
-                          ? "text-ink"
-                          : "text-ink-mute group-hover:text-ink-soft"
-                      }`}
-                    >
-                      {a.label}
+                    <span className="min-w-0">
+                      <span
+                        className={`block font-display text-[1.45rem] font-medium tracking-tight transition-colors sm:text-4xl ${
+                          active === i
+                            ? "text-ink"
+                            : "text-ink-mute group-hover:text-ink-soft"
+                        }`}
+                      >
+                        {a.label}
+                      </span>
+                      <span className="mt-2 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-ink-mute transition-colors group-hover:text-ember">
+                        Ver caso relacionado
+                        <ArrowUpRight
+                          size={13}
+                          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      </span>
                     </span>
                     <span
                       className={`shrink-0 text-sm tabular-nums transition-colors ${
@@ -77,7 +89,7 @@ export function AudienceSection() {
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                  </button>
+                  </a>
                 </Reveal>
               </li>
             ))}
@@ -91,26 +103,32 @@ export function AudienceSection() {
 const AUDIENCE = [
   {
     label: "Restaurantes y cafés",
-    note: "Ideal si tu comida, local o experiencia se vende mejor cuando se ve: carta visual, reservas y WhatsApp sin fricción.",
+    note: "Cuando el producto entra por los ojos, la web debe abrir hambre, resolver dudas y llevar a reserva o WhatsApp sin fricción.",
+    href: "https://lado-b-cafe.vercel.app/",
   },
   {
     label: "Clínicas y estética",
-    note: "Ideal si necesitas confianza inmediata: tratamientos claros, profesionales visibles, antes/después y contacto directo.",
+    note: "Cuando vendes confianza, la web debe explicar tratamientos, elevar percepción y hacer que el contacto se sienta seguro.",
+    href: "https://cs-clinica.vercel.app/",
   },
   {
     label: "Startups",
-    note: "Ideal si tienes un producto potente pero difícil de explicar: narrativa visual, propuesta clara y demo entendible.",
+    note: "Cuando tienes algo potente pero difícil de explicar, convertimos complejidad en narrativa visual y propuesta entendible.",
+    href: "https://sams-lyart.vercel.app/",
   },
   {
     label: "Creadores y cursos",
-    note: "Ideal si vendes conocimiento: landing de autoridad, oferta ordenada y una ruta simple para pedir información.",
+    note: "Cuando vendes conocimiento, la página debe posicionarte como autoridad y ordenar la decisión antes del mensaje.",
+    href: "https://anderbrows.vercel.app/",
   },
   {
     label: "Servicios locales",
-    note: "Ideal si compites por confianza: que te elijan a ti y no al de al lado porque tu presencia se ve más seria.",
+    note: "Cuando compites por confianza local, una presencia seria cambia la conversación antes de hablar de precio.",
+    href: "https://cortes-cl-ssicos.vercel.app/",
   },
   {
     label: "Marcas premium",
-    note: "Ideal si ya cobras bien y quieres que la web sostenga ese valor: visual elegante, argumentos claros y cero plantilla genérica.",
+    note: "Cuando ya cobras bien, la web tiene que sostener ese precio con estética, argumentos y cero sensación de plantilla.",
+    href: "https://www.mundodepapelportugal.com/",
   },
 ];
