@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ───────────────────────────────────────────────────────────
+   AstroNexo Studio — sistema de diseño
+   Paleta cosmos profunda + acento ámbar cálido (anti-genérico).
+   ─────────────────────────────────────────────────────────── */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Lienzo */
+  --color-void: #05060a;
+  --color-deep: #090b12;
+  --color-panel: #0d1019;
+  --color-line: #1b2030;
+
+  /* Texto */
+  --color-ink: #f4f5fb;
+  --color-ink-soft: #aab0c4;
+  --color-ink-mute: #6b7185;
+
+  /* Acentos: nebulosa + brasa cálida */
+  --color-nebula: #7c6cff;
+  --color-nebula-soft: #a99dff;
+  --color-aurora: #38e0c9;
+  --color-ember: #ff9d57;
+  --color-ember-deep: #f0772f;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  --radius-card: 1.4rem;
+
+  --animate-drift: drift 22s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 5s ease-in-out infinite;
+  --animate-shimmer: shimmer 3.5s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(2.5%, -3%, 0);
   }
 }
 
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: auto; /* Lenis gestiona el suavizado */
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-nebula) 40%, transparent);
+  color: var(--color-ink);
+}
+
+/* Scrollbar discreto y a tono */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2536;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b3147;
+}
+
+/* Tipografía display con tracking editorial */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Texto con gradiente sutil — usado con mesura */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-ink) 0%,
+    var(--color-nebula-soft) 55%,
+    var(--color-ink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-ember {
+  color: var(--color-ember);
+}
+
+/* Línea fina luminosa para separadores editoriales */
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-line) 18%,
+    var(--color-line) 82%,
+    transparent
+  );
+  height: 1px;
+}
+
+/* Grano sutil sobre fondos oscuros (rompe el plano "digital plano") */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* Borde con luz interior para paneles premium */
+.panel-edge {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--color-panel) 92%, var(--color-nebula) 8%),
+    var(--color-deep)
+  );
+  border: 1px solid var(--color-line);
+}
+.panel-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in oklch, var(--color-nebula) 55%, transparent),
+    transparent 38%,
+    transparent 62%,
+    color-mix(in oklch, var(--color-ember) 35%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
+}
+.panel-edge:hover::after {
+  opacity: 1;
+}
+
+/* Respeta a quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

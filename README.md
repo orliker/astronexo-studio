@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AstroNexo Studio — Web portfolio
 
-## Getting Started
+Web portfolio comercial premium. Next.js + Tailwind + Framer Motion, con
+hero cinematic de vídeo sticky-scroll.
 
-First, run the development server:
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de producción
+npm run start    # sirve el build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx          Metadata SEO + Open Graph + fuentes + scroll suave
+  page.tsx            Ensambla todas las secciones
+  globals.css         Sistema de diseño (paleta cosmos, tokens, utilidades)
+components/
+  hero-cinematic.tsx  Hero con vídeo sticky (encoge a panel al hacer scroll)
+  cosmos-backdrop.tsx Fondo de estrellas en canvas + nebulosas
+  site-nav.tsx        Navbar flotante con blur al hacer scroll
+  smooth-scroll.tsx   Lenis (se desactiva con prefers-reduced-motion)
+  sections/           Una sección por archivo
+lib/
+  site.ts             Número de WhatsApp, email y mensaje (edítalo aquí)
+public/videos/
+  astronexo-cinematic.mp4   Vídeo protagonista
+  hero-poster.svg           Poster/fallback del vídeo
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Personalización rápida
 
-## Learn More
+- **WhatsApp / email:** edita `lib/site.ts` (`whatsappNumber`, `email`,
+  `whatsappMessage`). Se propaga a todos los CTAs.
+- **Vídeo:** sustituye `public/videos/astronexo-cinematic.mp4`.
+- **Proyectos:** edita el array `PROJECTS` en
+  `components/sections/projects.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+## Cómo funciona el vídeo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`<video autoPlay muted loop playsInline preload="metadata">` con
+`poster` SVG ligero como fallback. El scroll **no** controla el tiempo
+del vídeo (eso es frágil): el vídeo reproduce solo en loop y lo que se
+anima con el scroll es su escala, radio, blur y los overlays —
+estable y barato. Con `prefers-reduced-motion` se muestra una versión
+estática sin transformaciones.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Subir a GitHub
 
-## Deploy on Vercel
+```bash
+git add -A
+git commit -m "AstroNexo Studio portfolio"
+git branch -M main
+git remote add origin https://github.com/USUARIO/REPO.git
+git push -u origin main
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Desplegar en Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Importa el repo en [vercel.com/new](https://vercel.com/new).
+2. Framework: **Next.js** (autodetectado). Sin variables de entorno.
+3. Deploy. El `.mp4` se sirve desde `public/` por el CDN de Vercel.
