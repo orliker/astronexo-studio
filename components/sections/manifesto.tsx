@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/motion-primitives";
 
 /**
@@ -10,6 +10,17 @@ import { Reveal } from "@/components/motion-primitives";
  */
 export function ManifestoSection() {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -17,6 +28,7 @@ export function ManifestoSection() {
   const y1 = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const y2 = useTransform(scrollYProgress, [0, 1], [-30, 30]);
   const glow = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.6, 0.2]);
+  const motionOff = reduce || isMobile;
 
   return (
     <section
@@ -35,18 +47,18 @@ export function ManifestoSection() {
           </p>
         </Reveal>
 
-        <h2 className="mt-8 font-display text-4xl font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-[5rem]">
+        <h2 className="mt-8 font-display text-4xl font-semibold leading-[1.12] tracking-tight sm:text-6xl sm:leading-[1.06] lg:text-[5rem]">
           <Reveal>
             <span className="block">No fabricamos páginas.</span>
           </Reveal>
           <Reveal delay={0.12}>
-            <motion.span style={{ y: y1 }} className="block">
+            <motion.span style={motionOff ? undefined : { y: y1 }} className="block">
               Diseñamos{" "}
-              <span className="text-gradient">percepción</span>
+              <span className="premium-word">percepción</span>
             </motion.span>
           </Reveal>
           <Reveal delay={0.2}>
-            <motion.span style={{ y: y2 }} className="block text-ember">
+            <motion.span style={motionOff ? undefined : { y: y2 }} className="block text-ember">
               que vende.
             </motion.span>
           </Reveal>

@@ -87,22 +87,31 @@ function HeroContent({
       {/* ── Copy (orden 2 en mobile para que el vídeo vaya arriba) ── */}
       <div className="order-1">
         <FadeUp delay={0}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-deep/60 px-4 py-1.5 text-xs tracking-wide text-ink-soft backdrop-blur">
+          <span
+            data-anime="hero-item"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-deep/60 px-4 py-1.5 text-xs tracking-wide text-ink-soft backdrop-blur"
+          >
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ember" />
             Presencia premium · estrategia + conversión
           </span>
         </FadeUp>
 
         <FadeUp delay={0.08}>
-          <h1 className="mt-6 font-display text-[2.2rem] font-semibold leading-[1.04] tracking-tight sm:mt-7 sm:text-5xl lg:text-[3.65rem]">
+          <h1
+            data-anime="hero-item"
+            className="mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:mt-7 sm:text-5xl lg:text-[3.65rem]"
+          >
             Tu negocio no necesita otra web.
             <br className="hidden sm:block" /> Necesita un{" "}
-            <span className="text-gradient">activo digital</span>.
+            <span className="premium-word">activo digital</span>.
           </h1>
         </FadeUp>
 
         <FadeUp delay={0.16}>
-          <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg">
+          <p
+            data-anime="hero-item"
+            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg"
+          >
             Diseñamos sistemas web para empresas que ya tienen valor, pero
             necesitan que su presencia online transmita confianza, claridad
             comercial y capacidad de cerrar oportunidades desde el primer clic.
@@ -110,12 +119,15 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.24}>
-          <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center">
+          <div
+            data-anime="hero-item"
+            className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center"
+          >
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white sm:min-h-0 sm:justify-start sm:px-7"
+              className="micro-glint group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white sm:min-h-0 sm:justify-start sm:px-7"
             >
               <MessageCircle size={17} />
               Solicitar auditoría privada
@@ -135,7 +147,10 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.32}>
-          <div className="mt-7 grid max-w-xl grid-cols-1 gap-2 text-sm text-ink-mute sm:mt-10 sm:grid-cols-3 sm:gap-3">
+          <div
+            data-anime="hero-item"
+            className="mt-7 grid max-w-xl grid-cols-1 gap-2 text-sm text-ink-mute sm:mt-10 sm:grid-cols-3 sm:gap-3"
+          >
             {[
               "Auditoría + estrategia",
               "Diseño + copy",
@@ -155,11 +170,15 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.4}>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs text-ink-mute sm:mt-8">
+          <div
+            data-anime="hero-item"
+            className="mt-5 flex flex-wrap gap-2 text-xs text-ink-mute sm:mt-8"
+          >
             {["Sprint 48-72h", "Mobile-first", "Seguridad base"].map(
               (item) => (
                 <span
                   key={item}
+                  data-anime="float-soft"
                   className="inline-flex items-center gap-2 rounded-full border border-line bg-void/35 px-3 py-1.5"
                 >
                   <ShieldCheck size={13} className="text-aurora" />
@@ -204,13 +223,13 @@ function BrandVideoFrame({
 
       <motion.div
         style={videoScale ? { scale: videoScale } : undefined}
-        className="panel-edge group relative overflow-hidden rounded-[1.6rem] shadow-[0_40px_120px_-30px_rgba(8,10,25,0.9)]"
+        className="panel-edge premium-surface group relative overflow-hidden rounded-[1.6rem] shadow-[0_40px_120px_-30px_rgba(8,10,25,0.9)]"
       >
         <div className="absolute inset-x-4 top-4 z-10 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.18em] text-ink-soft">
-          <span className="rounded-full border border-line bg-void/55 px-3 py-1 backdrop-blur">
+          <span data-anime="float-soft" className="rounded-full border border-line bg-void/55 px-3 py-1 backdrop-blur">
             Executive cosmos
           </span>
-          <span className="rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-ember backdrop-blur">
+          <span data-anime="float-soft" className="rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-ember backdrop-blur">
             Live build
           </span>
         </div>

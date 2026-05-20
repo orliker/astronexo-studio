@@ -21,7 +21,7 @@ export function ProjectsSection() {
             <>
               Cómo se ve el trabajo
               <br />
-              cuando va <span className="text-gradient">en serio</span>.
+              cuando va <span className="premium-word">en serio</span>.
             </>
           }
           intro="Casos y previews ya publicados. Cada uno tiene una función comercial: elevar percepción, explicar mejor la oferta y acercar al visitante a una conversación real."
@@ -65,7 +65,7 @@ function ProjectCard({
     <Reveal delay={Math.min(index * 0.05, 0.28)} className={span}>
       <motion.article
         whileHover="hover"
-        className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60"
+        className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60 transition-shadow duration-500 hover:shadow-[0_28px_110px_-70px_rgba(124,108,255,0.85)]"
       >
         <a
           href={url}

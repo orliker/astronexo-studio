@@ -84,7 +84,7 @@ export function DeliverablesSection() {
                 Lo que entregamos
                 <br />
                 no es una web. Es una{" "}
-                <span className="text-gradient">maquina de confianza</span>.
+                <span className="premium-word">maquina de confianza</span>.
               </>
             }
             intro="Cada pieza tiene una funcion: explicar, elevar, convertir o reducir friccion. Si no ayuda a vender mejor, no entra."
@@ -93,6 +93,7 @@ export function DeliverablesSection() {
           <Reveal delay={0.1}>
             <div className="panel-edge relative overflow-hidden rounded-card p-6 sm:p-7">
               <motion.div
+                data-anime="pulse-line"
                 animate={reduce ? undefined : { x: ["-10%", "10%", "-10%"] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                 className="pointer-events-none absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-aurora/70 to-transparent"

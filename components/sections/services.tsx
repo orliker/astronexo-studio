@@ -34,7 +34,7 @@ export function ServicesSection() {
           <>
             No vendemos páginas web sueltas.
             <br />
-            Construimos <span className="text-gradient">activos</span> que
+            Construimos <span className="premium-word">activos</span> que
             venden.
           </>
         }
@@ -85,11 +85,12 @@ function ServiceCard({
     <Reveal delay={Math.min(index * 0.045, 0.28)} className={span}>
       <motion.article
         onMouseMove={onMove}
+        data-anime={feature ? "float-soft" : undefined}
         whileHover={{ y: -4 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className={`group relative flex h-full min-h-[170px] flex-col justify-start gap-8 overflow-hidden rounded-card border border-line p-5 sm:min-h-[190px] sm:justify-between sm:p-7 ${
           feature
-            ? "bg-[linear-gradient(160deg,rgba(17,19,32,0.88),rgba(7,8,13,0.98))]"
+            ? "premium-surface bg-[linear-gradient(160deg,rgba(17,19,32,0.88),rgba(7,8,13,0.98))]"
             : "bg-deep/60"
         }`}
       >
@@ -158,6 +159,7 @@ function FeatureSignal() {
   return (
     <div className="pointer-events-none absolute inset-x-6 top-20 hidden h-28 sm:block">
       <motion.div
+        data-anime="pulse-line"
         animate={{ opacity: [0.42, 0.82, 0.42], x: [0, 10, 0] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
         className="absolute left-0 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-ember/70 to-transparent"
@@ -206,11 +208,12 @@ function PackageCard({
   return (
     <Reveal delay={0.12 + index * 0.06}>
       <motion.article
+        data-anime={highlight ? "float-soft" : undefined}
         whileHover={{ y: -3 }}
         transition={{ duration: 0.25 }}
         className={`flex h-full flex-col rounded-card border p-5 sm:p-7 ${
           highlight
-            ? "border-ember/45 bg-[linear-gradient(160deg,rgba(255,157,87,0.12),rgba(13,16,25,0.78))]"
+            ? "premium-surface border-ember/45 bg-[linear-gradient(160deg,rgba(255,157,87,0.12),rgba(13,16,25,0.78))]"
             : "border-line bg-deep/55"
         }`}
       >
@@ -245,7 +248,7 @@ function PackageCard({
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink-soft hover:bg-panel"
+          className="micro-glint mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink-soft hover:bg-panel"
         >
           <MessageCircle size={15} />
           Pedir este paquete

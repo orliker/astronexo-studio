@@ -41,8 +41,8 @@ export function AuthorityStrip() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="relative overflow-hidden">
+        <Reveal delay={0.1} className="min-w-0">
+          <div className="relative max-w-full overflow-hidden">
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-deep to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-deep to-transparent" />
             <motion.div
@@ -55,6 +55,7 @@ export function AuthorityStrip() {
                 return (
                   <div
                     key={`${item.label}-${index}`}
+                    data-anime="float-soft"
                     className="flex min-w-[220px] items-center gap-3 rounded-full border border-line bg-void/45 px-4 py-3"
                   >
                     <span className="grid h-9 w-9 place-items-center rounded-full border border-line bg-panel text-nebula-soft">

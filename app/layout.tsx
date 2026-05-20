@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
@@ -10,10 +10,18 @@ const display = Space_Grotesk({
   display: "swap",
 });
 
-const sans = Inter({
+const sans = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const accent = Instrument_Serif({
+  variable: "--font-accent",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
 });
 
 const SITE_URL = "https://astronexo-studio.vercel.app";
@@ -72,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${display.variable} ${sans.variable} antialiased`}
+      className={`${display.variable} ${sans.variable} ${accent.variable} antialiased`}
     >
       <body>
         <SmoothScroll>{children}</SmoothScroll>

@@ -11,12 +11,14 @@ import { ProjectsSection } from "@/components/sections/projects";
 import { ManifestoSection } from "@/components/sections/manifesto";
 import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
+import { AnimePageMotion } from "@/components/anime-page-motion";
 
 export default function Home() {
   return (
     <>
       <CosmosBackdrop />
       <SiteNav />
+      <AnimePageMotion />
       <main className="relative">
         <HeroCinematic />
         <AuthorityStrip />
