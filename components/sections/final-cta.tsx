@@ -4,6 +4,7 @@ import { MessageCircle, Mail } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 import { MagneticButton } from "@/components/magnetic-button";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { BrandLogo } from "@/components/brand-logo";
 
 /**
  * CTA final + footer. Cierre humano, no agresivo. El panel tiene borde
@@ -13,7 +14,10 @@ export function FinalCTA() {
   return (
     <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-36">
       <Reveal>
-        <div className="panel-edge grain relative overflow-hidden rounded-[1.5rem] px-5 py-14 text-center sm:rounded-[2rem] sm:px-16 sm:py-28">
+        <div
+          data-gsap-breathe
+          className="panel-edge grain relative overflow-hidden rounded-[1.5rem] px-5 py-14 text-center sm:rounded-[2rem] sm:px-16 sm:py-28"
+        >
           <div className="pointer-events-none absolute -top-1/3 left-1/2 h-[50vh] w-[50vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.12),transparent_65%)] blur-3xl" />
 
           <p className="relative text-xs uppercase tracking-[0.3em] text-ink-mute">
@@ -23,7 +27,7 @@ export function FinalCTA() {
             Envíanos tu web o Instagram,
             <br />
             y te decimos{" "}
-            <span className="text-gradient">qué está frenando la venta</span>.
+            <span className="premium-word">qué está frenando la venta</span>.
           </h2>
           <p className="relative mx-auto mt-6 max-w-lg text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
             Revisamos tu presencia con mirada de diseño, estrategia y
@@ -66,9 +70,7 @@ export function SiteFooter() {
     <footer className="relative border-t border-line">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <div>
-          <p className="font-display text-lg font-semibold tracking-tight">
-            AstroNexo <span className="text-ink-mute">Studio</span>
-          </p>
+          <BrandLogo compact={false} />
           <p className="mt-1 text-sm text-ink-mute">
             Webs premium, estrategia visual, automatización y embudos de WhatsApp.
           </p>

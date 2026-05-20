@@ -15,7 +15,7 @@
   /* Texto */
   --color-ink: #f4f5fb;
   --color-ink-soft: #aab0c4;
-  --color-ink-mute: #6b7185;
+  --color-ink-mute: #81879a;
 
   /* Acentos: nebulosa + brasa cálida */
   --color-nebula: #7c6cff;
@@ -198,6 +198,50 @@ body {
 .micro-glint:hover::before {
   opacity: 1;
   transform: translateX(330%) rotate(18deg);
+}
+
+.brand-mark {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 16px 50px -28px rgba(255, 157, 87, 0.9);
+}
+
+.brand-mark::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background:
+    radial-gradient(circle at 35% 32%, rgba(255, 157, 87, 0.34), transparent 24%),
+    radial-gradient(circle at 70% 76%, rgba(56, 224, 201, 0.16), transparent 24%),
+    conic-gradient(from 180deg, transparent, rgba(124, 108, 255, 0.18), transparent);
+  filter: blur(10px);
+  opacity: 0.9;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%);
+  pointer-events: none;
+}
+
+.executive-grid {
+  background-image:
+    linear-gradient(rgba(244, 245, 251, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 245, 251, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.premium-focus {
+  outline: none;
+}
+
+.premium-focus:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--color-void),
+    0 0 0 4px color-mix(in oklch, var(--color-aurora) 65%, transparent);
 }
 
 /* Línea fina luminosa para separadores editoriales */

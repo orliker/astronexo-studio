@@ -49,11 +49,11 @@ export function MagneticButton({
   }
 
   const base =
-    "group relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-colors duration-300 will-change-transform";
+    "premium-focus group relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-colors duration-300 will-change-transform";
 
   const skin =
     variant === "primary"
-      ? "bg-ink text-void hover:bg-white"
+      ? "micro-glint bg-ink text-void hover:bg-white"
       : "border border-line text-ink-soft hover:text-ink hover:border-ink-soft";
 
   return (

@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   authors: [{ name: "AstroNexo Studio" }],
   creator: "AstroNexo Studio",
   alternates: { canonical: SITE_URL },
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",

@@ -12,6 +12,7 @@ import { ManifestoSection } from "@/components/sections/manifesto";
 import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { AnimePageMotion } from "@/components/anime-page-motion";
+import { GsapPremiumEffects } from "@/components/gsap-premium-effects";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <CosmosBackdrop />
       <SiteNav />
       <AnimePageMotion />
+      <GsapPremiumEffects />
       <main className="relative">
         <HeroCinematic />
         <AuthorityStrip />

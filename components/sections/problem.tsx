@@ -53,7 +53,14 @@ export function ProblemSection() {
 
         <div className="lg:col-span-5">
           <Reveal delay={0.05}>
-            <div className="panel-edge mb-6 rounded-card p-6">
+            <div
+              data-gsap-breathe
+              className="panel-edge premium-surface executive-grid relative mb-6 overflow-hidden rounded-card p-6"
+            >
+              <span
+                data-gsap-scan
+                className="pointer-events-none absolute inset-y-0 left-[-45%] w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)]"
+              />
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-ember">
@@ -80,6 +87,7 @@ export function ProblemSection() {
                     </div>
                     <div className="h-1.5 overflow-hidden rounded-full bg-line">
                       <div
+                        data-gsap-line
                         className="h-full rounded-full bg-gradient-to-r from-nebula-soft to-ember"
                         style={{ width: value }}
                       />

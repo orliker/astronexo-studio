@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site";
+import { BrandLogo } from "@/components/brand-logo";
 
 const LINKS = [
   { label: "Servicios", href: "#servicios" },
@@ -32,11 +33,8 @@ export function SiteNav() {
             : "my-5 border border-transparent py-2"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5">
-          <Logo />
-          <span className="font-display text-[15px] font-semibold tracking-tight">
-            AstroNexo<span className="text-ink-mute"> Studio</span>
-          </span>
+        <a href="#top" className="premium-focus rounded-2xl">
+          <BrandLogo compact />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -44,7 +42,7 @@ export function SiteNav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-ink-soft transition-colors hover:text-ink"
+              className="premium-focus rounded-full px-1 text-sm text-ink-soft transition-colors hover:text-ink"
             >
               {l.label}
             </a>
@@ -56,13 +54,13 @@ export function SiteNav() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-void transition-colors hover:bg-white sm:inline-flex"
+            className="premium-focus micro-glint hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-void transition-colors hover:bg-white sm:inline-flex"
           >
             Auditoría privada
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink-soft md:hidden"
+            className="premium-focus grid h-10 w-10 place-items-center rounded-full border border-line text-ink-soft md:hidden"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
           >
             {open ? <X size={18} /> : <Menu size={18} />}
@@ -84,7 +82,7 @@ export function SiteNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-4 py-3 text-ink-soft transition-colors hover:bg-panel hover:text-ink"
+                className="premium-focus block rounded-xl px-4 py-3 text-ink-soft transition-colors hover:bg-panel hover:text-ink"
               >
                 {l.label}
               </a>
@@ -93,7 +91,7 @@ export function SiteNav() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 block rounded-xl bg-ink px-4 py-3 text-center font-medium text-void"
+              className="premium-focus mt-1 block rounded-xl bg-ink px-4 py-3 text-center font-medium text-void"
             >
               Pedir auditoría privada
             </a>
@@ -101,15 +99,5 @@ export function SiteNav() {
         )}
       </AnimatePresence>
     </header>
-  );
-}
-
-function Logo() {
-  return (
-    <span className="relative grid h-8 w-8 place-items-center rounded-lg border border-line bg-panel">
-      <span className="absolute h-3.5 w-3.5 rounded-full border border-nebula-soft/70" />
-      <span className="absolute h-1.5 w-1.5 rounded-full bg-ember" />
-      <span className="absolute h-6 w-6 rotate-45 rounded-full border border-line" />
-    </span>
   );
 }

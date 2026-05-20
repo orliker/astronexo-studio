@@ -8,9 +8,17 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
-import { ArrowUpRight, Eye, MessageCircle, ShieldCheck } from "lucide-react";
+import {
+  ArrowUpRight,
+  Eye,
+  Gauge,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { PingPongVideo } from "@/components/pingpong-video";
 import { WHATSAPP_URL } from "@/lib/site";
+import { BrandLogo } from "@/components/brand-logo";
 
 /**
  * Hero — layout editorial dividido.
@@ -188,6 +196,8 @@ function HeroContent({
             )}
           </div>
         </FadeUp>
+
+        <HeroMobileSignal />
       </div>
 
       {/* ── Vídeo de marca enmarcado como pieza editorial ── */}
@@ -223,6 +233,7 @@ function BrandVideoFrame({
 
       <motion.div
         style={videoScale ? { scale: videoScale } : undefined}
+        data-gsap-breathe
         className="panel-edge premium-surface group relative overflow-hidden rounded-[1.6rem] shadow-[0_40px_120px_-30px_rgba(8,10,25,0.9)]"
       >
         <div className="absolute inset-x-4 top-4 z-10 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.18em] text-ink-soft">
@@ -256,6 +267,46 @@ function BrandVideoFrame({
         </span>
       </div>
     </div>
+  );
+}
+
+function HeroMobileSignal() {
+  return (
+    <FadeUp delay={0.48}>
+      <div className="premium-surface relative mt-5 overflow-hidden rounded-[1.25rem] border border-line p-4 sm:hidden">
+        <span
+          data-gsap-scan
+          className="pointer-events-none absolute inset-y-0 left-[-45%] w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent)]"
+        />
+        <div className="relative flex items-center justify-between gap-4">
+          <BrandLogo compact />
+          <span className="inline-flex items-center gap-2 rounded-full border border-aurora/25 bg-aurora/10 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-aurora">
+            <Sparkles size={12} />
+            audit ready
+          </span>
+        </div>
+        <div className="relative mt-4 grid grid-cols-3 gap-2">
+          {[
+            ["Trust", "92"],
+            ["Mobile", "A+"],
+            ["CTA", "01"],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="rounded-2xl border border-line bg-void/35 px-3 py-2.5"
+            >
+              <span className="block text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                {label}
+              </span>
+              <span className="mt-1 flex items-center gap-1.5 font-display text-lg font-semibold text-ink">
+                <Gauge size={13} className="text-ember" />
+                {value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </FadeUp>
   );
 }
 

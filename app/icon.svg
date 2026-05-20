@@ -1,0 +1,20 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="30" fill="#05060A"/>
+  <circle cx="64" cy="64" r="44" stroke="#1B2030" stroke-width="3"/>
+  <ellipse cx="64" cy="64" rx="50" ry="19" transform="rotate(-25 64 64)" stroke="url(#ring)" stroke-width="4"/>
+  <circle cx="101" cy="45" r="6" fill="#FF9D57"/>
+  <path d="M39 86V42h9l31 30V42h10v44h-9L49 56v30H39Z" fill="url(#core)"/>
+  <path d="M36 92h54" stroke="#38E0C9" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="core" x1="36" y1="41" x2="92" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F5FB"/>
+      <stop offset=".45" stop-color="#FF9D57"/>
+      <stop offset="1" stop-color="#7C6CFF"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="14" y1="64" x2="114" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38E0C9" stop-opacity=".18"/>
+      <stop offset=".5" stop-color="#F4F5FB" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FF9D57" stop-opacity=".35"/>
+    </linearGradient>
+  </defs>
+</svg>
