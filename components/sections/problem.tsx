@@ -51,20 +51,21 @@ export function ProblemSection() {
             </a>
           </Reveal>
 
-          {/* Nuevo Gráfico Visual para rellenar el espacio y aportar valor de impacto */}
+          {/* Nuevo Gráfico Visual con animaciones al scroll y efectos de hover interactivos */}
           <Reveal delay={0.32}>
-            <div className="mt-12 premium-surface rounded-card border border-line bg-void/25 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)] relative overflow-hidden">
+            <div className="mt-12 premium-surface rounded-card border border-line bg-void/25 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)] relative overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_rgba(255,157,87,0.04)]">
               <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(56,224,201,0.05),transparent_65%)] blur-2xl" />
               
               <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4 font-mono">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-                Visualización del Embudo de Fuga Comercial
+                Visualización del Embudo de Fuga Comercial (Interactivo)
               </span>
               
               <div className="grid gap-6 md:grid-cols-2">
                 {/* Columna 1: Embudo Roto Tradicional */}
-                <div className="rounded-xl border border-line/45 bg-deep/10 p-4 space-y-3">
-                  <span className="block text-[11px] font-bold text-red-400 uppercase tracking-wide">
+                <div className="rounded-xl border border-line/45 bg-deep/10 p-4 space-y-3 transition-all duration-300 hover:border-red-400/30">
+                  <span className="block text-[11px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-ping" />
                     Embudo Roto Tradicional
                   </span>
                   <div className="space-y-2">
@@ -75,7 +76,13 @@ export function ProblemSection() {
                         <span>100%</span>
                       </div>
                       <div className="h-1 bg-void/50 rounded-full overflow-hidden">
-                        <div className="h-full bg-ink-mute/55" style={{ width: "100%" }} />
+                        <motion.div 
+                          className="h-full bg-ink-mute/55" 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "100%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, ease: "easeOut" }}
+                        />
                       </div>
                     </div>
                     {/* Barra 2 */}
@@ -85,7 +92,13 @@ export function ProblemSection() {
                         <span>-58% Fuga</span>
                       </div>
                       <div className="h-1 bg-void/50 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-400/80" style={{ width: "42%" }} />
+                        <motion.div 
+                          className="h-full bg-red-400/80" 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "42%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
                       </div>
                     </div>
                     {/* Barra 3 */}
@@ -95,7 +108,13 @@ export function ProblemSection() {
                         <span>-27% Fuga</span>
                       </div>
                       <div className="h-1 bg-void/50 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-400/60" style={{ width: "15%" }} />
+                        <motion.div 
+                          className="h-full bg-red-400/60" 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "15%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.2, ease: "easeOut" }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -105,8 +124,9 @@ export function ProblemSection() {
                 </div>
 
                 {/* Columna 2: Sistema Optimizado AstroNexo */}
-                <div className="rounded-xl border border-aurora/25 bg-aurora/5 p-4 space-y-3">
-                  <span className="block text-[11px] font-bold text-aurora uppercase tracking-wide">
+                <div className="rounded-xl border border-aurora/25 bg-aurora/5 p-4 space-y-3 transition-all duration-300 hover:border-aurora/40 hover:shadow-[0_0_15px_rgba(56,224,201,0.06)]">
+                  <span className="block text-[11px] font-bold text-aurora uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-aurora animate-pulse" />
                     Sistema Optimizado AstroNexo
                   </span>
                   <div className="space-y-2">
@@ -117,7 +137,13 @@ export function ProblemSection() {
                         <span>100%</span>
                       </div>
                       <div className="h-1 bg-void/50 rounded-full overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" style={{ width: "100%" }} />
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "100%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, ease: "easeOut" }}
+                        />
                       </div>
                     </div>
                     {/* Barra 2 */}
@@ -130,7 +156,8 @@ export function ProblemSection() {
                         <motion.div 
                           className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" 
                           initial={{ width: 0 }}
-                          animate={{ width: "92%" }}
+                          whileInView={{ width: "92%" }}
+                          viewport={{ once: true }}
                           transition={{ duration: 1, ease: "easeOut" }}
                         />
                       </div>
@@ -145,7 +172,8 @@ export function ProblemSection() {
                         <motion.div 
                           className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" 
                           initial={{ width: 0 }}
-                          animate={{ width: "78%" }}
+                          whileInView={{ width: "78%" }}
+                          viewport={{ once: true }}
                           transition={{ duration: 1.2, ease: "easeOut" }}
                         />
                       </div>
