@@ -120,11 +120,63 @@ export function WebSection() {
         }
         return prev + 1;
       });
-    }, 800);
+    }, 600);
   };
 
+  const isInstagramAudit = targetUrl.includes("@") || targetUrl.toLowerCase().includes("instagram.com");
+
+  // Auditoría personalizada si es un perfil de Instagram o una página web
+  const getAuditDiagnostics = () => {
+    if (isInstagramAudit) {
+      return {
+        score: "42/100 (Muy Deficiente)",
+        title: "Diagnóstico de Instagram: 3 Fugas de Conversión",
+        problems: [
+          {
+            title: "Link de biografía ineficiente (ej. Linktree):",
+            desc: "Ofreces demasiadas opciones y links externos. El 80% de tus visitas se confunden y se van sin tomar ninguna acción."
+          },
+          {
+            title: "Cero automatización de mensajes directos (DMs):",
+            desc: "Cuando un cliente potencial pregunta precio por privado, tardas horas en responder. Pierdes la venta caliente."
+          },
+          {
+            title: "Falta de una ruta de conversión directa:",
+            desc: "No tienes una landing page rápida con un cualificador o bot que dirija al lead directo a tu WhatsApp comercial."
+          }
+        ],
+        loss: "-35% de interés",
+        ctaText: "Construir mi embudo y web para Instagram"
+      };
+    } else {
+      return {
+        score: "54/100 (Crítico)",
+        title: "Diagnóstico Web: 3 Fallos Técnicos Críticos",
+        problems: [
+          {
+            title: "Tardar &gt; 4 segundos en ser interactivo:",
+            desc: "La web carga visualmente pero tarda segundos en dejar pulsar los botones. Pierdes visitas impacientes por esta demora."
+          },
+          {
+            title: "Ausencia de pre-cualificador o flujo directo:",
+            desc: "Obligas al cliente a leer textos densos para informarse. ¿Por qué no guiarlo con un formulario dinámico directo?"
+          },
+          {
+            title: "Archivos pesados y scripts no optimizados:",
+            desc: "Saturan la conexión móvil de tu cliente. Google detecta esto y penaliza tu posicionamiento orgánico."
+          }
+        ],
+        loss: "-28% de ventas",
+        ctaText: "Optimizar y rediseñar mi sitio web"
+      };
+    }
+  };
+
+  const diagnostics = getAuditDiagnostics();
+
   const getWhatsAppLinkAudit = () => {
-    const msg = `Hola AstroNexo. He auditado mi web/Instagram: "${targetUrl}". El sistema indica un rendimiento móvil crítico (54/100) y pérdida de conversión. Quiero corregir los 3 problemas técnicos en mi sitio web.`;
+    const auditType = isInstagramAudit ? "Instagram" : "Sitio Web";
+    const msg = `Hola AstroNexo. He auditado mi ${auditType}: "${targetUrl}". El sistema indica un rendimiento crítico (${diagnostics.score}) y pérdida de conversión. Quiero corregir los 3 problemas técnicos en mi presencia online.`;
     return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
 
@@ -137,9 +189,9 @@ export function WebSection() {
   return (
     <section
       id="webs-y-qr"
-      className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-32 border-t border-line bg-deep/20"
+      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-deep/20"
     >
-      <div className="pointer-events-none absolute -right-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.04),transparent_65%)] blur-3xl" />
+      <div className="pointer-events-none absolute -right-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.03),transparent_65%)] blur-3xl" />
 
       <SectionHeading
         index="04"
@@ -153,19 +205,19 @@ export function WebSection() {
         intro="Una presencia digital veloz, limpia y con alto criterio estético. Diseñamos webs que eliminan la sensación de amateurismo y multiplican tu tasa de conversión de visitas a clientes."
       />
 
-      {/* Grid del Portafolio Curado (2 Clientes Reales) */}
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {/* Grid del Portafolio Curado (2 Clientes Reales) - Tamaño compacto en móviles */}
+      <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
         {FEATURED_PROJECTS.map((project, index) => (
           <Reveal key={project.title} delay={index * 0.1}>
             <motion.article
               whileHover="hover"
-              className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60 transition-shadow duration-500 hover:shadow-[0_28px_110px_-70px_rgba(124,108,255,0.45)]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60 transition-shadow duration-500 hover:shadow-[0_20px_90px_-70px_rgba(124,108,255,0.35)]"
             >
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative block aspect-[16/10] overflow-hidden bg-panel"
+                className="relative block aspect-[16/9] sm:aspect-[16/10] overflow-hidden bg-panel"
                 aria-label={`Abrir ${project.title}`}
               >
                 <Image
@@ -173,40 +225,40 @@ export function WebSection() {
                   alt={`Vista previa de ${project.title}`}
                   fill
                   sizes="(min-width: 1024px) 44vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover object-top opacity-90 transition duration-700 group-hover:scale-[1.03] group-hover:opacity-100"
+                  className="object-cover object-top opacity-90 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
-                <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-3">
-                  <span className="rounded-full border border-line bg-void/70 px-3 py-1 text-[11px] uppercase tracking-wider text-ink-soft backdrop-blur">
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
+                <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-3">
+                  <span className="rounded-full border border-line bg-void/70 px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink-soft backdrop-blur">
                     {project.sector}
                   </span>
                   <motion.span
                     variants={{ hover: { rotate: 45, color: "#ff9d57" } }}
-                    transition={{ duration: 0.25 }}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur"
+                    transition={{ duration: 0.2 }}
+                    className="grid h-8 w-8 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur"
                   >
-                    <ArrowUpRight size={16} />
+                    <ArrowUpRight size={14} />
                   </motion.span>
                 </div>
               </a>
 
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="font-display text-lg font-semibold tracking-tight">
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <h3 className="font-display text-base sm:text-lg font-semibold tracking-tight">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{project.desc}</p>
-                <p className="mt-4 rounded-2xl border border-line bg-void/35 px-4 py-3 text-xs uppercase tracking-[0.16em] text-ember">
+                <p className="mt-1 text-xs leading-relaxed text-ink-soft">{project.desc}</p>
+                <p className="mt-3 rounded-xl border border-line bg-void/35 px-3 py-2 text-[10px] sm:text-xs uppercase tracking-[0.16em] text-ember">
                   {project.result}
                 </p>
 
-                <div className="mt-auto flex flex-wrap gap-3 pt-5">
+                <div className="mt-4 flex flex-wrap gap-3">
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink transition-colors hover:border-ink-soft hover:bg-panel"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[10px] sm:text-xs font-semibold text-ink transition-colors hover:border-ink-soft hover:bg-panel"
                   >
-                    <Eye size={13} />
+                    <Eye size={12} />
                     Ver Web Real
                   </a>
                 </div>
@@ -217,128 +269,145 @@ export function WebSection() {
       </div>
 
       {/* Bloque Interactivo de Configuración */}
-      <div className="mt-16 grid gap-8 lg:grid-cols-12 lg:gap-14">
+      <div className="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-10">
         {/* Lado Izquierdo: Dashboard de Carga y Auditor de Rendimiento */}
-        <div className="lg:col-span-7 flex flex-col justify-between gap-8 h-full">
+        <div className="lg:col-span-7 flex flex-col justify-between gap-6 h-full">
           {/* Dashboard de Rendimiento: 4 Gráficos y Métricas */}
           <Reveal>
-            <div className="premium-surface rounded-card border border-line bg-void/35 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-5">
+            <div className="premium-surface rounded-card border border-line bg-void/25 p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4">
                 <Cpu size={11} className="text-aurora" />
                 Auditoría Técnica: Velocidad y Conversión de Carga
               </span>
 
-              <div className="grid gap-5 md:grid-cols-12">
+              <div className="grid gap-4 md:grid-cols-12">
                 {/* Gráfico 1 (Principal): SVG Horizontal Comparison Bar Chart */}
-                <div className="md:col-span-8 rounded-xl border border-line/60 bg-deep/20 p-4 space-y-4">
+                <div className="md:col-span-8 rounded-xl border border-line/50 bg-deep/10 p-3 sm:p-4 space-y-3">
                   <span className="block text-[11px] font-semibold text-ink-soft">
                     Tiempo de Carga en Dispositivos Móviles
                   </span>
                   
-                  <div className="space-y-3.5">
+                  <div className="space-y-3">
                     {/* Fila WP */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[10px] text-ink-mute font-mono">
+                      <div className="flex justify-between text-[9px] text-ink-mute font-mono">
                         <span>Wordpress / Plantilla Tradicional</span>
                         <span className="text-red-400 font-semibold">4.8 segundos</span>
                       </div>
-                      <div className="h-2 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
+                      <div className="h-1.5 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
                         <div className="h-full bg-red-400/80 rounded-full" style={{ width: "90%" }} />
                       </div>
                     </div>
 
                     {/* Fila AstroNexo */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[10px] text-ink-soft font-mono">
+                      <div className="flex justify-between text-[9px] text-ink-soft font-mono">
                         <span>AstroNexo Premium (Next.js Edge)</span>
                         <span className="text-aurora font-semibold">0.7 segundos</span>
                       </div>
-                      <div className="h-2 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
-                        <div className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora rounded-full shadow-[0_0_8px_rgba(56,224,201,0.4)]" style={{ width: "15%" }} />
+                      <div className="h-1.5 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora rounded-full shadow-[0_0_8px_rgba(56,224,201,0.4)]" 
+                          style={{ width: "15%" }}
+                          initial={{ width: 0 }}
+                          animate={{ width: "15%" }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
                       </div>
                     </div>
                   </div>
 
-                  <span className="block text-[9px] text-ink-mute leading-relaxed">
+                  <span className="block text-[8px] sm:text-[9px] text-ink-mute leading-relaxed">
                     El 53% de los usuarios abandona las páginas móviles que tardan más de 3 segundos en mostrar información interactiva.
                   </span>
                 </div>
 
                 {/* Gráfico 2: Medidor Radial Lighthouse Score */}
-                <div className="md:col-span-4 rounded-xl border border-line/60 bg-deep/20 p-4 flex flex-col justify-between items-center text-center">
+                <div className="md:col-span-4 rounded-xl border border-line/50 bg-deep/10 p-3 sm:p-4 flex flex-col justify-between items-center text-center">
                   <span className="block text-[11px] font-semibold text-ink-soft">
                     Lighthouse Score
                   </span>
                   
-                  <div className="relative my-2 flex items-center justify-center">
-                    <svg className="h-20 w-20 transform -rotate-90">
+                  <motion.div 
+                    whileHover={{ scale: 1.05 }}
+                    className="relative my-1 flex items-center justify-center will-change-transform"
+                  >
+                    <svg className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
                       <circle
                         cx="40"
                         cy="40"
                         r="32"
                         className="stroke-line"
-                        strokeWidth="5"
+                        strokeWidth="4"
                         fill="transparent"
                       />
-                      <circle
+                      <motion.circle
                         cx="40"
                         cy="40"
                         r="32"
                         className="stroke-aurora"
-                        strokeWidth="5"
+                        strokeWidth="4"
                         fill="transparent"
                         strokeDasharray={2 * Math.PI * 32}
-                        strokeDashoffset={0} // 100% de círculo completo
+                        initial={{ strokeDashoffset: 2 * Math.PI * 32 }}
+                        animate={{ strokeDashoffset: 0 }} // 100%
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute flex flex-col items-center">
-                      <span className="text-sm font-bold text-ink">100</span>
-                      <span className="text-[7px] text-aurora font-mono tracking-wider font-semibold">OPTIMIZADO</span>
+                      <span className="text-xs sm:text-sm font-bold text-ink">100</span>
+                      <span className="text-[5px] sm:text-[6px] text-aurora font-mono tracking-wider font-semibold">SCORE</span>
                     </div>
-                  </div>
+                  </motion.div>
                   
-                  <span className="block text-[9px] leading-tight text-ink-mute">
-                    Calificación de rendimiento y accesibilidad de Google.
+                  <span className="block text-[8px] sm:text-[9px] leading-tight text-ink-mute">
+                    Calificación de rendimiento y accesibilidad móvil de Google.
                   </span>
                 </div>
               </div>
 
               {/* Sparklines / KPI Mini Cards (Gráficos 3 y 4) */}
-              <div className="mt-4 grid gap-4 grid-cols-2">
+              <div className="mt-3 grid gap-3 grid-cols-2">
                 {/* Gráfico 3: Tasa de Rebote Sparkline */}
-                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                <div className="rounded-xl border border-line/50 bg-deep/10 p-2.5 sm:p-3.5 flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Tasa de Rebote</span>
-                    <span className="block font-display text-base font-bold text-aurora">-65% Reducción</span>
+                    <span className="block text-[8px] sm:text-[10px] uppercase tracking-wider text-ink-mute font-mono">Tasa de Rebote</span>
+                    <span className="block font-display text-xs sm:text-sm font-bold text-aurora">-65% Reducción</span>
                   </div>
-                  <div className="w-14 h-8">
+                  <div className="w-10 sm:w-14 h-6 sm:h-8">
                     <svg className="h-full w-full" viewBox="0 0 50 20">
-                      <path
+                      <motion.path
                         d="M0,2 L10,3 L20,12 L30,14 L40,17 L50,18"
                         fill="none"
                         stroke="#38e0c9"
                         strokeWidth="1.5"
                         strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
                       />
                     </svg>
                   </div>
                 </div>
 
                 {/* Gráfico 4: Conversiones Sparkline */}
-                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                <div className="rounded-xl border border-line/50 bg-deep/10 p-2.5 sm:p-3.5 flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Conversión Visitas</span>
-                    <span className="block font-display text-base font-bold text-ember">+3.2x Tráfico</span>
+                    <span className="block text-[8px] sm:text-[10px] uppercase tracking-wider text-ink-mute font-mono">Conversión Visitas</span>
+                    <span className="block font-display text-xs sm:text-sm font-bold text-ember">+3.2x Tráfico</span>
                   </div>
-                  <div className="w-14 h-8">
+                  <div className="w-10 sm:w-14 h-6 sm:h-8">
                     <svg className="h-full w-full" viewBox="0 0 50 20">
-                      <path
+                      <motion.path
                         d="M0,18 L10,16 L20,14 L30,8 L40,6 L50,2"
                         fill="none"
                         stroke="#ff9d57"
                         strokeWidth="1.5"
                         strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
                       />
                     </svg>
                   </div>
@@ -349,12 +418,12 @@ export function WebSection() {
 
           {/* Simulador Auditor Web */}
           <Reveal delay={0.08}>
-            <div className="premium-surface rounded-card border border-line bg-deep/55 p-6 shadow-[0_15px_45px_-20px_rgba(124,108,255,0.1)]">
-              <h3 className="font-display text-base font-semibold text-ink flex items-center gap-2">
-                <Globe size={16} className="text-aurora" />
+            <div className="premium-surface rounded-card border border-line bg-deep/45 p-4 sm:p-6 shadow-[0_12px_35px_-20px_rgba(124,108,255,0.1)]">
+              <h3 className="font-display text-sm sm:text-base font-semibold text-ink flex items-center gap-2">
+                <Globe size={16} className="text-aurora animate-spin" style={{ animationDuration: "12s" }} />
                 Auditor IA de Velocidad y Conversión Web
               </h3>
-              <p className="mt-1 text-xs text-ink-mute">
+              <p className="mt-1 text-[11px] sm:text-xs text-ink-mute">
                 Evalúa tu sitio web actual o cuenta de Instagram para identificar cuellos de botella de carga.
               </p>
 
@@ -366,10 +435,10 @@ export function WebSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="mt-5 space-y-4"
+                    className="mt-4 space-y-3.5"
                   >
                     <div>
-                      <label className="block text-[11px] uppercase tracking-wider text-ink-mute mb-1.5">
+                      <label className="block text-[9px] uppercase tracking-wider text-ink-mute mb-1">
                         URL de tu web o Instagram
                       </label>
                       <input
@@ -378,13 +447,13 @@ export function WebSection() {
                         value={targetUrl}
                         onChange={(e) => setTargetUrl(e.target.value)}
                         placeholder="Ej: www.minegocio.com o @mi_instagram"
-                        className="w-full h-10 px-4 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-aurora transition-all"
+                        className="w-full h-9 px-3 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-aurora transition-all"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-2.5 rounded-full bg-panel border border-line text-xs font-semibold text-ink hover:border-ink-soft transition-colors cursor-pointer"
+                      className="w-full py-2 rounded-full bg-panel border border-line text-xs font-semibold text-ink hover:border-ink-soft transition-colors cursor-pointer"
                     >
                       Analizar Rendimiento Técnico
                     </button>
@@ -397,10 +466,10 @@ export function WebSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="py-10 text-center flex flex-col items-center justify-center"
+                    className="py-8 text-center flex flex-col items-center justify-center"
                   >
-                    <div className="h-6 w-6 rounded-full border-2 border-t-transparent border-aurora animate-spin" />
-                    <span className="mt-3 block text-xs font-mono text-ink-mute transition-all duration-300">
+                    <div className="h-5 w-5 rounded-full border-2 border-t-transparent border-aurora animate-spin" />
+                    <span className="mt-2 block text-[11px] font-mono text-ink-mute transition-all duration-300">
                       {auditSteps[auditStep]}
                     </span>
                   </motion.div>
@@ -411,39 +480,34 @@ export function WebSection() {
                     key="results"
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-5 space-y-4 text-left"
+                    className="mt-4 space-y-3 text-left"
                   >
                     {/* Alerta de Auditoría con preguntas provocativas */}
-                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4 space-y-3">
+                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-3.5 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1">
-                          <ShieldAlert size={13} />
-                          Reporte de Rendimiento: 3 Fallos Críticos Encontrados
+                        <span className="text-[10px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1">
+                          <ShieldAlert size={12} />
+                          {diagnostics.title}
                         </span>
-                        <span className="rounded bg-red-400/25 px-2 py-0.5 text-[9px] font-bold text-red-300">
-                          Velocidad Móvil: 54/100 (Muy Deficiente)
+                        <span className="rounded bg-red-400/25 px-1.5 py-0.5 text-[8px] font-bold text-red-300">
+                          {diagnostics.score}
                         </span>
                       </div>
                       
-                      <ol className="list-decimal pl-4 text-xs text-ink-soft space-y-2 leading-relaxed">
-                        <li>
-                          <strong>Tardar &gt; 4 segundos en ser interactivo:</strong> La web carga visualmente pero tarda segundos en dejar pulsar los botones. ¿Cuántos usuarios frustrados pulsan 'atrás' antes de poder clickar?
-                        </li>
-                        <li>
-                          <strong>Ausencia de pre-cualificador o flujo directo:</strong> Obligas al cliente a leer párrafos e investigar cómo reservar. ¿Por qué no guiarlo a un botón conversacional estructurado?
-                        </li>
-                        <li>
-                          <strong>Falta de optimización de imágenes y scripts:</strong> Archivos pesados saturan la conexión móvil de tu cliente. Google penaliza tu posicionamiento orgánico por esta demora.
-                        </li>
+                      <ol className="list-decimal pl-4 text-[11px] text-ink-soft space-y-1.5 leading-relaxed">
+                        {diagnostics.problems.map((p, idx) => (
+                          <li key={idx}>
+                            <strong>{p.title}</strong> {p.desc}
+                          </li>
+                        ))}
                       </ol>
                     </div>
 
-                    <div className="rounded-xl border border-line bg-void/45 p-3 flex items-center justify-between">
+                    <div className="rounded-xl border border-line bg-void/45 p-2.5 flex items-center justify-between">
                       <div className="text-left">
-                        <span className="block text-[9px] uppercase tracking-wider text-ink-mute">Pérdida de Conversiones Estimada</span>
-                        <span className="block mt-0.5 text-xs text-ink-soft">Por velocidad lenta y fricción en móvil</span>
+                        <span className="block text-[8px] uppercase tracking-wider text-ink-mute font-mono">Pérdida de conversión</span>
                       </div>
-                      <span className="block font-display text-xl font-bold text-red-400">-28% de ventas</span>
+                      <span className="block font-display text-sm font-bold text-red-400">{diagnostics.loss}</span>
                     </div>
 
                     <div className="flex gap-2">
@@ -451,17 +515,17 @@ export function WebSection() {
                         href={getWhatsAppLinkAudit()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 py-2.5 inline-flex justify-center items-center gap-1.5 rounded-full bg-ink text-xs font-semibold text-void hover:bg-white transition-colors text-center"
+                        className="flex-1 py-2 inline-flex justify-center items-center gap-1 rounded-full bg-ink text-[11px] font-semibold text-void hover:bg-white transition-colors text-center"
                       >
-                        <MessageCircle size={14} />
-                        Optimizar y rediseñar mi web
+                        <MessageCircle size={13} />
+                        {diagnostics.ctaText}
                       </a>
                       <button
                         onClick={() => {
                           setAuditStatus("idle");
                           setTargetUrl("");
                         }}
-                        className="px-4 py-2.5 rounded-full border border-line text-xs text-ink-soft hover:text-ink transition-colors"
+                        className="px-3.5 py-2 rounded-full border border-line text-[11px] text-ink-soft hover:text-ink transition-colors"
                       >
                         Reiniciar
                       </button>
@@ -476,20 +540,20 @@ export function WebSection() {
         {/* Derecha: Selector interactivo */}
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <div className="premium-surface relative overflow-hidden rounded-card border border-line bg-deep/45 p-6 sm:p-8">
-              <span className="absolute right-4 top-4 rounded-full border border-line bg-void/50 px-3 py-1 text-[10px] uppercase tracking-wider text-ink-soft">
-                Configurador en vivo
+            <div className="premium-surface relative overflow-hidden rounded-card border border-line bg-deep/45 p-5 sm:p-7">
+              <span className="absolute right-4 top-4 rounded-full border border-line bg-void/50 px-2 py-0.5 text-[8px] uppercase tracking-wider text-ink-soft">
+                Configurador
               </span>
               
-              <h3 className="font-display text-lg font-semibold tracking-tight text-ink">
+              <h3 className="font-display text-sm sm:text-base font-semibold tracking-tight text-ink">
                 Selecciona tu formato web ideal:
               </h3>
-              <p className="mt-1 text-xs text-ink-mute">
+              <p className="mt-0.5 text-[11px] text-ink-mute">
                 Adapta tu presencia según tu tipo de negocio.
               </p>
 
               {/* Lista de Opciones */}
-              <div className="mt-6 space-y-3">
+              <div className="mt-4 space-y-2">
                 {OPTIONS.map((opt) => {
                   const isSelected = selectedOptions.includes(opt.title);
                   return (
@@ -497,28 +561,28 @@ export function WebSection() {
                       key={opt.title}
                       type="button"
                       onClick={() => toggleOption(opt.title)}
-                      className={`w-full text-left flex items-start gap-4 rounded-2xl border transition-all duration-300 ${
+                      className={`w-full text-left flex items-start gap-3 rounded-xl border p-2.5 sm:p-3 transition-all duration-300 ${
                         isSelected
                           ? "border-ember bg-ember/5 shadow-[0_0_15px_rgba(255,157,87,0.06)]"
                           : "border-line bg-void/35 hover:border-ink-soft"
                       }`}
                     >
                       <span
-                        className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors ${
+                        className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded border transition-colors ${
                           isSelected
                             ? "border-ember bg-ember text-void"
                             : "border-line bg-void"
                         }`}
                       >
-                        {isSelected && <Check size={14} className="stroke-[3]" />}
+                        {isSelected && <Check size={11} className="stroke-[3]" />}
                       </span>
                       <div>
-                        <span className={`block text-sm font-semibold tracking-tight transition-colors ${
+                        <span className={`block text-xs font-semibold tracking-tight transition-colors ${
                           isSelected ? "text-ink" : "text-ink-soft"
                         }`}>
                           {opt.title}
                         </span>
-                        <span className="mt-1 block text-xs leading-relaxed text-ink-mute">
+                        <span className="mt-0.5 block text-[10px] leading-relaxed text-ink-mute">
                           {opt.desc}
                         </span>
                       </div>
@@ -528,46 +592,47 @@ export function WebSection() {
               </div>
 
               {/* Botón dinámico */}
-              <div className="mt-8">
+              <div className="mt-6">
                 <a
                   href={getWhatsAppLinkConfig()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="micro-glint group flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-void transition-colors hover:bg-white"
+                  className="micro-glint group flex w-full items-center justify-center gap-1.5 rounded-full bg-ink py-3 text-xs font-semibold text-void transition-colors hover:bg-white"
                 >
-                  <Globe size={16} />
+                  <Globe size={15} />
                   Diseñar mi Web Premium
-                  <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
-                <span className="mt-3 block text-center text-[10px] text-ink-mute">
-                  Tu selección se enviará a WhatsApp para configurar el presupuesto gratuito.
-                </span>
               </div>
             </div>
           </Reveal>
         </div>
       </div>
 
-      {/* Testimonios de Clientes Reales (4 Reseñas) */}
-      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {/* Testimonios de Clientes Reales - Oculta los últimos 2 en móviles (hidden md:flex) */}
+      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         {TESTIMONIALS.map((t, index) => (
-          <Reveal key={t.name} delay={0.1 + index * 0.08}>
-            <div className="premium-surface h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-nebula/5 to-deep/40 p-6">
+          <Reveal 
+            key={t.name} 
+            delay={0.05 + index * 0.05}
+            className={index >= 2 ? "hidden md:flex" : "flex"}
+          >
+            <div className="premium-surface w-full h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-nebula/5 to-deep/40 p-4.5 sm:p-6">
               <div>
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 mb-2.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={13} className="text-ember fill-ember" />
+                    <Star key={i} size={11} className="text-ember fill-ember" />
                   ))}
                 </div>
-                <p className="text-xs italic leading-relaxed text-ink-soft">
+                <p className="text-[11px] sm:text-xs italic leading-relaxed text-ink-soft">
                   "{t.quote}"
                 </p>
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-line/35 pt-4">
-                <span className="block text-[11px] font-bold text-ink leading-tight">
+              <div className="mt-4 flex items-center justify-between border-t border-line/35 pt-3">
+                <span className="block text-[10px] sm:text-[11px] font-bold text-ink leading-tight">
                   {t.name}
                 </span>
-                <span className="rounded-full bg-void/50 border border-line px-2.5 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
+                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
                   {t.result}
                 </span>
               </div>

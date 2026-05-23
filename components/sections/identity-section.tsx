@@ -58,7 +58,7 @@ export function IdentitySection() {
 
   // Estado para el analizador IA (Izquierda)
   const [brandInput, setBrandInput] = useState("");
-  const [brandSlogan, setBrandSlogan] = useState("");
+  const [businessNiche, setBusinessNiche] = useState("Servicios Profesionales");
   const [brandStatus, setBrandStatus] = useState<"idle" | "analyzing" | "result">("idle");
   const [brandStep, setBrandStep] = useState(0);
 
@@ -101,11 +101,92 @@ export function IdentitySection() {
         }
         return prev + 1;
       });
-    }, 800);
+    }, 600);
   };
 
+  // Diagnóstico personalizado por nicho en branding
+  const getBrandDiagnostics = () => {
+    const cleanBrand = brandInput.trim() || "tu negocio";
+    switch (businessNiche) {
+      case "Restauración / Cafetería":
+        return {
+          score: "4.5/10 (Media-Baja)",
+          problems: [
+            {
+              title: "Cero narrativa o storyselling visual:",
+              desc: "Muestras fotos de platos sin contar la historia o valor del restaurante. La comida se compra por deseo, si tus copys no despiertan hambre, competirás por precio de menú."
+            },
+            {
+              title: "Inconsistencia visual en carta y feed:",
+              desc: "Los colores de tu feed en Instagram son distintos a los de tu carta física o QR. Esto rompe la coherencia y abarata la percepción."
+            },
+            {
+              title: "Ausencia de claims de autenticidad local:",
+              desc: "No destacas qué te hace único (ingredientes orgánicos, origen artesano) forzándote a regatear tus tarifas."
+            }
+          ]
+        };
+      case "Clínica / Estética / Dental":
+        return {
+          score: "3.2/10 (Muy Crítica)",
+          problems: [
+            {
+              title: "Copy genérico enfocado en tecnología, no en salud/confianza:",
+              desc: "Tus textos dicen 'tecnología de punta' (lo mismo que todas las clínicas) en vez de calmar las objeciones y miedos reales de tus pacientes."
+            },
+            {
+              title: "Diseño amateur en perfiles sociales:",
+              desc: "Tus redes no lucen tan limpias y profesionales como tus tratamientos. Las clientas asocian informalidad visual con falta de rigor médico."
+            },
+            {
+              title: "Falta de elementos de autoridad del doctor:",
+              desc: "No posicionas al especialista como referente con testimonios y casos de éxito reales expuestos de forma visible en la web."
+            }
+          ]
+        };
+      case "Servicios Profesionales":
+        return {
+          score: "3.8/10 (Deficiente)",
+          problems: [
+            {
+              title: "Propuesta de valor indistinguible de la competencia:",
+              desc: "Tus copys afirman 'ofrecemos servicios de alta calidad y experiencia' (lo mismo que el 99% de consultores). No justificas cobrar tarifas premium."
+            },
+            {
+              title: "Identidad visual de plantilla genérica:",
+              desc: "Logotipo y colores genéricos que no transmiten robustez ni escala corporativa. Las empresas te comparan y piden descuentos."
+            },
+            {
+              title: "Copy egocéntrico ('Somos', 'Hacemos'):",
+              desc: "Tus textos hablan de tu currículum en lugar del problema de negocio que solucionas. El lead corporativo pierde interés rápidamente."
+            }
+          ]
+        };
+      default:
+        return {
+          score: "3.5/10 (Muy baja)",
+          problems: [
+            {
+              title: "Copy egocéntrico enfocado en ti (no en el cliente):",
+              desc: "Tus textos repiten claims técnicos aburridos en vez de solucionar los miedos directos del cliente. El usuario se frustra y se va."
+            },
+            {
+              title: "Inconsistencia Visual Multicanal:",
+              desc: "Tu Instagram usa unas tipografías y tu web usa otras. Esto transmite informalidad y reduce la percepción de valor de tu tarifa."
+            },
+            {
+              title: "Ausencia de prueba social estructurada:",
+              desc: "No muestras de inmediato las calificaciones o testimonios de forma persuasiva en la zona caliente de tu perfil."
+            }
+          ]
+        };
+    }
+  };
+
+  const diagnostics = getBrandDiagnostics();
+
   const getWhatsAppLinkBrand = () => {
-    const msg = `Hola AstroNexo. He analizado mi marca/slogan: "${brandInput}". El reporte indica una percepción de valor de 3.5/10 y 3 problemas de copy/identidad. Quiero solicitar mi auditoría de marca para elevar mis tarifas.`;
+    const msg = `Hola AstroNexo. He analizado mi marca: "${brandInput}" (${businessNiche}). El reporte indica una percepción de valor de ${diagnostics.score} y 3 problemas de copy/identidad. Quiero solicitar mi auditoría de marca para elevar mis tarifas.`;
     return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
 
@@ -118,7 +199,7 @@ export function IdentitySection() {
   return (
     <section
       id="identidad-digital"
-      className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-32 border-t border-line bg-void/5"
+      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-void/5"
     >
       <div className="pointer-events-none absolute -left-12 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.03),transparent_65%)] blur-3xl" />
 
@@ -134,46 +215,49 @@ export function IdentitySection() {
         intro="Una marca que se ve barata se ve obligada a competir por precio. Rediseñamos tu presencia visual y redactamos tus textos para que tu negocio se perciba premium desde el primer segundo."
       />
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-14">
+      <div className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-10">
         {/* Lado Izquierdo: Dashboard de Valor y Diagnóstico IA */}
-        <div className="lg:col-span-7 flex flex-col justify-between gap-8 h-full">
+        <div className="lg:col-span-7 flex flex-col justify-between gap-6 h-full">
           {/* Dashboard de Marca: 4 Gráficos y Métricas */}
           <Reveal>
-            <div className="premium-surface rounded-card border border-line bg-void/35 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-5">
+            <div className="premium-surface rounded-card border border-line bg-void/25 p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4">
                 <Sparkles size={11} className="text-ember animate-pulse" />
                 Estadísticas de Percepción y Valor de Marca Premium
               </span>
 
-              <div className="grid gap-5 md:grid-cols-12">
+              <div className="grid gap-4 md:grid-cols-12">
                 {/* Gráfico 1 (Principal): SVG Price Elasticity Curve */}
-                <div className="md:col-span-8 rounded-xl border border-line/60 bg-deep/20 p-4">
-                  <span className="block text-[11px] font-semibold text-ink-soft mb-3">
+                <div className="md:col-span-8 rounded-xl border border-line/50 bg-deep/10 p-3 sm:p-4">
+                  <span className="block text-[11px] font-semibold text-ink-soft mb-2">
                     Elasticidad Precio vs Valor de Marca Percibido
                   </span>
                   
-                  <div className="relative h-32 w-full flex items-end">
+                  <div className="relative h-28 sm:h-32 w-full flex items-end">
                     <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 40" preserveAspectRatio="none">
                       {/* Curva Marca Genérica (Sensibilidad al precio alta, plano) */}
                       <path
                         d="M 0,30 Q 30,29 60,30 T 100,32"
                         fill="none"
                         stroke="#f87171"
-                        strokeWidth="1.2"
+                        strokeWidth="0.75"
                         strokeDasharray="2,2"
                       />
                       
                       {/* Curva Marca Premium AstroNexo (Soporta precios altos sin bajar demanda) */}
-                      <path
+                      <motion.path
                         d="M 0,35 Q 25,25 50,15 T 100,2"
                         fill="none"
                         stroke="#ff9d57"
                         strokeWidth="1.5"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
                       />
                       <path
                         d="M 0,35 Q 25,25 50,15 T 100,2 L 100,40 L 0,40 Z"
                         fill="url(#brandGradArea)"
-                        opacity="0.15"
+                        opacity="0.12"
                       />
                       
                       <defs>
@@ -184,100 +268,110 @@ export function IdentitySection() {
                       </defs>
                     </svg>
 
-                    <div className="absolute top-1 right-2 flex flex-col gap-1 text-[8px] font-mono text-ink-mute">
+                    <div className="absolute top-0 right-1 flex flex-col gap-0.5 text-[8px] font-mono text-ink-mute">
                       <div className="flex items-center gap-1">
                         <span className="h-1 w-1 bg-red-400 rounded-full" />
-                        <span>Identidad Genérica (Límite €)</span>
+                        <span>Identidad Genérica</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <span className="h-1 w-1 bg-ember rounded-full" />
-                        <span>Identidad Premium (Aumento Margen)</span>
+                        <span>Identidad Premium</span>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="mt-2 flex justify-between text-[9px] text-ink-mute font-mono">
+                  <div className="mt-1 flex justify-between text-[8px] text-ink-mute font-mono">
                     <span>Precio Bajo</span>
-                    <span>Precio Medio</span>
                     <span>Tarifa Premium</span>
                   </div>
                 </div>
 
                 {/* Gráfico 2: Medidor Radial de Coherencia de Marca */}
-                <div className="md:col-span-4 rounded-xl border border-line/60 bg-deep/20 p-4 flex flex-col justify-between items-center text-center">
+                <div className="md:col-span-4 rounded-xl border border-line/50 bg-deep/10 p-3 sm:p-4 flex flex-col justify-between items-center text-center">
                   <span className="block text-[11px] font-semibold text-ink-soft">
                     Consistencia Visual
                   </span>
                   
-                  <div className="relative my-2 flex items-center justify-center">
-                    <svg className="h-20 w-20 transform -rotate-90">
+                  <motion.div 
+                    whileHover={{ scale: 1.05 }}
+                    className="relative my-1 flex items-center justify-center will-change-transform"
+                  >
+                    <svg className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
                       <circle
                         cx="40"
                         cy="40"
                         r="32"
                         className="stroke-line"
-                        strokeWidth="5"
+                        strokeWidth="4"
                         fill="transparent"
                       />
-                      <circle
+                      <motion.circle
                         cx="40"
                         cy="40"
                         r="32"
                         className="stroke-ember"
-                        strokeWidth="5"
+                        strokeWidth="4"
                         fill="transparent"
                         strokeDasharray={2 * Math.PI * 32}
-                        strokeDashoffset={0}
+                        initial={{ strokeDashoffset: 2 * Math.PI * 32 }}
+                        animate={{ strokeDashoffset: 0 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute flex flex-col items-center">
-                      <span className="text-sm font-bold text-ink">100%</span>
-                      <span className="text-[7px] text-ink-mute font-mono">Multicanal</span>
+                      <span className="text-xs sm:text-sm font-bold text-ink">100%</span>
+                      <span className="text-[6px] sm:text-[7px] text-ink-mute font-mono">Multicanal</span>
                     </div>
-                  </div>
+                  </motion.div>
                   
-                  <span className="block text-[9px] leading-tight text-ink-mute">
-                    Coherencia cromática y tipográfica en redes/web.
+                  <span className="block text-[8px] sm:text-[9px] leading-tight text-ink-mute">
+                    Coherencia en todos tus perfiles sociales y web.
                   </span>
                 </div>
               </div>
 
               {/* Sparklines / KPI Mini Cards (Gráficos 3 y 4) */}
-              <div className="mt-4 grid gap-4 grid-cols-2">
+              <div className="mt-3 grid gap-3 grid-cols-2">
                 {/* Gráfico 3: Retención de Lectura Sparkline */}
-                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                <div className="rounded-xl border border-line/50 bg-deep/10 p-2.5 sm:p-3.5 flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Retención en Web</span>
-                    <span className="block font-display text-base font-bold text-aurora">+80% Retención</span>
+                    <span className="block text-[8px] sm:text-[10px] uppercase tracking-wider text-ink-mute font-mono">Retención en Web</span>
+                    <span className="block font-display text-xs sm:text-sm font-bold text-aurora">+80% Retención</span>
                   </div>
-                  <div className="w-14 h-8">
+                  <div className="w-10 sm:w-14 h-6 sm:h-8">
                     <svg className="h-full w-full" viewBox="0 0 50 20">
-                      <path
+                      <motion.path
                         d="M0,15 L10,13 L20,10 L30,9 L40,4 L50,1"
                         fill="none"
                         stroke="#38e0c9"
                         strokeWidth="1.5"
                         strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
                       />
                     </svg>
                   </div>
                 </div>
 
                 {/* Gráfico 4: Aumento de Ticket Sparkline */}
-                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                <div className="rounded-xl border border-line/50 bg-deep/10 p-2.5 sm:p-3.5 flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Ticket Promedio</span>
-                    <span className="block font-display text-base font-bold text-ember">+25% Margen</span>
+                    <span className="block text-[8px] sm:text-[10px] uppercase tracking-wider text-ink-mute font-mono">Ticket Promedio</span>
+                    <span className="block font-display text-xs sm:text-sm font-bold text-ember">+25% Margen</span>
                   </div>
-                  <div className="w-14 h-8">
+                  <div className="w-10 sm:w-14 h-6 sm:h-8">
                     <svg className="h-full w-full" viewBox="0 0 50 20">
-                      <path
+                      <motion.path
                         d="M0,16 L10,12 L20,13 L30,8 L40,5 L50,1"
                         fill="none"
                         stroke="#ff9d57"
                         strokeWidth="1.5"
                         strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
                       />
                     </svg>
                   </div>
@@ -288,12 +382,12 @@ export function IdentitySection() {
 
           {/* Diagnóstico de Marca */}
           <Reveal delay={0.08}>
-            <div className="premium-surface rounded-card border border-line bg-deep/55 p-6 shadow-[0_15px_45px_-20px_rgba(255,157,87,0.1)]">
-              <h3 className="font-display text-base font-semibold text-ink flex items-center gap-2">
+            <div className="premium-surface rounded-card border border-line bg-deep/45 p-4 sm:p-6 shadow-[0_12px_35px_-20px_rgba(255,157,87,0.1)]">
+              <h3 className="font-display text-sm sm:text-base font-semibold text-ink flex items-center gap-2">
                 <Palette size={16} className="text-ember" />
                 Analizador IA de Percepción y Copywriting
               </h3>
-              <p className="mt-1 text-xs text-ink-mute">
+              <p className="mt-1 text-[11px] sm:text-xs text-ink-mute">
                 Evalúa si tu propuesta de marca e imagen justifican tus tarifas actuales.
               </p>
 
@@ -305,11 +399,11 @@ export function IdentitySection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="mt-5 space-y-4"
+                    className="mt-4 space-y-3.5"
                   >
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-ink-mute mb-1.5">
+                        <label className="block text-[10px] uppercase tracking-wider text-ink-mute mb-1">
                           Tu Instagram o Marca
                         </label>
                         <input
@@ -318,27 +412,28 @@ export function IdentitySection() {
                           value={brandInput}
                           onChange={(e) => setBrandInput(e.target.value)}
                           placeholder="Ej: @mi_marca"
-                          className="w-full h-10 px-4 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-ember transition-all"
+                          className="w-full h-9 px-3 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-ember transition-all"
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-ink-mute mb-1.5">
-                          Slogan o Servicio Clave
+                        <label className="block text-[10px] uppercase tracking-wider text-ink-mute mb-1">
+                          Sector del Negocio
                         </label>
-                        <input
-                          type="text"
-                          required
-                          value={brandSlogan}
-                          onChange={(e) => setBrandSlogan(e.target.value)}
-                          placeholder="Ej: Hacemos consultorías"
-                          className="w-full h-10 px-4 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-ember transition-all"
-                        />
+                        <select
+                          value={businessNiche}
+                          onChange={(e) => setBusinessNiche(e.target.value)}
+                          className="w-full h-9 px-3 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-ember transition-all"
+                        >
+                          <option value="Restauración / Cafetería">Restauración / Cafetería</option>
+                          <option value="Clínica / Estética / Dental">Clínica / Estética / Dental</option>
+                          <option value="Servicios Profesionales">Servicios Profesionales</option>
+                        </select>
                       </div>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-2.5 rounded-full bg-panel border border-line text-xs font-semibold text-ink hover:border-ink-soft transition-colors cursor-pointer"
+                      className="w-full py-2 rounded-full bg-panel border border-line text-xs font-semibold text-ink hover:border-ink-soft transition-colors cursor-pointer"
                     >
                       Diagnosticar Autoridad Visual
                     </button>
@@ -351,10 +446,10 @@ export function IdentitySection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="py-10 text-center flex flex-col items-center justify-center"
+                    className="py-8 text-center flex flex-col items-center justify-center"
                   >
-                    <div className="h-6 w-6 rounded-full border-2 border-t-transparent border-ember animate-spin" />
-                    <span className="mt-3 block text-xs font-mono text-ink-mute transition-all duration-300">
+                    <div className="h-5 w-5 rounded-full border-2 border-t-transparent border-ember animate-spin" />
+                    <span className="mt-2 block text-[11px] font-mono text-ink-mute transition-all duration-300">
                       {brandSteps[brandStep]}
                     </span>
                   </motion.div>
@@ -365,43 +460,37 @@ export function IdentitySection() {
                     key="results"
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-5 space-y-4 text-left"
+                    className="mt-4 space-y-3 text-left"
                   >
                     {/* Alerta de 3 debilidades de marca */}
-                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4 space-y-3">
+                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-3.5 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1">
-                          <AlertTriangle size={13} />
-                          Diagnóstico de Branding: 3 Incoherencias de Posicionamiento
+                        <span className="text-[10px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1">
+                          <AlertTriangle size={12} />
+                          Diagnóstico: 3 Incoherencias de Posicionamiento
                         </span>
-                        <span className="rounded bg-red-400/25 px-2 py-0.5 text-[9px] font-bold text-red-300">
-                          Percepción de Valor: 3.5 / 10
+                        <span className="rounded bg-red-400/25 px-1.5 py-0.5 text-[8px] font-bold text-red-300">
+                          Valor Percibido: {diagnostics.score}
                         </span>
                       </div>
                       
-                      <ol className="list-decimal pl-4 text-xs text-ink-soft space-y-2 leading-relaxed">
-                        <li>
-                          <strong>Copy Egocéntrico ('Hacemos', 'Somos'):</strong> Tu claim habla de ti en lugar del beneficio real para el cliente. Esto provoca desinterés rápido y alto rebote.
-                        </li>
-                        <li>
-                          <strong>Falta de coherencia visual multicanal:</strong> Tu logo y colores en Instagram difieren del sitio web, proyectando informalidad o falta de madurez comercial.
-                        </li>
-                        <li>
-                          <strong>Nula presencia de prueba social estructurada:</strong> No destacas de inmediato las calificaciones o testimonios de forma visible, perdiendo la oportunidad de infundir confianza instantánea.
-                        </li>
+                      <ol className="list-decimal pl-4 text-[11px] text-ink-soft space-y-1.5 leading-relaxed">
+                        {diagnostics.problems.map((p, idx) => (
+                          <li key={idx}>
+                            <strong>{p.title}</strong> {p.desc}
+                          </li>
+                        ))}
                       </ol>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="rounded-xl border border-line bg-void/45 p-3 text-center">
-                        <span className="block text-[9px] uppercase tracking-wider text-ink-mute">Percepción de Valor</span>
-                        <span className="block mt-1 font-display text-xl font-bold text-red-400">Baja (3.5)</span>
-                        <span className="block text-[8px] text-red-400 font-semibold mt-0.5">Difícil cobrar caro</span>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="rounded-xl border border-line bg-void/45 p-2.5 text-center">
+                        <span className="block text-[8px] uppercase tracking-wider text-ink-mute">Percepción de Valor</span>
+                        <span className="block mt-0.5 font-display text-sm font-bold text-red-400">Media-Baja</span>
                       </div>
-                      <div className="rounded-xl border border-line bg-void/45 p-3 text-center">
-                        <span className="block text-[9px] uppercase tracking-wider text-ink-mute">Oportunidad de Margen</span>
-                        <span className="block mt-1 font-display text-xl font-bold text-aurora">+30% Aumento</span>
-                        <span className="block text-[8px] text-ink-mute mt-0.5">Con copy y diseño premium</span>
+                      <div className="rounded-xl border border-line bg-void/45 p-2.5 text-center">
+                        <span className="block text-[8px] uppercase tracking-wider text-ink-mute font-mono">Margen de Aumento</span>
+                        <span className="block mt-0.5 font-display text-sm font-bold text-aurora">+30%</span>
                       </div>
                     </div>
 
@@ -410,18 +499,17 @@ export function IdentitySection() {
                         href={getWhatsAppLinkBrand()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 py-2.5 inline-flex justify-center items-center gap-1.5 rounded-full bg-ink text-xs font-semibold text-void hover:bg-white transition-colors text-center"
+                        className="flex-1 py-2 inline-flex justify-center items-center gap-1 rounded-full bg-ink text-[11px] font-semibold text-void hover:bg-white transition-colors text-center"
                       >
-                        <MessageCircle size={14} />
-                        Rediseñar mi marca y copywriting
+                        <MessageCircle size={13} />
+                        Rediseñar mi marca y textos
                       </a>
                       <button
                         onClick={() => {
                           setBrandStatus("idle");
                           setBrandInput("");
-                          setBrandSlogan("");
                         }}
-                        className="px-4 py-2.5 rounded-full border border-line text-xs text-ink-soft hover:text-ink transition-colors"
+                        className="px-3.5 py-2 rounded-full border border-line text-[11px] text-ink-soft hover:text-ink transition-colors"
                       >
                         Reiniciar
                       </button>
@@ -436,20 +524,20 @@ export function IdentitySection() {
         {/* Derecha: Configurador de Marca */}
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <div className="premium-surface relative overflow-hidden rounded-card border border-line bg-deep/45 p-6 sm:p-8">
-              <span className="absolute right-4 top-4 rounded-full border border-line bg-void/50 px-3 py-1 text-[10px] uppercase tracking-wider text-ink-soft">
-                Configurador en vivo
+            <div className="premium-surface relative overflow-hidden rounded-card border border-line bg-deep/45 p-5 sm:p-7">
+              <span className="absolute right-4 top-4 rounded-full border border-line bg-void/50 px-2 py-0.5 text-[8px] uppercase tracking-wider text-ink-soft">
+                Configurador
               </span>
               
-              <h3 className="font-display text-lg font-semibold tracking-tight text-ink">
+              <h3 className="font-display text-sm sm:text-base font-semibold tracking-tight text-ink">
                 Selecciona tu mejora de marca:
               </h3>
-              <p className="mt-1 text-xs text-ink-mute">
+              <p className="mt-0.5 text-[11px] text-ink-mute">
                 Ayuda a que tus clientes entiendan tu verdadero valor y justifiques tarifas altas.
               </p>
 
               {/* Lista de Opciones */}
-              <div className="mt-6 space-y-3">
+              <div className="mt-4 space-y-2">
                 {OPTIONS.map((opt) => {
                   const isSelected = selectedOptions.includes(opt.title);
                   return (
@@ -457,28 +545,28 @@ export function IdentitySection() {
                       key={opt.title}
                       type="button"
                       onClick={() => toggleOption(opt.title)}
-                      className={`w-full text-left flex items-start gap-4 rounded-2xl border transition-all duration-300 ${
+                      className={`w-full text-left flex items-start gap-3 rounded-xl border p-2.5 sm:p-3 transition-all duration-300 ${
                         isSelected
                           ? "border-ember bg-ember/5 shadow-[0_0_15px_rgba(255,157,87,0.06)]"
                           : "border-line bg-void/35 hover:border-ink-soft"
                       }`}
                     >
                       <span
-                        className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors ${
+                        className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded border transition-colors ${
                           isSelected
                             ? "border-ember bg-ember text-void"
                             : "border-line bg-void"
                         }`}
                       >
-                        {isSelected && <Check size={14} className="stroke-[3]" />}
+                        {isSelected && <Check size={11} className="stroke-[3]" />}
                       </span>
                       <div>
-                        <span className={`block text-sm font-semibold tracking-tight transition-colors ${
+                        <span className={`block text-xs font-semibold tracking-tight transition-colors ${
                           isSelected ? "text-ink" : "text-ink-soft"
                         }`}>
                           {opt.title}
                         </span>
-                        <span className="mt-1 block text-xs leading-relaxed text-ink-mute">
+                        <span className="mt-0.5 block text-[10px] leading-relaxed text-ink-mute">
                           {opt.desc}
                         </span>
                       </div>
@@ -488,46 +576,47 @@ export function IdentitySection() {
               </div>
 
               {/* Botón dinámico */}
-              <div className="mt-8">
+              <div className="mt-6">
                 <a
                   href={getWhatsAppLinkConfig()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="micro-glint group flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-void transition-colors hover:bg-white"
+                  className="micro-glint group flex w-full items-center justify-center gap-1.5 rounded-full bg-ink py-3 text-xs font-semibold text-void transition-colors hover:bg-white"
                 >
-                  <Palette size={16} />
+                  <Palette size={15} />
                   Elevar mi Marca y Presencia
-                  <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
-                <span className="mt-3 block text-center text-[10px] text-ink-mute">
-                  Generará un mensaje directo con tus opciones para acordar los detalles.
-                </span>
               </div>
             </div>
           </Reveal>
         </div>
       </div>
 
-      {/* Testimonios de Clientes Reales (4 Reseñas) */}
-      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {/* Testimonios de Clientes Reales - Oculta los últimos 2 en móviles (hidden md:flex) */}
+      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         {TESTIMONIALS.map((t, index) => (
-          <Reveal key={t.name} delay={0.1 + index * 0.08}>
-            <div className="premium-surface h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-ember/5 to-deep/40 p-6">
+          <Reveal 
+            key={t.name} 
+            delay={0.05 + index * 0.05}
+            className={index >= 2 ? "hidden md:flex" : "flex"}
+          >
+            <div className="premium-surface w-full h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-ember/5 to-deep/40 p-4.5 sm:p-6">
               <div>
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 mb-2.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={13} className="text-ember fill-ember" />
+                    <Star key={i} size={11} className="text-ember fill-ember" />
                   ))}
                 </div>
-                <p className="text-xs italic leading-relaxed text-ink-soft">
+                <p className="text-[11px] sm:text-xs italic leading-relaxed text-ink-soft">
                   "{t.quote}"
                 </p>
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-line/35 pt-4">
-                <span className="block text-[11px] font-bold text-ink leading-tight">
+              <div className="mt-4 flex items-center justify-between border-t border-line/35 pt-3">
+                <span className="block text-[10px] sm:text-[11px] font-bold text-ink leading-tight">
                   {t.name}
                 </span>
-                <span className="rounded-full bg-void/50 border border-line px-2.5 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
+                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
                   {t.result}
                 </span>
               </div>
