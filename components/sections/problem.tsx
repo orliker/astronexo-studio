@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { MessageCircle, TrendingUp } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 import { WHATSAPP_URL } from "@/lib/site";
@@ -48,6 +49,114 @@ export function ProblemSection() {
               <MessageCircle size={16} />
               Detectar mis puntos débiles
             </a>
+          </Reveal>
+
+          {/* Nuevo Gráfico Visual para rellenar el espacio y aportar valor de impacto */}
+          <Reveal delay={0.32}>
+            <div className="mt-12 premium-surface rounded-card border border-line bg-void/25 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)] relative overflow-hidden">
+              <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(56,224,201,0.05),transparent_65%)] blur-2xl" />
+              
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4 font-mono">
+                <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
+                Visualización del Embudo de Fuga Comercial
+              </span>
+              
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* Columna 1: Embudo Roto Tradicional */}
+                <div className="rounded-xl border border-line/45 bg-deep/10 p-4 space-y-3">
+                  <span className="block text-[11px] font-bold text-red-400 uppercase tracking-wide">
+                    Embudo Roto Tradicional
+                  </span>
+                  <div className="space-y-2">
+                    {/* Barra 1 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-ink-mute font-mono">
+                        <span>Tráfico Inicial</span>
+                        <span>100%</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <div className="h-full bg-ink-mute/55" style={{ width: "100%" }} />
+                      </div>
+                    </div>
+                    {/* Barra 2 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-red-400 font-mono">
+                        <span>Primera Impresión (Web lenta)</span>
+                        <span>-58% Fuga</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-400/80" style={{ width: "42%" }} />
+                      </div>
+                    </div>
+                    {/* Barra 3 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-red-400 font-mono">
+                        <span>Interés (Soporte Lento)</span>
+                        <span>-27% Fuga</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-400/60" style={{ width: "15%" }} />
+                      </div>
+                    </div>
+                  </div>
+                  <span className="block text-[9px] text-ink-mute leading-relaxed">
+                    El 85% del presupuesto publicitario se evapora antes de iniciar una conversación real.
+                  </span>
+                </div>
+
+                {/* Columna 2: Sistema Optimizado AstroNexo */}
+                <div className="rounded-xl border border-aurora/25 bg-aurora/5 p-4 space-y-3">
+                  <span className="block text-[11px] font-bold text-aurora uppercase tracking-wide">
+                    Sistema Optimizado AstroNexo
+                  </span>
+                  <div className="space-y-2">
+                    {/* Barra 1 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-ink-soft font-mono">
+                        <span>Tráfico Inicial</span>
+                        <span>100%</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" style={{ width: "100%" }} />
+                      </div>
+                    </div>
+                    {/* Barra 2 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-aurora font-mono">
+                        <span>Primera Impresión (Next.js Edge)</span>
+                        <span>92% Retención</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" 
+                          initial={{ width: 0 }}
+                          animate={{ width: "92%" }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
+                      </div>
+                    </div>
+                    {/* Barra 3 */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[9px] text-aurora font-mono">
+                        <span>Interés (Respuesta WhatsApp IA)</span>
+                        <span>78% Cualificado</span>
+                      </div>
+                      <div className="h-1 bg-void/50 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora" 
+                          initial={{ width: 0 }}
+                          animate={{ width: "78%" }}
+                          transition={{ duration: 1.2, ease: "easeOut" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <span className="block text-[9px] text-ink-soft leading-relaxed">
+                    Canalización inmediata al chat de ventas para evitar fugas y automatizar agendamientos.
+                  </span>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
 
