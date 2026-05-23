@@ -1,0 +1,580 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, Check, ArrowUpRight, Eye, Globe, Sparkles, Star, ShieldAlert, Cpu } from "lucide-react";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/motion-primitives";
+import { SITE } from "@/lib/site";
+
+// Constantes al inicio del archivo para evitar errores de hoisting/TypeScript
+export const FEATURED_PROJECTS = [
+  {
+    title: "CURB Porto",
+    sector: "Restaurante",
+    desc: "Una preview de restaurante con deseo visual, energía local y botón de reserva rápida para clientes hambrientos.",
+    result: "Deseo + visita rápida",
+    image: "/portfolio/portfolio-curb.jpeg",
+    url: "https://curbwebpreviewe.vercel.app/",
+  },
+  {
+    title: "Anderbrows Academy",
+    sector: "Formación beauty",
+    desc: "Landing page para cursos con alta autoridad de marca, propuesta de valor clara y ruta directa de inscripción.",
+    result: "Inscripciones + leads en frío",
+    image: "/portfolio/portfolio-anderbrows.jpeg",
+    url: "https://anderbrows.vercel.app/",
+  },
+];
+
+export const OPTIONS = [
+  {
+    title: "Menú QR Digital Autogestionable",
+    desc: "Tu menú móvil rápido con fotos premium, acceso instantáneo y botón de pedidos a WhatsApp.",
+  },
+  {
+    title: "Landing Page Premium",
+    desc: "Una sola página optimizada, ideal para academias, estudios, clínicas y venta de servicios concretos.",
+  },
+  {
+    title: "Sitio Web Corporativo Completo",
+    desc: "Múltiples páginas preparadas para posicionamiento SEO y estructuración clara de servicios.",
+  },
+  {
+    title: "Sistema de Reservas / Pagos Integrados",
+    desc: "Pasarela de cobro simple o reservas automatizadas integradas directamente en tu panel web.",
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    quote: "Nuestra web premium diseñada por AstroNexo carga al instante en móviles. Los pacientes valoran la limpieza visual y el sistema de citas rápido directo a WhatsApp. Las conversiones crecieron un 35% el primer mes.",
+    name: "Clínica Fontana (Valencia)",
+    result: "+35% conversión",
+  },
+  {
+    quote: "Pasamos de un WordPress lento que ahuyentaba a las clientas a una landing page ultra rápida y minimalista. El cambio estético justifica nuestras tarifas premium y redujo drásticamente el rebote en móvil.",
+    name: "Estética Carmen Sarmiento (Sevilla)",
+    result: "Cero fricción móvil",
+  },
+  {
+    quote: "Los menús QR interactivos que implementaron en nuestros locales son una maravilla visual y técnica. Carga instantánea, fotos que despiertan el deseo y navegación impecable para los comensales.",
+    name: "Grupo Dani García (España)",
+    result: "Menús QR Impecables",
+  },
+  {
+    quote: "La web corporativa estructurada y de carga rápida mejoró nuestro posicionamiento orgánico y facilitó las compras y consultas de clientes recurrentes. Un gran criterio visual y técnico.",
+    name: "La Central Librería (Madrid)",
+    result: "+42% compras recurrentes",
+  },
+];
+
+export function WebSection() {
+  // Estado para el configurador (Derecha)
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([
+    "Landing Page Premium",
+  ]);
+
+  // Estado para el auditor IA (Izquierda)
+  const [targetUrl, setTargetUrl] = useState("");
+  const [auditStatus, setAuditStatus] = useState<"idle" | "auditing" | "result">("idle");
+  const [auditStep, setAuditStep] = useState(0);
+
+  const toggleOption = (opt: string) => {
+    if (selectedOptions.includes(opt)) {
+      setSelectedOptions(selectedOptions.filter((item) => item !== opt));
+    } else {
+      setSelectedOptions([...selectedOptions, opt]);
+    }
+  };
+
+  const getWhatsAppLinkConfig = () => {
+    const baseMsg = "Hola AstroNexo. Me interesa tu solución de Web Premium / Menú QR.";
+    const selectedText =
+      selectedOptions.length > 0
+        ? ` He seleccionado: ${selectedOptions.join(", ")}.`
+        : "";
+    const fullMsg = `${baseMsg}${selectedText} Mi negocio es: `;
+    return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(fullMsg)}`;
+  };
+
+  const runAuditor = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!targetUrl.trim()) return;
+    setAuditStatus("auditing");
+    setAuditStep(0);
+
+    const steps = [
+      "Verificando respuesta del servidor DNS...",
+      "Midiendo velocidad de carga móvil en 3G/4G...",
+      "Analizando fricciones y llamadas a la acción...",
+    ];
+
+    const timer = setInterval(() => {
+      setAuditStep((prev) => {
+        if (prev >= steps.length - 1) {
+          clearInterval(timer);
+          setAuditStatus("result");
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 800);
+  };
+
+  const getWhatsAppLinkAudit = () => {
+    const msg = `Hola AstroNexo. He auditado mi web/Instagram: "${targetUrl}". El sistema indica un rendimiento móvil crítico (54/100) y pérdida de conversión. Quiero corregir los 3 problemas técnicos en mi sitio web.`;
+    return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+  };
+
+  const auditSteps = [
+    "Verificando respuesta del servidor DNS...",
+    "Midiendo velocidad de carga móvil en 3G/4G...",
+    "Analizando fricciones y llamadas a la acción...",
+  ];
+
+  return (
+    <section
+      id="webs-y-qr"
+      className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-32 border-t border-line bg-deep/20"
+    >
+      <div className="pointer-events-none absolute -right-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.04),transparent_65%)] blur-3xl" />
+
+      <SectionHeading
+        index="04"
+        kicker="Servicios de Alta Demanda"
+        title={
+          <>
+            Desarrollo Web Premium y{" "}
+            <span className="premium-word">Menús QR Interactivos</span>
+          </>
+        }
+        intro="Una presencia digital veloz, limpia y con alto criterio estético. Diseñamos webs que eliminan la sensación de amateurismo y multiplican tu tasa de conversión de visitas a clientes."
+      />
+
+      {/* Grid del Portafolio Curado (2 Clientes Reales) */}
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {FEATURED_PROJECTS.map((project, index) => (
+          <Reveal key={project.title} delay={index * 0.1}>
+            <motion.article
+              whileHover="hover"
+              className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60 transition-shadow duration-500 hover:shadow-[0_28px_110px_-70px_rgba(124,108,255,0.45)]"
+            >
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[16/10] overflow-hidden bg-panel"
+                aria-label={`Abrir ${project.title}`}
+              >
+                <Image
+                  src={project.image}
+                  alt={`Vista previa de ${project.title}`}
+                  fill
+                  sizes="(min-width: 1024px) 44vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover object-top opacity-90 transition duration-700 group-hover:scale-[1.03] group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
+                <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-3">
+                  <span className="rounded-full border border-line bg-void/70 px-3 py-1 text-[11px] uppercase tracking-wider text-ink-soft backdrop-blur">
+                    {project.sector}
+                  </span>
+                  <motion.span
+                    variants={{ hover: { rotate: 45, color: "#ff9d57" } }}
+                    transition={{ duration: 0.25 }}
+                    className="grid h-9 w-9 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur"
+                  >
+                    <ArrowUpRight size={16} />
+                  </motion.span>
+                </div>
+              </a>
+
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="font-display text-lg font-semibold tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{project.desc}</p>
+                <p className="mt-4 rounded-2xl border border-line bg-void/35 px-4 py-3 text-xs uppercase tracking-[0.16em] text-ember">
+                  {project.result}
+                </p>
+
+                <div className="mt-auto flex flex-wrap gap-3 pt-5">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink transition-colors hover:border-ink-soft hover:bg-panel"
+                  >
+                    <Eye size={13} />
+                    Ver Web Real
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Bloque Interactivo de Configuración */}
+      <div className="mt-16 grid gap-8 lg:grid-cols-12 lg:gap-14">
+        {/* Lado Izquierdo: Dashboard de Carga y Auditor de Rendimiento */}
+        <div className="lg:col-span-7 flex flex-col justify-between gap-8 h-full">
+          {/* Dashboard de Rendimiento: 4 Gráficos y Métricas */}
+          <Reveal>
+            <div className="premium-surface rounded-card border border-line bg-void/35 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-5">
+                <Cpu size={11} className="text-aurora" />
+                Auditoría Técnica: Velocidad y Conversión de Carga
+              </span>
+
+              <div className="grid gap-5 md:grid-cols-12">
+                {/* Gráfico 1 (Principal): SVG Horizontal Comparison Bar Chart */}
+                <div className="md:col-span-8 rounded-xl border border-line/60 bg-deep/20 p-4 space-y-4">
+                  <span className="block text-[11px] font-semibold text-ink-soft">
+                    Tiempo de Carga en Dispositivos Móviles
+                  </span>
+                  
+                  <div className="space-y-3.5">
+                    {/* Fila WP */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] text-ink-mute font-mono">
+                        <span>Wordpress / Plantilla Tradicional</span>
+                        <span className="text-red-400 font-semibold">4.8 segundos</span>
+                      </div>
+                      <div className="h-2 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
+                        <div className="h-full bg-red-400/80 rounded-full" style={{ width: "90%" }} />
+                      </div>
+                    </div>
+
+                    {/* Fila AstroNexo */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] text-ink-soft font-mono">
+                        <span>AstroNexo Premium (Next.js Edge)</span>
+                        <span className="text-aurora font-semibold">0.7 segundos</span>
+                      </div>
+                      <div className="h-2 w-full bg-void/60 rounded-full overflow-hidden border border-line/45">
+                        <div className="h-full bg-gradient-to-r from-nebula-soft via-aurora to-aurora rounded-full shadow-[0_0_8px_rgba(56,224,201,0.4)]" style={{ width: "15%" }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <span className="block text-[9px] text-ink-mute leading-relaxed">
+                    El 53% de los usuarios abandona las páginas móviles que tardan más de 3 segundos en mostrar información interactiva.
+                  </span>
+                </div>
+
+                {/* Gráfico 2: Medidor Radial Lighthouse Score */}
+                <div className="md:col-span-4 rounded-xl border border-line/60 bg-deep/20 p-4 flex flex-col justify-between items-center text-center">
+                  <span className="block text-[11px] font-semibold text-ink-soft">
+                    Lighthouse Score
+                  </span>
+                  
+                  <div className="relative my-2 flex items-center justify-center">
+                    <svg className="h-20 w-20 transform -rotate-90">
+                      <circle
+                        cx="40"
+                        cy="40"
+                        r="32"
+                        className="stroke-line"
+                        strokeWidth="5"
+                        fill="transparent"
+                      />
+                      <circle
+                        cx="40"
+                        cy="40"
+                        r="32"
+                        className="stroke-aurora"
+                        strokeWidth="5"
+                        fill="transparent"
+                        strokeDasharray={2 * Math.PI * 32}
+                        strokeDashoffset={0} // 100% de círculo completo
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute flex flex-col items-center">
+                      <span className="text-sm font-bold text-ink">100</span>
+                      <span className="text-[7px] text-aurora font-mono tracking-wider font-semibold">OPTIMIZADO</span>
+                    </div>
+                  </div>
+                  
+                  <span className="block text-[9px] leading-tight text-ink-mute">
+                    Calificación de rendimiento y accesibilidad de Google.
+                  </span>
+                </div>
+              </div>
+
+              {/* Sparklines / KPI Mini Cards (Gráficos 3 y 4) */}
+              <div className="mt-4 grid gap-4 grid-cols-2">
+                {/* Gráfico 3: Tasa de Rebote Sparkline */}
+                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Tasa de Rebote</span>
+                    <span className="block font-display text-base font-bold text-aurora">-65% Reducción</span>
+                  </div>
+                  <div className="w-14 h-8">
+                    <svg className="h-full w-full" viewBox="0 0 50 20">
+                      <path
+                        d="M0,2 L10,3 L20,12 L30,14 L40,17 L50,18"
+                        fill="none"
+                        stroke="#38e0c9"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Gráfico 4: Conversiones Sparkline */}
+                <div className="rounded-xl border border-line/60 bg-deep/20 p-3.5 flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="block text-[10px] uppercase tracking-wider text-ink-mute font-mono">Conversión Visitas</span>
+                    <span className="block font-display text-base font-bold text-ember">+3.2x Tráfico</span>
+                  </div>
+                  <div className="w-14 h-8">
+                    <svg className="h-full w-full" viewBox="0 0 50 20">
+                      <path
+                        d="M0,18 L10,16 L20,14 L30,8 L40,6 L50,2"
+                        fill="none"
+                        stroke="#ff9d57"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Simulador Auditor Web */}
+          <Reveal delay={0.08}>
+            <div className="premium-surface rounded-card border border-line bg-deep/55 p-6 shadow-[0_15px_45px_-20px_rgba(124,108,255,0.1)]">
+              <h3 className="font-display text-base font-semibold text-ink flex items-center gap-2">
+                <Globe size={16} className="text-aurora" />
+                Auditor IA de Velocidad y Conversión Web
+              </h3>
+              <p className="mt-1 text-xs text-ink-mute">
+                Evalúa tu sitio web actual o cuenta de Instagram para identificar cuellos de botella de carga.
+              </p>
+
+              <AnimatePresence mode="wait">
+                {auditStatus === "idle" && (
+                  <motion.form
+                    key="idle-form"
+                    onSubmit={runAuditor}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-5 space-y-4"
+                  >
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-ink-mute mb-1.5">
+                        URL de tu web o Instagram
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={targetUrl}
+                        onChange={(e) => setTargetUrl(e.target.value)}
+                        placeholder="Ej: www.minegocio.com o @mi_instagram"
+                        className="w-full h-10 px-4 rounded-full border border-line bg-void/40 text-ink text-xs focus:outline-none focus:border-aurora transition-all"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-2.5 rounded-full bg-panel border border-line text-xs font-semibold text-ink hover:border-ink-soft transition-colors cursor-pointer"
+                    >
+                      Analizar Rendimiento Técnico
+                    </button>
+                  </motion.form>
+                )}
+
+                {auditStatus === "auditing" && (
+                  <motion.div
+                    key="loading"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="py-10 text-center flex flex-col items-center justify-center"
+                  >
+                    <div className="h-6 w-6 rounded-full border-2 border-t-transparent border-aurora animate-spin" />
+                    <span className="mt-3 block text-xs font-mono text-ink-mute transition-all duration-300">
+                      {auditSteps[auditStep]}
+                    </span>
+                  </motion.div>
+                )}
+
+                {auditStatus === "result" && (
+                  <motion.div
+                    key="results"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-5 space-y-4 text-left"
+                  >
+                    {/* Alerta de Auditoría con preguntas provocativas */}
+                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-red-400 uppercase tracking-wide flex items-center gap-1">
+                          <ShieldAlert size={13} />
+                          Reporte de Rendimiento: 3 Fallos Críticos Encontrados
+                        </span>
+                        <span className="rounded bg-red-400/25 px-2 py-0.5 text-[9px] font-bold text-red-300">
+                          Velocidad Móvil: 54/100 (Muy Deficiente)
+                        </span>
+                      </div>
+                      
+                      <ol className="list-decimal pl-4 text-xs text-ink-soft space-y-2 leading-relaxed">
+                        <li>
+                          <strong>Tardar &gt; 4 segundos en ser interactivo:</strong> La web carga visualmente pero tarda segundos en dejar pulsar los botones. ¿Cuántos usuarios frustrados pulsan 'atrás' antes de poder clickar?
+                        </li>
+                        <li>
+                          <strong>Ausencia de pre-cualificador o flujo directo:</strong> Obligas al cliente a leer párrafos e investigar cómo reservar. ¿Por qué no guiarlo a un botón conversacional estructurado?
+                        </li>
+                        <li>
+                          <strong>Falta de optimización de imágenes y scripts:</strong> Archivos pesados saturan la conexión móvil de tu cliente. Google penaliza tu posicionamiento orgánico por esta demora.
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div className="rounded-xl border border-line bg-void/45 p-3 flex items-center justify-between">
+                      <div className="text-left">
+                        <span className="block text-[9px] uppercase tracking-wider text-ink-mute">Pérdida de Conversiones Estimada</span>
+                        <span className="block mt-0.5 text-xs text-ink-soft">Por velocidad lenta y fricción en móvil</span>
+                      </div>
+                      <span className="block font-display text-xl font-bold text-red-400">-28% de ventas</span>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <a
+                        href={getWhatsAppLinkAudit()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-2.5 inline-flex justify-center items-center gap-1.5 rounded-full bg-ink text-xs font-semibold text-void hover:bg-white transition-colors text-center"
+                      >
+                        <MessageCircle size={14} />
+                        Optimizar y rediseñar mi web
+                      </a>
+                      <button
+                        onClick={() => {
+                          setAuditStatus("idle");
+                          setTargetUrl("");
+                        }}
+                        className="px-4 py-2.5 rounded-full border border-line text-xs text-ink-soft hover:text-ink transition-colors"
+                      >
+                        Reiniciar
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Derecha: Selector interactivo */}
+        <div className="lg:col-span-5">
+          <Reveal delay={0.1}>
+            <div className="premium-surface relative overflow-hidden rounded-card border border-line bg-deep/45 p-6 sm:p-8">
+              <span className="absolute right-4 top-4 rounded-full border border-line bg-void/50 px-3 py-1 text-[10px] uppercase tracking-wider text-ink-soft">
+                Configurador en vivo
+              </span>
+              
+              <h3 className="font-display text-lg font-semibold tracking-tight text-ink">
+                Selecciona tu formato web ideal:
+              </h3>
+              <p className="mt-1 text-xs text-ink-mute">
+                Adapta tu presencia según tu tipo de negocio.
+              </p>
+
+              {/* Lista de Opciones */}
+              <div className="mt-6 space-y-3">
+                {OPTIONS.map((opt) => {
+                  const isSelected = selectedOptions.includes(opt.title);
+                  return (
+                    <button
+                      key={opt.title}
+                      type="button"
+                      onClick={() => toggleOption(opt.title)}
+                      className={`w-full text-left flex items-start gap-4 rounded-2xl border transition-all duration-300 ${
+                        isSelected
+                          ? "border-ember bg-ember/5 shadow-[0_0_15px_rgba(255,157,87,0.06)]"
+                          : "border-line bg-void/35 hover:border-ink-soft"
+                      }`}
+                    >
+                      <span
+                        className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors ${
+                          isSelected
+                            ? "border-ember bg-ember text-void"
+                            : "border-line bg-void"
+                        }`}
+                      >
+                        {isSelected && <Check size={14} className="stroke-[3]" />}
+                      </span>
+                      <div>
+                        <span className={`block text-sm font-semibold tracking-tight transition-colors ${
+                          isSelected ? "text-ink" : "text-ink-soft"
+                        }`}>
+                          {opt.title}
+                        </span>
+                        <span className="mt-1 block text-xs leading-relaxed text-ink-mute">
+                          {opt.desc}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Botón dinámico */}
+              <div className="mt-8">
+                <a
+                  href={getWhatsAppLinkConfig()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="micro-glint group flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-void transition-colors hover:bg-white"
+                >
+                  <Globe size={16} />
+                  Diseñar mi Web Premium
+                  <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+                <span className="mt-3 block text-center text-[10px] text-ink-mute">
+                  Tu selección se enviará a WhatsApp para configurar el presupuesto gratuito.
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Testimonios de Clientes Reales (4 Reseñas) */}
+      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {TESTIMONIALS.map((t, index) => (
+          <Reveal key={t.name} delay={0.1 + index * 0.08}>
+            <div className="premium-surface h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-nebula/5 to-deep/40 p-6">
+              <div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={13} className="text-ember fill-ember" />
+                  ))}
+                </div>
+                <p className="text-xs italic leading-relaxed text-ink-soft">
+                  "{t.quote}"
+                </p>
+              </div>
+              <div className="mt-5 flex items-center justify-between border-t border-line/35 pt-4">
+                <span className="block text-[11px] font-bold text-ink leading-tight">
+                  {t.name}
+                </span>
+                <span className="rounded-full bg-void/50 border border-line px-2.5 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
+                  {t.result}
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}

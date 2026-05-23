@@ -3,11 +3,11 @@ import { SiteNav } from "@/components/site-nav";
 import { HeroCinematic } from "@/components/hero-cinematic";
 import { AuthorityStrip } from "@/components/sections/authority";
 import { ProblemSection } from "@/components/sections/problem";
-import { ServicesSection } from "@/components/sections/services";
-import { DeliverablesSection } from "@/components/sections/deliverables";
-import { AudienceSection } from "@/components/sections/audience";
-import { ProcessSection } from "@/components/sections/process";
-import { ProjectsSection } from "@/components/sections/projects";
+import { AutomationSection } from "@/components/sections/automation-section";
+import { WebSection } from "@/components/sections/web-section";
+import { SEOSection } from "@/components/sections/seo-section";
+import { MarketingSection } from "@/components/sections/marketing-section";
+import { IdentitySection } from "@/components/sections/identity-section";
 import { ManifestoSection } from "@/components/sections/manifesto";
 import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
@@ -25,11 +25,11 @@ export default function Home() {
         <HeroCinematic />
         <AuthorityStrip />
         <ProblemSection />
-        <ServicesSection />
-        <DeliverablesSection />
-        <AudienceSection />
-        <ProcessSection />
-        <ProjectsSection />
+        <AutomationSection />
+        <WebSection />
+        <SEOSection />
+        <MarketingSection />
+        <IdentitySection />
         <ManifestoSection />
         <FinalCTA />
       </main>

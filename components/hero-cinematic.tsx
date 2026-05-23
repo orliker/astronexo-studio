@@ -100,7 +100,7 @@ function HeroContent({
             className="inline-flex items-center gap-2 rounded-full border border-line bg-deep/60 px-4 py-1.5 text-xs tracking-wide text-ink-soft backdrop-blur"
           >
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ember" />
-            Presencia premium · estrategia + conversión
+            Automatización inteligente · WhatsApp IA + Web premium
           </span>
         </FadeUp>
 
@@ -109,9 +109,9 @@ function HeroContent({
             data-anime="hero-item"
             className="mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:mt-7 sm:text-5xl lg:text-[3.65rem]"
           >
-            Tu negocio no necesita otra web.
-            <br className="hidden sm:block" /> Necesita un{" "}
-            <span className="premium-word">activo digital</span>.
+            No respondas más mensajes a mano.
+            <br className="hidden sm:block" /> Automatizamos tu{" "}
+            <span className="premium-word">WhatsApp con IA</span> y escalamos tu presencia digital.
           </h1>
         </FadeUp>
 
@@ -120,9 +120,8 @@ function HeroContent({
             data-anime="hero-item"
             className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg"
           >
-            Diseñamos sistemas web para empresas que ya tienen valor, pero
-            necesitan que su presencia online transmita confianza, claridad
-            comercial y capacidad de cerrar oportunidades desde el primer clic.
+            Creamos sistemas de automatización inteligentes y desarrollo web premium.
+            Liberamos a tu equipo de tareas repetitivas y multiplicamos tus leads y ventas en piloto automático.
           </p>
         </FadeUp>
 
@@ -132,13 +131,11 @@ function HeroContent({
             className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contacto-interactivo"
               className="micro-glint group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white sm:min-h-0 sm:justify-start sm:px-7"
             >
               <MessageCircle size={17} />
-              Solicitar auditoría privada
+              Solicitar Auditoría Gratuita
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -160,9 +157,9 @@ function HeroContent({
             className="mt-7 grid max-w-xl grid-cols-1 gap-2 text-sm text-ink-mute sm:mt-10 sm:grid-cols-3 sm:gap-3"
           >
             {[
-              "Auditoría + estrategia",
-              "Diseño + copy",
-              "WhatsApp + automatización",
+              "Automatización con IA",
+              "WhatsApp & n8n Bots",
+              "Web Premium & QR Menús",
             ].map((item, index) => (
               <span
                 key={item}
@@ -182,7 +179,7 @@ function HeroContent({
             data-anime="hero-item"
             className="mt-5 flex flex-wrap gap-2 text-xs text-ink-mute sm:mt-8"
           >
-            {["Sprint 48-72h", "Mobile-first", "Seguridad base"].map(
+            {["Soporte 24/7 con IA", "Flujos en n8n", "Respuestas en < 1 min"].map(
               (item) => (
                 <span
                   key={item}

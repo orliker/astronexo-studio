@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { MessageCircle, Mail } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 import { MagneticButton } from "@/components/magnetic-button";
@@ -11,8 +12,37 @@ import { BrandLogo } from "@/components/brand-logo";
  * luminoso (panel-edge) y vive sobre el telón cosmos global.
  */
 export function FinalCTA() {
+  const [selectedOption, setSelectedOption] = useState<'whatsapp' | 'web' | 'demo'>('whatsapp');
+
+  useEffect(() => {
+    const handleSelectOption = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail === 'whatsapp' || detail === 'web' || detail === 'demo') {
+        setSelectedOption(detail);
+      }
+    };
+    
+    window.addEventListener('select-cta-option', handleSelectOption);
+    return () => {
+      window.removeEventListener('select-cta-option', handleSelectOption);
+    };
+  }, []);
+
+  const getWhatsAppUrl = (option: 'whatsapp' | 'web' | 'demo') => {
+    const number = SITE.whatsappNumber;
+    let message = "";
+    if (option === 'whatsapp') {
+      message = "Hola AstroNexo. Quiero automatizar mi WhatsApp con IA y solicitar la auditoría gratuita de mi sistema. Mi Instagram/web es: ";
+    } else if (option === 'web') {
+      message = "Hola AstroNexo. Necesito modernizar mi Web y solicitar la auditoría gratuita de mi presencia digital. Mi Instagram/web es: ";
+    } else {
+      message = "Hola AstroNexo. Quiero ver una Demo de vuestras automatizaciones y solicitar una auditoría gratuita de mi presencia digital. Mi Instagram/web es: ";
+    }
+    return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  };
+
   return (
-    <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-36">
+    <section id="contacto-interactivo" className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-36">
       <Reveal>
         <div
           data-gsap-breathe
@@ -21,29 +51,48 @@ export function FinalCTA() {
           <div className="pointer-events-none absolute -top-1/3 left-1/2 h-[50vh] w-[50vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.12),transparent_65%)] blur-3xl" />
 
           <p className="relative text-xs uppercase tracking-[0.3em] text-ink-mute">
-            Diagnóstico privado
+            Diagnóstico Privado e Interactivo
           </p>
           <h2 className="relative mx-auto mt-6 max-w-3xl font-display text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance sm:mt-7 sm:text-5xl lg:text-6xl">
-            Envíanos tu web o Instagram,
+            Personaliza tu consulta y
             <br />
-            y te decimos{" "}
-            <span className="premium-word">qué está frenando la venta</span>.
+            solicita tu <span className="premium-word">auditoría gratuita</span>.
           </h2>
           <p className="relative mx-auto mt-6 max-w-lg text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
-            Revisamos tu presencia con mirada de diseño, estrategia y
-            conversión. Si vemos una oportunidad clara, te devolvemos una ruta
-            concreta para convertir tu web en un activo más serio.
+            Selecciona qué necesita tu negocio para que prepare la respuesta adecuada. Analizaremos tu presencia y te daremos un plan de acción directo por WhatsApp.
           </p>
+
+          {/* Selector de Opción Pre-cualificadora */}
+          <div className="relative mt-8 mb-6 flex flex-wrap justify-center gap-3">
+            {[
+              { id: 'whatsapp', label: 'Quiero automatizar mi WhatsApp con IA' },
+              { id: 'web', label: 'Necesito modernizar mi Web Premium' },
+              { id: 'demo', label: 'Quiero ver una Demo en vivo' },
+            ].map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setSelectedOption(opt.id as any)}
+                className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-medium tracking-wide border transition-all duration-300 ${
+                  selectedOption === opt.id
+                    ? "border-ember bg-ember/15 text-ink shadow-[0_0_15px_rgba(255,157,87,0.15)]"
+                    : "border-line bg-void/45 text-ink-soft hover:border-ink-soft hover:text-ink"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
 
           <div className="relative mt-9 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
             <MagneticButton
-              href={WHATSAPP_URL}
+              href={getWhatsAppUrl(selectedOption)}
               variant="primary"
               className="w-full sm:w-auto"
               external
             >
               <MessageCircle size={17} />
-              Pedir auditoría por WhatsApp
+              Solicitar Auditoría Gratuita de tu Sistema
             </MagneticButton>
             <MagneticButton
               href={`mailto:${SITE.email}`}
@@ -56,8 +105,7 @@ export function FinalCTA() {
           </div>
 
           <p className="relative mt-8 text-sm text-ink-mute">
-            Normalmente respondemos el mismo día con una lectura directa, sin
-            reunión innecesaria.
+            Normalmente respondemos en el mismo día con una auditoría directa y accionable. Sin reuniones de ventas aburridas.
           </p>
         </div>
       </Reveal>
@@ -77,14 +125,20 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-ink-soft">
-          <a href="#servicios" className="transition-colors hover:text-ink">
-            Servicios
+          <a href="#automatizaciones" className="transition-colors hover:text-ink">
+            Automatización
           </a>
-          <a href="#proceso" className="transition-colors hover:text-ink">
-            Proceso
+          <a href="#webs-y-qr" className="transition-colors hover:text-ink">
+            Webs & QR
           </a>
-          <a href="#proyectos" className="transition-colors hover:text-ink">
-            Previews
+          <a href="#seo-local" className="transition-colors hover:text-ink">
+            SEO Local
+          </a>
+          <a href="#campanas-y-trafico" className="transition-colors hover:text-ink">
+            Campañas
+          </a>
+          <a href="#identidad-digital" className="transition-colors hover:text-ink">
+            Identidad
           </a>
           <a
             href={WHATSAPP_URL}
