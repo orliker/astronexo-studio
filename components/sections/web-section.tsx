@@ -11,20 +11,40 @@ import { SITE } from "@/lib/site";
 // Constantes al inicio del archivo para evitar errores de hoisting/TypeScript
 export const FEATURED_PROJECTS = [
   {
+    title: "Anderbrows Academy",
+    type: "Preview Comercial",
+    sector: "Formación beauty",
+    desc: "Landing page premium diseñada para cursos presenciales, con alta autoridad visual y conversión directa a WhatsApp.",
+    problem: "Resolvió la fricción en la inscripción de alumnas, concentrando el contacto en una ruta de acción inmediata sin intermediarios.",
+    image: "/portfolio/portfolio-anderbrows.jpeg",
+    url: "https://anderbrows.vercel.app/",
+  },
+  {
+    title: "Infinity Bright Clean",
+    type: "Preview Comercial",
+    sector: "Servicios de limpieza",
+    desc: "Plataforma de servicios de limpieza comercial con estructura de reservas y presentación corporativa seria.",
+    problem: "Eliminó la imagen amateur del negocio local anterior, permitiendo capturar contratos residenciales y comerciales de alto ticket.",
+    image: "/portfolio/portfolio-sams-lyart.jpeg",
+    url: "https://infinitybrightclean.vercel.app/",
+  },
+  {
     title: "CURB Porto",
-    sector: "Restaurante",
-    desc: "Una preview de restaurante con deseo visual, energía local y botón de reserva rápida para clientes hambrientos.",
-    result: "Deseo + visita rápida",
+    type: "Demo Conceptual",
+    sector: "Restauración / Hamburguesería",
+    desc: "Concepto interactivo para hamburguesería con imágenes premium a pantalla completa y acceso al menú en 1 clic.",
+    problem: "Solucionó la lentitud y mala experiencia de los menús en PDF tradicionales, ofreciendo una navegación móvil rápida y fluida.",
     image: "/portfolio/portfolio-curb.jpeg",
     url: "https://curbwebpreviewe.vercel.app/",
   },
   {
-    title: "Anderbrows Academy",
-    sector: "Formación beauty",
-    desc: "Landing page para cursos con alta autoridad de marca, propuesta de valor clara y ruta directa de inscripción.",
-    result: "Inscripciones + leads en frío",
-    image: "/portfolio/portfolio-anderbrows.jpeg",
-    url: "https://anderbrows.vercel.app/",
+    title: "Kire Tattoo Studio",
+    type: "Demo Conceptual",
+    sector: "Estudio de Tatuajes",
+    desc: "Diseño de estilo editorial oscuro para estudios de tatuajes y artistas independientes enfocado en mostrar el portafolio visual.",
+    problem: "Resolvió la presentación desordenada del portafolio del artista en Instagram, unificando los mejores trabajos en un activo digital.",
+    image: "/portfolio/portfolio-kire-tattoo.jpeg",
+    url: "https://kiretattoostudio.vercel.app/",
   },
 ];
 
@@ -47,27 +67,25 @@ export const OPTIONS = [
   },
 ];
 
-export const TESTIMONIALS = [
+export const SCENARIOS = [
   {
-    quote: "Nuestra web premium diseñada por AstroNexo carga al instante en móviles. Los pacientes valoran la limpieza visual y el sistema de citas rápido directo a WhatsApp. Las conversiones crecieron un 35% el primer mes.",
-    name: "Clínica Fontana (Valencia)",
-    result: "+35% conversión",
+    title: "Restauración",
+    subtitle: "Menú QR dinámico autogestionable",
+    desc: "Carga instantánea de la carta digital con fotografías optimizadas y acceso directo a WhatsApp para realizar pedidos directos.",
+    tag: "Menos fricción de respuesta"
   },
   {
-    quote: "Pasamos de un WordPress lento que ahuyentaba a las clientas a una landing page ultra rápida y minimalista. El cambio estético justifica nuestras tarifas premium y redujo drásticamente el rebote en móvil.",
-    name: "Estética Carmen Sarmiento (Sevilla)",
-    result: "Cero fricción móvil",
+    title: "Clínicas & Estética",
+    subtitle: "Landing page de alta conversión y velocidad",
+    desc: "Estructuración clara de tratamientos médicos y estéticos con llamadas a la acción enfocadas en agendar citas directas.",
+    tag: "Ruta de contacto directa"
   },
   {
-    quote: "Los menús QR interactivos que implementaron en nuestros locales son una maravilla visual y técnica. Carga instantánea, fotos que despiertan el deseo y navegación impecable para los comensales.",
-    name: "Grupo Dani García (España)",
-    result: "Menús QR Impecables",
-  },
-  {
-    quote: "La web corporativa estructurada y de carga rápida mejoró nuestro posicionamiento orgánico y facilitó las compras y consultas de clientes recurrentes. Un gran criterio visual y técnico.",
-    name: "La Central Librería (Madrid)",
-    result: "+42% compras recurrentes",
-  },
+    title: "Servicios Locales",
+    subtitle: "Web corporativa estructurada para captar leads",
+    desc: "Diseño optimizado para buscadores (SEO) que presenta los servicios del negocio de forma seria y corporativa.",
+    tag: "Reducción de tareas repetitivas"
+  }
 ];
 
 export function WebSection() {
@@ -194,7 +212,7 @@ export function WebSection() {
       <div className="pointer-events-none absolute -right-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.03),transparent_65%)] blur-3xl" />
 
       <SectionHeading
-        index="04"
+        index="03"
         kicker="Servicios de Alta Demanda"
         title={
           <>
@@ -205,68 +223,7 @@ export function WebSection() {
         intro="Una presencia digital veloz, limpia y con alto criterio estético. Diseñamos webs que eliminan la sensación de amateurismo y multiplican tu tasa de conversión de visitas a clientes."
       />
 
-      {/* Grid del Portafolio Curado (2 Clientes Reales) - Tamaño compacto en móviles */}
-      <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
-        {FEATURED_PROJECTS.map((project, index) => (
-          <Reveal key={project.title} delay={index * 0.1}>
-            <motion.article
-              whileHover="hover"
-              className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-deep/60 transition-shadow duration-500 hover:shadow-[0_20px_90px_-70px_rgba(124,108,255,0.35)]"
-            >
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-[16/9] sm:aspect-[16/10] overflow-hidden bg-panel"
-                aria-label={`Abrir ${project.title}`}
-              >
-                <Image
-                  src={project.image}
-                  alt={`Vista previa de ${project.title}`}
-                  fill
-                  sizes="(min-width: 1024px) 44vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover object-top opacity-90 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
-                <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-3">
-                  <span className="rounded-full border border-line bg-void/70 px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink-soft backdrop-blur">
-                    {project.sector}
-                  </span>
-                  <motion.span
-                    variants={{ hover: { rotate: 45, color: "#ff9d57" } }}
-                    transition={{ duration: 0.2 }}
-                    className="grid h-8 w-8 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur"
-                  >
-                    <ArrowUpRight size={14} />
-                  </motion.span>
-                </div>
-              </a>
 
-              <div className="flex flex-1 flex-col p-4 sm:p-5">
-                <h3 className="font-display text-base sm:text-lg font-semibold tracking-tight">
-                  {project.title}
-                </h3>
-                <p className="mt-1 text-xs leading-relaxed text-ink-soft">{project.desc}</p>
-                <p className="mt-3 rounded-xl border border-line bg-void/35 px-3 py-2 text-[10px] sm:text-xs uppercase tracking-[0.16em] text-ember">
-                  {project.result}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[10px] sm:text-xs font-semibold text-ink transition-colors hover:border-ink-soft hover:bg-panel"
-                  >
-                    <Eye size={12} />
-                    Ver Web Real
-                  </a>
-                </div>
-              </div>
-            </motion.article>
-          </Reveal>
-        ))}
-      </div>
 
       {/* Bloque Interactivo de Configuración */}
       <div className="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-10">
@@ -275,7 +232,7 @@ export function WebSection() {
           {/* Dashboard de Rendimiento: 4 Gráficos y Métricas */}
           <Reveal>
             <div className="premium-surface rounded-card border border-line bg-void/25 p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex flex-wrap items-center gap-1.5 mb-4">
                 <Cpu size={11} className="text-aurora" />
                 Auditoría Técnica: Velocidad y Conversión de Carga
               </span>
@@ -290,7 +247,7 @@ export function WebSection() {
                   <div className="space-y-3">
                     {/* Fila WP */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-ink-mute font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-ink-mute font-mono">
                         <span>Wordpress / Plantilla Tradicional</span>
                         <span className="text-red-400 font-semibold">4.8 segundos</span>
                       </div>
@@ -301,7 +258,7 @@ export function WebSection() {
 
                     {/* Fila AstroNexo */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-ink-soft font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-ink-soft font-mono">
                         <span>AstroNexo Premium (Next.js Edge)</span>
                         <span className="text-aurora font-semibold">0.7 segundos</span>
                       </div>
@@ -332,7 +289,7 @@ export function WebSection() {
                     whileHover={{ scale: 1.05 }}
                     className="relative my-1 flex items-center justify-center will-change-transform"
                   >
-                    <svg className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
+                    <svg viewBox="0 0 80 80" className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
                       <circle
                         cx="40"
                         cy="40"
@@ -609,31 +566,29 @@ export function WebSection() {
         </div>
       </div>
 
-      {/* Testimonios de Clientes Reales - Oculta los últimos 2 en móviles (hidden md:flex) */}
-      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {TESTIMONIALS.map((t, index) => (
+      {/* Escenarios de Aplicación por Sector */}
+      <div className="mt-12 flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-5 px-5 pb-4 md:grid md:grid-cols-3 md:gap-5 md:mx-0 md:px-0 md:pb-0">
+        {SCENARIOS.map((s, index) => (
           <Reveal 
-            key={t.name} 
+            key={s.title} 
             delay={0.05 + index * 0.05}
-            className={index >= 2 ? "hidden md:flex" : "flex"}
+            className="flex shrink-0 snap-center w-[285px] md:w-auto md:shrink"
           >
             <div className="premium-surface w-full h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-nebula/5 to-deep/40 p-4.5 sm:p-6">
               <div>
-                <div className="flex gap-1 mb-2.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={11} className="text-ember fill-ember" />
-                  ))}
-                </div>
-                <p className="text-[11px] sm:text-xs italic leading-relaxed text-ink-soft">
-                  "{t.quote}"
+                <span className="rounded-full bg-void/50 border border-line px-2.5 py-1 text-[8px] sm:text-[9px] uppercase tracking-wider text-ember font-semibold inline-block mb-3.5">
+                  Sector: {s.title}
+                </span>
+                <h4 className="font-display text-sm font-semibold tracking-tight text-ink mb-1.5">
+                  {s.subtitle}
+                </h4>
+                <p className="text-[11px] sm:text-xs leading-relaxed text-ink-soft">
+                  {s.desc}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between border-t border-line/35 pt-3">
-                <span className="block text-[10px] sm:text-[11px] font-bold text-ink leading-tight">
-                  {t.name}
-                </span>
-                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
-                  {t.result}
+                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-aurora font-semibold shrink-0">
+                  {s.tag}
                 </span>
               </div>
             </div>

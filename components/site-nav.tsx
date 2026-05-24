@@ -28,10 +28,10 @@ export function SiteNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 ${
+        className={`mx-4 md:mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ${
           scrolled
-            ? "my-3 rounded-full border border-line bg-deep/70 py-3 backdrop-blur-xl"
-            : "my-5 border border-transparent py-2"
+            ? "my-2 md:my-3 rounded-full border border-line bg-deep/80 px-4 py-1.5 md:px-6 md:py-2.5 backdrop-blur-xl shadow-lg"
+            : "my-3 md:my-5 rounded-full border border-transparent px-2 py-2"
         }`}
       >
         <a href="#top" className="premium-focus rounded-2xl">
@@ -61,10 +61,10 @@ export function SiteNav() {
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="premium-focus grid h-10 w-10 place-items-center rounded-full border border-line text-ink-soft md:hidden"
+            className="premium-focus grid h-8 w-8 place-items-center rounded-full border border-line text-ink-soft md:hidden"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
+            {open ? <X size={15} /> : <Menu size={15} />}
           </button>
         </div>
       </div>

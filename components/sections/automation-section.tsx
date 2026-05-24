@@ -27,27 +27,25 @@ export const OPTIONS = [
   },
 ];
 
-export const TESTIMONIALS = [
+export const SCENARIOS = [
   {
-    quote: "El bot de WhatsApp responde a nuestros clientes en segundos indicándoles si hay mesa o cómo pedir a domicilio. Hemos ganado más de 12 horas semanales de gestión manual y logramos un control de reservas impecable.",
-    name: "Toma Café (Madrid)",
-    result: "+12h libres/sem",
+    title: "Restaurantes",
+    subtitle: "Automatización de reservas vía WhatsApp + Menú QR",
+    desc: "El comensal escanea el QR, ve la carta y reserva mesa o pide delivery chateando. El bot verifica disponibilidad y confirma en segundos.",
+    tag: "Respuesta inmediata (IA < 1 min)"
   },
   {
-    quote: "Implementar la automatización de WhatsApp agilizó la atención del delivery los fines de semana. Las consultas repetitivas se resuelven solas y el equipo ahora se enfoca al 100% en el servicio de mesa.",
-    name: "Federal Café (España)",
-    result: "Foco total en salón",
+    title: "Clínicas & Estética",
+    subtitle: "Bot de calificación de leads + Agendamiento",
+    desc: "Cualifica al paciente según su dolor o tratamiento de interés y le asigna una cita en el calendario del doctor de forma automática.",
+    tag: "Ruta de contacto directa"
   },
   {
-    quote: "Para las promociones masivas, canalizar las respuestas iniciales mediante un flujo automático automatizó el filtrado de incidencias y la asignación estructurada a soporte real, reduciendo la saturación.",
-    name: "Goiko Grill (España)",
-    result: "Soporte optimizado",
-  },
-  {
-    quote: "La integración de reservas automatizadas redujo las inasistencias en un 38% gracias a las confirmaciones automáticas y recordatorios puntuales enviados directamente por WhatsApp.",
-    name: "Bacoa Burger (Barcelona)",
-    result: "-38% inasistencias",
-  },
+    title: "Servicios Locales",
+    subtitle: "Reactivación de clientes + SEO Local",
+    desc: "Reconecta con antiguos contactos mediante campañas conversacionales automatizadas en WhatsApp, liberando tiempo administrativo.",
+    tag: "Reducción de tareas repetitivas"
+  }
 ];
 
 export function AutomationSection() {
@@ -261,7 +259,7 @@ export function AutomationSection() {
           {/* Dashboard Analítico: 4 Gráficos y Métricas */}
           <Reveal>
             <div className="premium-surface rounded-card border border-line bg-void/25 p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex flex-wrap items-center gap-1.5 mb-4">
                 <Sparkles size={11} className="text-ember animate-pulse" />
                 Panel Analítico de Eficiencia (WhatsApp vs Humano)
               </span>
@@ -313,7 +311,7 @@ export function AutomationSection() {
                         </linearGradient>
                       </defs>
                     </svg>
-
+ 
                     {/* Leyendas del gráfico */}
                     <div className="absolute top-0 right-1 flex flex-col gap-0.5 text-[8px] font-mono text-ink-mute">
                       <div className="flex items-center gap-1">
@@ -342,7 +340,7 @@ export function AutomationSection() {
                     whileHover={{ scale: 1.05 }}
                     className="relative my-1 flex items-center justify-center will-change-transform"
                   >
-                    <svg className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
+                    <svg viewBox="0 0 80 80" className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
                       <circle
                         cx="40"
                         cy="40"
@@ -658,31 +656,29 @@ export function AutomationSection() {
         </div>
       </div>
 
-      {/* Testimonios de Clientes Reales - Oculta los últimos 2 en móviles (hidden md:flex) */}
-      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {TESTIMONIALS.map((t, index) => (
+      {/* Escenarios de Aplicación por Sector */}
+      <div className="mt-12 flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-5 px-5 pb-4 md:grid md:grid-cols-3 md:gap-5 md:mx-0 md:px-0 md:pb-0">
+        {SCENARIOS.map((s, index) => (
           <Reveal 
-            key={t.name} 
+            key={s.title} 
             delay={0.05 + index * 0.05}
-            className={index >= 2 ? "hidden md:flex" : "flex"} // Hides last 2 testimonials on mobile to prevent endless scrolling
+            className="flex shrink-0 snap-center w-[285px] md:w-auto md:shrink"
           >
             <div className="premium-surface w-full h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-ember/5 to-deep/40 p-4.5 sm:p-6">
               <div>
-                <div className="flex gap-1 mb-2.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={11} className="text-ember fill-ember" />
-                  ))}
-                </div>
-                <p className="text-[11px] sm:text-xs italic leading-relaxed text-ink-soft">
-                  "{t.quote}"
+                <span className="rounded-full bg-void/50 border border-line px-2.5 py-1 text-[8px] sm:text-[9px] uppercase tracking-wider text-ember font-semibold inline-block mb-3.5">
+                  Sector: {s.title}
+                </span>
+                <h4 className="font-display text-sm font-semibold tracking-tight text-ink mb-1.5">
+                  {s.subtitle}
+                </h4>
+                <p className="text-[11px] sm:text-xs leading-relaxed text-ink-soft">
+                  {s.desc}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between border-t border-line/35 pt-3">
-                <span className="block text-[10px] sm:text-[11px] font-bold text-ink leading-tight">
-                  {t.name}
-                </span>
-                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-ember font-semibold shrink-0">
-                  {t.result}
+                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-aurora font-semibold shrink-0">
+                  {s.tag}
                 </span>
               </div>
             </div>

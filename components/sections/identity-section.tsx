@@ -204,7 +204,7 @@ export function IdentitySection() {
       <div className="pointer-events-none absolute -left-12 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.03),transparent_65%)] blur-3xl" />
 
       <SectionHeading
-        index="07"
+        index="06"
         kicker="Estrategia y Marca"
         title={
           <>
@@ -221,7 +221,7 @@ export function IdentitySection() {
           {/* Dashboard de Marca: 4 Gráficos y Métricas */}
           <Reveal>
             <div className="premium-surface rounded-card border border-line bg-void/25 p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex items-center gap-1.5 mb-4">
+              <span className="text-[10px] uppercase tracking-wider text-ink-mute flex flex-wrap items-center gap-1.5 mb-4">
                 <Sparkles size={11} className="text-ember animate-pulse" />
                 Estadísticas de Percepción y Valor de Marca Premium
               </span>
@@ -296,7 +296,7 @@ export function IdentitySection() {
                     whileHover={{ scale: 1.05 }}
                     className="relative my-1 flex items-center justify-center will-change-transform"
                   >
-                    <svg className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
+                    <svg viewBox="0 0 80 80" className="h-16 w-16 sm:h-20 sm:w-20 transform -rotate-90">
                       <circle
                         cx="40"
                         cy="40"
@@ -593,16 +593,19 @@ export function IdentitySection() {
         </div>
       </div>
 
-      {/* Testimonios de Clientes Reales - Oculta los últimos 2 en móviles (hidden md:flex) */}
-      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+      {/* Testimonios de Referencia en el Sector */}
+      <div className="mt-12 flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-5 px-5 pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:mx-0 md:px-0 md:pb-0">
         {TESTIMONIALS.map((t, index) => (
           <Reveal 
             key={t.name} 
             delay={0.05 + index * 0.05}
-            className={index >= 2 ? "hidden md:flex" : "flex"}
+            className="flex shrink-0 snap-center w-[285px] md:w-auto md:shrink"
           >
             <div className="premium-surface w-full h-full flex flex-col justify-between rounded-card border border-line bg-gradient-to-r from-deep/40 via-ember/5 to-deep/40 p-4.5 sm:p-6">
               <div>
+                <span className="rounded-full bg-void/50 border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-ink-mute font-semibold inline-block mb-3.5">
+                  Benchmark de Referencia
+                </span>
                 <div className="flex gap-1 mb-2.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={11} className="text-ember fill-ember" />

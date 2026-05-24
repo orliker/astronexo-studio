@@ -5,9 +5,9 @@
 export const SITE = {
   name: "AstroNexo Studio",
   // Sustituye por tu número real en formato internacional sin "+" ni espacios.
-  whatsappNumber: "34600000000",
+  whatsappNumber: "351931056365",
   whatsappMessage:
-    "Hola AstroNexo. Vengo de vuestra web y quiero una auditoría de mi presencia digital. Mi Instagram/web es: ",
+    "Hola AstroNexo. Quiero una auditoría gratuita de mi presencia digital. Mi Instagram/web es: ",
   email: "hola@astronexostudio.com",
 };
 

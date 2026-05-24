@@ -71,7 +71,7 @@ export function ProblemSection() {
                   <div className="space-y-2">
                     {/* Barra 1 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-ink-mute font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-ink-mute font-mono">
                         <span>Tráfico Inicial</span>
                         <span>100%</span>
                       </div>
@@ -87,7 +87,7 @@ export function ProblemSection() {
                     </div>
                     {/* Barra 2 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-red-400 font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-red-400 font-mono">
                         <span>Primera Impresión (Web lenta)</span>
                         <span>-58% Fuga</span>
                       </div>
@@ -103,7 +103,7 @@ export function ProblemSection() {
                     </div>
                     {/* Barra 3 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-red-400 font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-red-400 font-mono">
                         <span>Interés (Soporte Lento)</span>
                         <span>-27% Fuga</span>
                       </div>
@@ -132,7 +132,7 @@ export function ProblemSection() {
                   <div className="space-y-2">
                     {/* Barra 1 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-ink-soft font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-ink-soft font-mono">
                         <span>Tráfico Inicial</span>
                         <span>100%</span>
                       </div>
@@ -148,7 +148,7 @@ export function ProblemSection() {
                     </div>
                     {/* Barra 2 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-aurora font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-aurora font-mono">
                         <span>Primera Impresión (Next.js Edge)</span>
                         <span>92% Retención</span>
                       </div>
@@ -164,7 +164,7 @@ export function ProblemSection() {
                     </div>
                     {/* Barra 3 */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] text-aurora font-mono">
+                      <div className="flex flex-wrap justify-between gap-x-2 gap-y-0.5 text-[9px] text-aurora font-mono">
                         <span>Interés (Respuesta WhatsApp IA)</span>
                         <span>78% Cualificado</span>
                       </div>

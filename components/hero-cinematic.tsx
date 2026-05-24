@@ -105,9 +105,18 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.08}>
+          {/* Mobile H1 */}
           <h1
             data-anime="hero-item"
-            className="mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:mt-7 sm:text-5xl lg:text-[3.65rem]"
+            className="md:hidden mt-4 font-display text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-ink"
+          >
+            Tu WhatsApp puede vender <br />
+            mientras tú trabajas.
+          </h1>
+          {/* Desktop H1 */}
+          <h1
+            data-anime="hero-item"
+            className="hidden md:block mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:text-5xl lg:text-[3.65rem]"
           >
             No respondas más mensajes a mano.
             <br className="hidden sm:block" /> Automatizamos tu{" "}
@@ -116,9 +125,17 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.16}>
+          {/* Mobile Subcopy */}
           <p
             data-anime="hero-item"
-            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg"
+            className="md:hidden mt-3 text-pretty text-sm leading-relaxed text-ink-soft"
+          >
+            Creamos webs premium y automatizaciones con IA para captar, filtrar y convertir más clientes sin depender de responder todo manualmente.
+          </p>
+          {/* Desktop Subcopy */}
+          <p
+            data-anime="hero-item"
+            className="hidden md:block mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg"
           >
             Creamos sistemas de automatización inteligentes y desarrollo web premium.
             Liberamos a tu equipo de tareas repetitivas y multiplicamos tus leads y ventas en piloto automático.
@@ -126,9 +143,34 @@ function HeroContent({
         </FadeUp>
 
         <FadeUp delay={0.24}>
+          {/* Mobile CTAs */}
           <div
             data-anime="hero-item"
-            className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center"
+            className="md:hidden mt-5 flex flex-col gap-2.5"
+          >
+            <a
+              href="https://wa.me/351931056365?text=Hola%20Alex%2C%20vi%20AstroNexo%20Studio%20y%20me%20gustar%C3%ADa%20pedir%20una%20auditor%C3%ADa%20gratuita%20para%20mi%20negocio."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="micro-glint group inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-ink px-5 text-xs font-semibold text-void transition-colors hover:bg-white"
+            >
+              <MessageCircle size={14} />
+              Pedir auditoría gratis
+              <ArrowUpRight size={13} />
+            </a>
+            <a
+              href="#proyectos"
+              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full border border-line px-5 text-xs text-ink-soft transition-colors hover:border-ink-soft hover:text-ink"
+            >
+              <Eye size={13} />
+              Ver ejemplos
+            </a>
+          </div>
+
+          {/* Desktop CTAs */}
+          <div
+            data-anime="hero-item"
+            className="hidden md:flex mt-7 flex-row flex-wrap items-center gap-3"
           >
             <a
               href="#contacto-interactivo"

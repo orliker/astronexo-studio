@@ -50,8 +50,10 @@ export function FinalCTA() {
         >
           <div className="pointer-events-none absolute -top-1/3 left-1/2 h-[50vh] w-[50vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.12),transparent_65%)] blur-3xl" />
 
-          <p className="relative text-xs uppercase tracking-[0.3em] text-ink-mute">
-            Diagnóstico Privado e Interactivo
+          <p className="relative text-xs uppercase tracking-[0.22em] text-ink-mute">
+            <span className="text-nebula-soft font-mono">08</span>
+            <span className="mx-3 inline-block h-px w-8 align-middle bg-line" />
+            Auditoría final / Contacto
           </p>
           <h2 className="relative mx-auto mt-6 max-w-3xl font-display text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance sm:mt-7 sm:text-5xl lg:text-6xl">
             Personaliza tu consulta y

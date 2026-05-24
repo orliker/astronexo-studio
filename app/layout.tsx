@@ -24,7 +24,7 @@ const accent = Instrument_Serif({
   weight: ["400"],
 });
 
-const SITE_URL = "https://astronexo-studio.vercel.app";
+const SITE_URL = "https://www.astronexo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -85,6 +85,39 @@ export default function RootLayout({
       lang="es"
       className={`${display.variable} ${sans.variable} ${accent.variable} antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "AstroNexo Studio",
+              "image": "https://www.astronexo.com/icon.svg",
+              "@id": "https://www.astronexo.com/#organization",
+              "url": "https://www.astronexo.com",
+              "telephone": "",
+              "priceRange": "$$$",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "",
+                "addressLocality": "Madrid",
+                "postalCode": "",
+                "addressCountry": "ES"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 40.416775,
+                "longitude": -3.703790
+              },
+              "sameAs": [
+                "https://instagram.com/astronexo"
+              ],
+              "description": "Desarrollo web premium, automatización de WhatsApp con IA y consultoría digital para escalar la presencia de tu negocio en piloto automático."
+            }),
+          }}
+        />
+      </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
