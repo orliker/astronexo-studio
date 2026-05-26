@@ -9,9 +9,9 @@ import { BrandLogo } from "@/components/brand-logo";
 const LINKS = [
   { label: "Automatización", href: "#automatizaciones" },
   { label: "Webs & QR", href: "#webs-y-qr" },
+  { label: "Facturas", href: "#facturas" },
   { label: "SEO Local", href: "#seo-local" },
   { label: "Campañas", href: "#campanas-y-trafico" },
-  { label: "Identidad", href: "#identidad-digital" },
 ];
 
 export function SiteNav() {

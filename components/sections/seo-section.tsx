@@ -143,12 +143,12 @@ export function SEOSection() {
   return (
     <section
       id="seo-local"
-      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-void/10"
+      className="relative mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-void/10"
     >
       <div className="pointer-events-none absolute -left-12 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(56,224,201,0.03),transparent_65%)] blur-3xl" />
 
       <SectionHeading
-        index="04"
+        index="05"
         kicker="Servicios de Alta Demanda"
         title={
           <>

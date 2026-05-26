@@ -14,13 +14,13 @@ import {
 import { Reveal } from "@/components/motion-primitives";
 
 const SIGNALS = [
-  { label: "Auditoria", detail: "Web, Instagram y oferta", icon: Radar },
+  { label: "Auditoría", detail: "Web, Instagram y oferta", icon: Radar },
   { label: "Estrategia", detail: "Mensaje, nicho y CTA", icon: Target },
-  { label: "Diseno", detail: "Direccion visual premium", icon: Layers3 },
-  { label: "Conversion", detail: "WhatsApp y lead flow", icon: TrendingUp },
-  { label: "Performance", detail: "Carga rapida y mobile", icon: Gauge },
-  { label: "Deploy", detail: "Publicacion y ajustes", icon: ServerCog },
-  { label: "Seguridad", detail: "Headers y buenas practicas", icon: ShieldCheck },
+  { label: "Diseño", detail: "Dirección visual premium", icon: Layers3 },
+  { label: "Conversión", detail: "WhatsApp y lead flow", icon: TrendingUp },
+  { label: "Performance", detail: "Carga rápida y mobile", icon: Gauge },
+  { label: "Deploy", detail: "Publicación y ajustes", icon: ServerCog },
+  { label: "Seguridad", detail: "Headers y buenas prácticas", icon: ShieldCheck },
   { label: "Confianza", detail: "Enlaces y tracking claro", icon: LockKeyhole },
 ];
 

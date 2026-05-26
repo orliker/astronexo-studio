@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Globe, Search, Palette, ArrowRight } from "lucide-react";
+import { MessageCircle, Globe, Search, Palette, ArrowRight, FileSpreadsheet } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 
 const PRIORITIES = [
@@ -11,6 +11,14 @@ const PRIORITIES = [
     icon: MessageCircle,
     color: "text-ember border-ember/20 bg-ember/5",
     link: "https://wa.me/351931056365?text=Hola%20Alex%2C%20quiero%20automatizar%20WhatsApp%20o%20respuestas%20de%20clientes%20con%20IA.",
+  },
+  {
+    title: "Automatizar facturas",
+    desc: "Deja el Excel manual: registra, organiza y visualiza tus facturas en un panel claro y automático.",
+    cta: "Quiero ordenar facturas",
+    icon: FileSpreadsheet,
+    color: "text-aurora border-aurora/20 bg-aurora/5",
+    link: "https://wa.me/351931056365?text=Hola%20Alex%2C%20quiero%20automatizar%20la%20gesti%C3%B3n%20de%20facturas%20de%20mi%20negocio.",
   },
   {
     title: "Crear una web premium",
@@ -58,7 +66,7 @@ export function ImproveFirst() {
       </Reveal>
 
       {/* Grid en desktop, micro-carrusel táctil con scroll-snap en móvil */}
-      <div className="mt-8 flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-5 px-5 pb-4 md:grid md:grid-cols-4 md:gap-6 md:mx-0 md:px-0 md:pb-0">
+      <div className="mt-8 flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-5 px-5 pb-4 md:grid md:grid-cols-5 md:gap-5 md:mx-0 md:px-0 md:pb-0">
         {PRIORITIES.map((p, idx) => {
           const Icon = p.icon;
           return (

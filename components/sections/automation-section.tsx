@@ -237,20 +237,31 @@ export function AutomationSection() {
   return (
     <section
       id="automatizaciones"
-      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-24"
+      className="relative mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-8 sm:py-24"
     >
-      <div className="pointer-events-none absolute -left-12 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.03),transparent_65%)] blur-3xl" />
+      {/* Realce de "servicio principal": glow ámbar más presente que en el resto */}
+      <div className="pointer-events-none absolute -left-12 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.06),transparent_65%)] blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-24 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.05),transparent_65%)] blur-3xl" />
+
+      <Reveal>
+        <div className="mb-6 flex justify-center sm:justify-start">
+          <span className="inline-flex items-center gap-2 rounded-full border border-ember/40 bg-ember/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ember">
+            <Sparkles size={13} className="animate-pulse" />
+            Servicio principal · lo más solicitado
+          </span>
+        </div>
+      </Reveal>
 
       <SectionHeading
         index="02"
-        kicker="Servicio de Mayor Demanda"
+        kicker="El sistema estrella de AstroNexo"
         title={
           <>
             Automatización inteligente de{" "}
             <span className="premium-word">WhatsApp con IA</span>
           </>
         }
-        intro="Libera a tu equipo de responder las mismas dudas una y otra vez. Implementamos flujos automatizados con IA que gestionan, filtran y agendan tus clientes potenciales 24/7."
+        intro="Nuestro servicio más demandado. Libera a tu equipo de responder las mismas dudas una y otra vez: implementamos flujos con IA que gestionan, filtran y agendan tus clientes potenciales 24/7, conectados con tu web premium."
       />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-10">

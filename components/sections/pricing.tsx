@@ -37,6 +37,22 @@ const PACKS = [
     highlight: true,
   },
   {
+    name: "Facturas Automáticas",
+    price: "Desde 90€",
+    desc: "Para negocios que aún llevan las facturas a mano en Excel o papel y quieren un panel claro, automático y cómodo.",
+    inclusions: [
+      "Panel visual de facturas (cobrado / pendiente)",
+      "Registro y búsqueda instantánea por cliente o fecha",
+      "Gráficos de ingresos y totales del mes",
+      "Avisos de facturas por cobrar y vencimientos",
+      "Exportable e integrable con tu sistema actual",
+      "Pensado para restaurantes, tiendas, talleres y autónomos",
+    ],
+    cta: "Quiero ordenar mis facturas",
+    link: "https://wa.me/351931056365?text=Hola%20Alex%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20sistema%20de%20Facturas%20Autom%C3%A1ticas%20para%20mi%20negocio.",
+    highlight: false,
+  },
+  {
     name: "Growth System",
     price: "Desde 500€+",
     desc: "Ecosistema comercial completo para negocios que quieren dominar su presencia local, captar leads y automatizar el cierre.",
@@ -76,7 +92,7 @@ export function PricingSection() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8 items-stretch">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 items-stretch">
         {PACKS.map((pack, idx) => (
           <Reveal key={pack.name} delay={idx * 0.08} className="flex">
             <div

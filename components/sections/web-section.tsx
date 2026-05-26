@@ -207,7 +207,7 @@ export function WebSection() {
   return (
     <section
       id="webs-y-qr"
-      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-deep/20"
+      className="relative mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-8 sm:py-24 border-t border-line bg-deep/20"
     >
       <div className="pointer-events-none absolute -right-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.03),transparent_65%)] blur-3xl" />
 

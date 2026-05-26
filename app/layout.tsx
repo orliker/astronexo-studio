@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "AstroNexo Studio | Webs premium, estrategia y automatización",
   description:
-    "Diseñamos activos digitales premium para negocios que necesitan verse más serios, explicar mejor su oferta y convertir visitas en oportunidades reales.",
+    "Estudio digital con base en Oporto. Diseñamos activos digitales premium para negocios que necesitan verse más serios, explicar mejor su oferta y convertir visitas en oportunidades reales. Servicio en Portugal, España, Reino Unido y EE. UU.",
   keywords: [
     "estudio diseño web",
     "web premium",
@@ -96,24 +96,26 @@ export default function RootLayout({
               "image": "https://www.astronexo.com/icon.svg",
               "@id": "https://www.astronexo.com/#organization",
               "url": "https://www.astronexo.com",
-              "telephone": "",
-              "priceRange": "$$$",
+              "telephone": "+351931056365",
+              "email": "hola@astronexostudio.com",
+              "priceRange": "€€",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "",
-                "addressLocality": "Madrid",
-                "postalCode": "",
-                "addressCountry": "ES"
+                "addressLocality": "Oporto",
+                "addressCountry": "PT"
               },
+              "areaServed": [
+                { "@type": "Country", "name": "Portugal" },
+                { "@type": "Country", "name": "España" },
+                { "@type": "Country", "name": "Reino Unido" },
+                { "@type": "Country", "name": "Estados Unidos" }
+              ],
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 40.416775,
-                "longitude": -3.703790
+                "latitude": 41.157944,
+                "longitude": -8.629105
               },
-              "sameAs": [
-                "https://instagram.com/astronexo"
-              ],
-              "description": "Desarrollo web premium, automatización de WhatsApp con IA y consultoría digital para escalar la presencia de tu negocio en piloto automático."
+              "description": "Estudio digital con base en Oporto. Desarrollo web premium, automatización de WhatsApp con IA, automatización de facturas y consultoría digital para escalar la presencia de tu negocio en piloto automático. Servicio internacional."
             }),
           }}
         />

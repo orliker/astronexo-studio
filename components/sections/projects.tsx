@@ -67,7 +67,7 @@ export function ProjectsSection() {
       <div className="pointer-events-none absolute -left-12 top-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.02),transparent_65%)] blur-3xl" />
 
       <SectionHeading
-        index="07"
+        index="08"
         kicker="Casos de Estudio y Demostraciones"
         title={
           <>
