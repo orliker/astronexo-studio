@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, MessageCircle, ArrowRight } from "lucide-react";
+import { Check, MessageCircle, ArrowRight, Boxes, CreditCard, Database, LayoutGrid } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
 
 const PACKS = [
@@ -87,7 +87,7 @@ export function PricingSection() {
             Elige el punto de partida de tu sistema digital
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-ink-mute max-w-2xl mx-auto">
-            Tarifas transparentes y orientativas adaptadas a las fases de crecimiento de tu negocio. Sin contratos de permanencia abusivos.
+            Trabajamos desde una automatización sencilla hasta sistemas completos a medida. Tarifas transparentes y orientativas, adaptadas a la fase de tu negocio. Sin contratos de permanencia abusivos.
           </p>
         </div>
       </Reveal>
@@ -151,6 +151,57 @@ export function PricingSection() {
           </Reveal>
         ))}
       </div>
+
+      {/* Banda: proyectos a medida (sin techo) — capta al cliente grande */}
+      <Reveal delay={0.1}>
+        <div className="panel-edge premium-surface mt-8 overflow-hidden rounded-card p-6 sm:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-nebula/30 bg-nebula/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-nebula-soft">
+                <Boxes size={13} />
+                Proyectos a medida · sin techo
+              </span>
+              <h3 className="mt-4 font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                ¿Necesitas algo más grande? Lo construimos.
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                Tiendas online, catálogos interactivos tipo configurador, áreas de
+                cliente con login, pagos con Stripe, conexión con bases de datos y
+                sistemas completos. Webs serias para negocios en crecimiento, startups
+                y marcas que se quedaron atrás en WordPress. <span className="text-ink">Desde 1.500€</span>, según alcance.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[
+                  { icon: LayoutGrid, label: "Catálogo / e-commerce" },
+                  { icon: CreditCard, label: "Pagos con Stripe" },
+                  { icon: Database, label: "Login y base de datos" },
+                ].map((f) => {
+                  const Icon = f.icon;
+                  return (
+                    <span
+                      key={f.label}
+                      className="inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1.5 text-xs text-ink-soft"
+                    >
+                      <Icon size={13} className="text-nebula-soft" />
+                      {f.label}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+            <a
+              href="https://wa.me/351931056365?text=Hola%20Alex%2C%20tengo%20un%20proyecto%20m%C3%A1s%20grande%20(tienda%2Fcat%C3%A1logo%2Fsistema%20a%20medida)%20y%20quiero%20comentarlo."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="micro-glint group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-void transition-colors hover:bg-white"
+            >
+              <MessageCircle size={16} />
+              Hablar de mi proyecto
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
