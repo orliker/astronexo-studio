@@ -145,6 +145,9 @@ export function SiteFooter() {
           <a href="#identidad-digital" className="transition-colors hover:text-ink">
             Identidad
           </a>
+          <a href="#faq" className="transition-colors hover:text-ink">
+            FAQ
+          </a>
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -157,10 +160,19 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto max-w-7xl px-5 pb-10 sm:px-8">
         <div className="hairline" />
-        <p className="mt-6 text-xs text-ink-mute">
-          © {new Date().getFullYear()} AstroNexo Studio. Diseñado con criterio,
-          probado con detalle y construido para vender confianza.
-        </p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-ink-mute">
+            © {new Date().getFullYear()} AstroNexo Studio · Estudio digital con base en Oporto, Portugal.
+          </p>
+          <div className="flex items-center gap-5 text-xs text-ink-mute">
+            <a href="mailto:hola@astronexostudio.com" className="transition-colors hover:text-ink">
+              hola@astronexostudio.com
+            </a>
+            <a href="/privacidad" className="transition-colors hover:text-ink">
+              Privacidad
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

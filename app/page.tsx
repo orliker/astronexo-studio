@@ -13,6 +13,7 @@ import { MarketingSection } from "@/components/sections/marketing-section";
 import { IdentitySection } from "@/components/sections/identity-section";
 import { ProjectsSection } from "@/components/sections/projects";
 import { PricingSection } from "@/components/sections/pricing";
+import { FAQSection } from "@/components/sections/faq";
 import { ManifestoSection } from "@/components/sections/manifesto";
 import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
@@ -40,6 +41,7 @@ export default function Home() {
         <IdentitySection />
         <ProjectsSection />
         <PricingSection />
+        <FAQSection />
         <ManifestoSection />
         <FinalCTA />
       </main>
