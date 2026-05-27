@@ -29,7 +29,7 @@ export default function Home() {
       <SiteNav />
       <AnimePageMotion />
       <GsapPremiumEffects />
-      <main className="relative">
+      <main className="relative overflow-x-clip">
         <HeroCinematic />
         <TrustBar />
         <ImproveFirst />
