@@ -54,7 +54,7 @@ export function WhyUsSection() {
       <div className="pointer-events-none absolute left-1/2 top-10 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.04),transparent_65%)] blur-3xl" />
 
       <SectionHeading
-        index="09"
+        index="10"
         kicker="Por qué AstroNexo"
         title={
           <>

@@ -28,8 +28,8 @@ export function AuthorityStrip() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative border-y border-line bg-deep/35">
-      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+    <section className="relative overflow-hidden border-y border-line bg-deep/35">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.8fr_minmax(0,1.2fr)] lg:items-center">
         <Reveal>
           <div>
             <p className="text-xs uppercase tracking-[0.24em] text-ember">
