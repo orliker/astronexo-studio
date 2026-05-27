@@ -19,6 +19,7 @@ import {
 import { PingPongVideo } from "@/components/pingpong-video";
 import { WHATSAPP_URL } from "@/lib/site";
 import { BrandLogo } from "@/components/brand-logo";
+import { useLang, dict } from "@/components/lang-provider";
 
 /**
  * Hero — layout editorial dividido.
@@ -90,6 +91,7 @@ function HeroContent({
   videoScale?: MotionValue<number>;
   glow?: MotionValue<number>;
 }) {
+  const { tr } = useLang();
   return (
     <div className="mx-auto grid w-full max-w-7xl items-center gap-7 px-5 pb-8 pt-24 sm:gap-10 sm:px-8 sm:pb-16 sm:pt-28 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-0 lg:pt-0">
       {/* ── Copy (orden 2 en mobile para que el vídeo vaya arriba) ── */}
@@ -100,7 +102,7 @@ function HeroContent({
             className="inline-flex items-center gap-2 rounded-full border border-line bg-deep/60 px-4 py-1.5 text-xs tracking-wide text-ink-soft backdrop-blur"
           >
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ember" />
-            Automatización inteligente · WhatsApp IA + Web premium
+            {tr(dict.hero.badge)}
           </span>
         </FadeUp>
 
@@ -110,17 +112,16 @@ function HeroContent({
             data-anime="hero-item"
             className="md:hidden mt-4 font-display text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-ink"
           >
-            Tu WhatsApp puede vender <br />
-            mientras tú trabajas.
+            {tr(dict.hero.titleMobile)}
           </h1>
           {/* Desktop H1 */}
           <h1
             data-anime="hero-item"
             className="hidden md:block mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:text-5xl lg:text-[3.65rem]"
           >
-            No respondas más mensajes a mano.
-            <br className="hidden sm:block" /> Automatizamos tu{" "}
-            <span className="premium-word">WhatsApp con IA</span> y escalamos tu presencia digital.
+            {tr(dict.hero.titleA)}
+            <br className="hidden sm:block" /> {tr(dict.hero.titleB)}{" "}
+            <span className="premium-word">{tr(dict.hero.titleWhatsapp)}</span> {tr(dict.hero.titleC)}
           </h1>
         </FadeUp>
 
@@ -130,15 +131,14 @@ function HeroContent({
             data-anime="hero-item"
             className="md:hidden mt-3 text-pretty text-sm leading-relaxed text-ink-soft"
           >
-            Creamos webs premium y automatizaciones con IA para captar, filtrar y convertir más clientes sin depender de responder todo manualmente.
+            {tr(dict.hero.subMobile)}
           </p>
           {/* Desktop Subcopy */}
           <p
             data-anime="hero-item"
             className="hidden md:block mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-lg"
           >
-            Creamos sistemas de automatización inteligentes y desarrollo web premium.
-            Liberamos a tu equipo de tareas repetitivas y multiplicamos tus leads y ventas en piloto automático.
+            {tr(dict.hero.subDesktop)}
           </p>
         </FadeUp>
 
@@ -155,7 +155,7 @@ function HeroContent({
               className="micro-glint group inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-ink px-5 text-xs font-semibold text-void transition-colors hover:bg-white"
             >
               <MessageCircle size={14} />
-              Pedir auditoría gratis
+              {tr(dict.hero.ctaAudit)}
               <ArrowUpRight size={13} />
             </a>
             <a
@@ -163,7 +163,7 @@ function HeroContent({
               className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full border border-line px-5 text-xs text-ink-soft transition-colors hover:border-ink-soft hover:text-ink"
             >
               <Eye size={13} />
-              Ver ejemplos
+              {tr(dict.hero.ctaExamples)}
             </a>
           </div>
 
@@ -177,7 +177,7 @@ function HeroContent({
               className="micro-glint group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-void transition-colors hover:bg-white sm:min-h-0 sm:justify-start sm:px-7"
             >
               <MessageCircle size={17} />
-              Solicitar Auditoría Gratuita
+              {tr(dict.hero.ctaAuditFull)}
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -188,7 +188,7 @@ function HeroContent({
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm text-ink-soft transition-colors hover:border-ink-soft hover:text-ink sm:min-h-0 sm:justify-start sm:px-7"
             >
               <Eye size={16} />
-              Ver casos reales
+              {tr(dict.hero.ctaCases)}
             </a>
           </div>
         </FadeUp>
@@ -199,9 +199,9 @@ function HeroContent({
             className="mt-7 grid max-w-xl grid-cols-1 gap-2 text-sm text-ink-mute sm:mt-10 sm:grid-cols-3 sm:gap-3"
           >
             {[
-              "Automatización con IA",
-              "WhatsApp & n8n Bots",
-              "Web Premium & QR Menús",
+              tr(dict.hero.chip1),
+              tr(dict.hero.chip2),
+              tr(dict.hero.chip3),
             ].map((item, index) => (
               <span
                 key={item}
@@ -221,7 +221,7 @@ function HeroContent({
             data-anime="hero-item"
             className="mt-5 flex flex-wrap gap-2 text-xs text-ink-mute sm:mt-8"
           >
-            {["Soporte 24/7 con IA", "Flujos en n8n", "Respuestas en < 1 min"].map(
+            {[tr(dict.hero.tag1), tr(dict.hero.tag2), tr(dict.hero.tag3)].map(
               (item) => (
                 <span
                   key={item}

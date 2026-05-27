@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { LangProvider } from "@/components/lang-provider";
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -137,7 +138,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <LangProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </LangProvider>
       </body>
     </html>
   );

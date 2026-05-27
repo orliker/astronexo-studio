@@ -2,6 +2,7 @@
 
 import { MapPin, Globe2, ShieldCheck, FileCheck2, Clock4 } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
+import { useLang, dict } from "@/components/lang-provider";
 
 /**
  * Franja de confianza — va justo después del hero.
@@ -14,39 +15,24 @@ import { Reveal } from "@/components/motion-primitives";
  */
 
 const TRUST = [
-  {
-    icon: MapPin,
-    title: "Estudio real en Oporto",
-    detail: "Base física en Portugal, no una cuenta anónima.",
-  },
-  {
-    icon: Globe2,
-    title: "Trabajamos para el mundo",
-    detail: "Portugal, España, Reino Unido, EE. UU. y toda Europa.",
-  },
-  {
-    icon: FileCheck2,
-    title: "Pago por fases",
-    detail: "Empiezas con una parte y el resto al entregar. Sin sorpresas.",
-  },
-  {
-    icon: Clock4,
-    title: "Sin permanencia",
-    detail: "Ningún contrato que te ate. La web es tuya, el código es tuyo.",
-  },
+  { icon: MapPin, title: dict.trust.item1Title, detail: dict.trust.item1Detail },
+  { icon: Globe2, title: dict.trust.item2Title, detail: dict.trust.item2Detail },
+  { icon: FileCheck2, title: dict.trust.item3Title, detail: dict.trust.item3Detail },
+  { icon: Clock4, title: dict.trust.item4Title, detail: dict.trust.item4Detail },
 ];
 
 export function TrustBar() {
+  const { tr } = useLang();
   return (
     <section
-      aria-label="Por qué confiar en AstroNexo Studio"
+      aria-label={tr(dict.trust.heading)}
       className="relative border-y border-line bg-void/40"
     >
       <div className="mx-auto max-w-7xl px-5 py-7 sm:px-8 sm:py-8">
         <Reveal>
           <div className="mb-5 flex items-center gap-2.5 text-xs uppercase tracking-[0.2em] text-ink-mute">
             <ShieldCheck size={14} className="text-aurora" />
-            Por qué puedes confiar en nosotros
+            {tr(dict.trust.heading)}
           </div>
         </Reveal>
 
@@ -54,17 +40,17 @@ export function TrustBar() {
           {TRUST.map((item, index) => {
             const Icon = item.icon;
             return (
-              <Reveal key={item.title} delay={index * 0.07}>
+              <Reveal key={index} delay={index * 0.07}>
                 <div className="flex h-full items-start gap-3 rounded-2xl border border-line bg-deep/30 px-4 py-3.5 transition-colors hover:border-ink-soft/45">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line bg-panel text-ember">
                     <Icon size={16} />
                   </span>
                   <span>
                     <span className="block text-sm font-semibold text-ink">
-                      {item.title}
+                      {tr(item.title)}
                     </span>
                     <span className="mt-0.5 block text-xs leading-relaxed text-ink-mute">
-                      {item.detail}
+                      {tr(item.detail)}
                     </span>
                   </span>
                 </div>

@@ -5,16 +5,43 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site";
 import { BrandLogo } from "@/components/brand-logo";
+import { useLang, dict } from "@/components/lang-provider";
 
 const LINKS = [
-  { label: "Automatización", href: "#automatizaciones" },
-  { label: "Webs & QR", href: "#webs-y-qr" },
-  { label: "Facturas", href: "#facturas" },
-  { label: "SEO Local", href: "#seo-local" },
-  { label: "Campañas", href: "#campanas-y-trafico" },
+  { label: dict.nav.automation, href: "#automatizaciones" },
+  { label: dict.nav.websQr, href: "#webs-y-qr" },
+  { label: dict.nav.invoices, href: "#facturas" },
+  { label: dict.nav.seo, href: "#seo-local" },
+  { label: dict.nav.campaigns, href: "#campanas-y-trafico" },
 ];
 
+function LangToggle({ compact = false }: { compact?: boolean }) {
+  const { lang, setLang } = useLang();
+  return (
+    <div
+      className={`flex items-center gap-0.5 rounded-full border border-line bg-void/45 p-0.5 text-xs ${
+        compact ? "" : ""
+      }`}
+    >
+      {(["es", "en"] as const).map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLang(l)}
+          className={`premium-focus rounded-full px-2.5 py-1 font-medium uppercase transition-colors ${
+            lang === l ? "bg-ink text-void" : "text-ink-soft hover:text-ink"
+          }`}
+          aria-pressed={lang === l}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function SiteNav() {
+  const { tr } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -45,24 +72,25 @@ export function SiteNav() {
               href={l.href}
               className="premium-focus rounded-full px-1 text-sm text-ink-soft transition-colors hover:text-ink"
             >
-              {l.label}
+              {tr(l.label)}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <LangToggle />
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="premium-focus micro-glint hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-void transition-colors hover:bg-white sm:inline-flex"
           >
-            Auditoría privada
+            {tr(dict.nav.privateAudit)}
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
             className="premium-focus grid h-8 w-8 place-items-center rounded-full border border-line text-ink-soft md:hidden"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? tr(dict.nav.closeMenu) : tr(dict.nav.openMenu)}
           >
             {open ? <X size={15} /> : <Menu size={15} />}
           </button>
@@ -85,16 +113,19 @@ export function SiteNav() {
                 onClick={() => setOpen(false)}
                 className="premium-focus block rounded-xl px-4 py-3 text-ink-soft transition-colors hover:bg-panel hover:text-ink"
               >
-                {l.label}
+                {tr(l.label)}
               </a>
             ))}
+            <div className="px-4 py-3">
+              <LangToggle compact />
+            </div>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="premium-focus mt-1 block rounded-xl bg-ink px-4 py-3 text-center font-medium text-void"
             >
-              Pedir auditoría privada
+              {tr(dict.nav.requestAudit)}
             </a>
           </motion.nav>
         )}
