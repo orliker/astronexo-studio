@@ -64,3 +64,5 @@ git push -u origin main
 1. Importa el repo en [vercel.com/new](https://vercel.com/new).
 2. Framework: **Next.js** (autodetectado). Sin variables de entorno.
 3. Deploy. El `.mp4` se sirve desde `public/` por el CDN de Vercel.
+
+# Auto-deploy reconectado a Vercel (2026-05-27)
