@@ -12,6 +12,7 @@ import { SEOSection } from "@/components/sections/seo-section";
 import { MarketingSection } from "@/components/sections/marketing-section";
 import { IdentitySection } from "@/components/sections/identity-section";
 import { ProjectsSection } from "@/components/sections/projects";
+import { WhyUsSection } from "@/components/sections/why-us";
 import { PricingSection } from "@/components/sections/pricing";
 import { FAQSection } from "@/components/sections/faq";
 import { ManifestoSection } from "@/components/sections/manifesto";
@@ -40,6 +41,7 @@ export default function Home() {
         <MarketingSection />
         <IdentitySection />
         <ProjectsSection />
+        <WhyUsSection />
         <PricingSection />
         <FAQSection />
         <ManifestoSection />
