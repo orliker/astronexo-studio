@@ -133,6 +133,9 @@ export function SiteFooter() {
           <a href="#webs-y-qr" className="transition-colors hover:text-ink">
             Webs & QR
           </a>
+          <a href="#facturas" className="transition-colors hover:text-ink">
+            Facturas
+          </a>
           <a href="#seo-local" className="transition-colors hover:text-ink">
             SEO Local
           </a>

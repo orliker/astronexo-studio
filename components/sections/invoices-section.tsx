@@ -122,6 +122,7 @@ export function InvoicesSection() {
               <div className="rounded-xl border border-aurora/25 bg-aurora/5 p-3">
                 <span className="block text-[10px] font-bold uppercase tracking-wide text-aurora mb-2">
                   Después · Panel AstroNexo
+                  <span className="ml-1 font-normal normal-case text-ink-mute">(ejemplo)</span>
                 </span>
                 <div className="space-y-2">
                   {[

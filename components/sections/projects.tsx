@@ -17,6 +17,7 @@ const PROJECTS = [
     improvement: "Ruta de inscripción unificada, reduciendo el soporte manual y acelerando el cierre de plazas.",
     image: "/portfolio/portfolio-anderbrows.jpeg",
     url: "https://anderbrows.vercel.app/",
+    live: true,
   },
   {
     title: "Infinity Bright Clean",
@@ -28,6 +29,7 @@ const PROJECTS = [
     improvement: "Eliminación de llamadas repetitivas de cotización y captación directa de leads de alto valor.",
     image: "/portfolio/portfolio-sams-lyart.jpeg",
     url: "https://infinitybrightclean.vercel.app/",
+    live: false,
   },
   {
     title: "CURB Porto",
@@ -39,6 +41,7 @@ const PROJECTS = [
     improvement: "Carga en < 1s, eliminando la fricción y facilitando pedidos de clientes de paso o locales.",
     image: "/portfolio/portfolio-curb.jpeg",
     url: "https://curbwebpreviewe.vercel.app/",
+    live: true,
   },
   {
     title: "Kire Tattoo Studio",
@@ -50,6 +53,7 @@ const PROJECTS = [
     improvement: "Presentación impecable de obras de arte que justifica tarifas premium y facilita la selección del artista.",
     image: "/portfolio/portfolio-kire-tattoo.jpeg",
     url: "https://kiretattoostudio.vercel.app/",
+    live: false,
   },
 ];
 
@@ -84,46 +88,62 @@ export function ProjectsSection() {
               whileHover="hover"
               className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-void/35 transition-shadow duration-500 hover:shadow-[0_20px_90px_-70px_rgba(255,157,87,0.15)]"
             >
-              {/* Media Container */}
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-[16/9] overflow-hidden bg-panel"
-                aria-label={`Abrir ${project.title}`}
-              >
-                <Image
-                  src={project.image}
-                  alt={`Vista previa de ${project.title}`}
-                  fill
-                  sizes="(min-width: 1024px) 44vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover object-top opacity-85 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
-                <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-3">
-                  <div className="flex gap-2">
-                    <span className="rounded-full border border-line bg-void/70 px-2.5 py-0.5 text-[9px] uppercase tracking-wider text-ink-soft backdrop-blur font-mono">
-                      {project.sector}
-                    </span>
-                    <span
-                      className={`rounded-full border px-2.5 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur font-bold font-mono ${
-                        project.type === "Preview Comercial"
-                          ? "border-aurora/35 bg-aurora/10 text-aurora"
-                          : "border-ember/35 bg-ember/10 text-ember"
-                      }`}
-                    >
-                      {project.type}
-                    </span>
-                  </div>
-                  <motion.span
-                    variants={{ hover: { rotate: 45, color: "#ff9d57" } }}
-                    transition={{ duration: 0.2 }}
-                    className="grid h-8 w-8 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur shadow-sm"
+              {/* Media Container — solo enlaza si la demo está online */}
+              {(() => {
+                const isLive = project.live !== false;
+                const MediaInner = (
+                  <>
+                    <Image
+                      src={project.image}
+                      alt={`Vista previa de ${project.title}`}
+                      fill
+                      sizes="(min-width: 1024px) 44vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover object-top opacity-85 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
+                    <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-3">
+                      <div className="flex gap-2">
+                        <span className="rounded-full border border-line bg-void/70 px-2.5 py-0.5 text-[9px] uppercase tracking-wider text-ink-soft backdrop-blur font-mono">
+                          {project.sector}
+                        </span>
+                        <span
+                          className={`rounded-full border px-2.5 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur font-bold font-mono ${
+                            project.type === "Preview Comercial"
+                              ? "border-aurora/35 bg-aurora/10 text-aurora"
+                              : "border-ember/35 bg-ember/10 text-ember"
+                          }`}
+                        >
+                          {project.type}
+                        </span>
+                      </div>
+                      {isLive && (
+                        <motion.span
+                          variants={{ hover: { rotate: 45, color: "#ff9d57" } }}
+                          transition={{ duration: 0.2 }}
+                          className="grid h-8 w-8 place-items-center rounded-full border border-line bg-void/65 text-ink-soft backdrop-blur shadow-sm"
+                        >
+                          <ArrowUpRight size={14} />
+                        </motion.span>
+                      )}
+                    </div>
+                  </>
+                );
+                return isLive ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block aspect-[16/9] overflow-hidden bg-panel"
+                    aria-label={`Abrir ${project.title}`}
                   >
-                    <ArrowUpRight size={14} />
-                  </motion.span>
-                </div>
-              </a>
+                    {MediaInner}
+                  </a>
+                ) : (
+                  <div className="relative block aspect-[16/9] overflow-hidden bg-panel">
+                    {MediaInner}
+                  </div>
+                );
+              })()}
 
               {/* Text Content */}
               <div className="flex flex-1 flex-col p-5">
@@ -152,15 +172,29 @@ export function ProjectsSection() {
 
                 {/* CTAs */}
                 <div className="mt-5 pt-4 border-t border-line/35 flex flex-wrap gap-2">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 min-h-10 inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink-soft hover:text-ink hover:border-ink-soft hover:bg-void/45 transition-colors"
-                  >
-                    <Eye size={13} />
-                    {project.type === "Preview Comercial" ? "Ver Web Real" : "Ver Demo"}
-                  </a>
+                  {project.live !== false ? (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 min-h-10 inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink-soft hover:text-ink hover:border-ink-soft hover:bg-void/45 transition-colors"
+                    >
+                      <Eye size={13} />
+                      {project.type === "Preview Comercial" ? "Ver Web Real" : "Ver Demo"}
+                    </a>
+                  ) : (
+                    <a
+                      href={`https://wa.me/351931056365?text=${encodeURIComponent(
+                        `Hola Alex, quiero ver la demo de "${project.title}" en vivo.`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 min-h-10 inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink-soft hover:text-ink hover:border-ink-soft hover:bg-void/45 transition-colors"
+                    >
+                      <Eye size={13} />
+                      Demo bajo petición
+                    </a>
+                  )}
                   <a
                     href={getWhatsAppLink(project.title)}
                     target="_blank"
