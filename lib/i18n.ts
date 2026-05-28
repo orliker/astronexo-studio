@@ -95,6 +95,32 @@ export const dict = {
       en: "No binding contracts. The website is yours, the code is yours.",
     },
   },
+
+  // ── Sobre nosotros / quiénes somos ──────────────────────────
+  about: {
+    kicker: { es: "Quiénes somos", en: "Who we are" },
+    title: {
+      es: "Un estudio de verdad, con cara y nombre",
+      en: "A real studio, with a face and a name",
+    },
+    p1: {
+      es: "AstroNexo Studio nace en Oporto, Portugal, de la mano de Alex. No somos una agencia con mil clientes ni una centralita de tickets: somos un estudio pequeño y cuidadoso, y trabajas directamente con quien diseña y construye tu proyecto.",
+      en: "AstroNexo Studio was born in Porto, Portugal, founded by Alex. We're not an agency with a thousand clients or a ticket queue: we're a small, careful studio, and you work directly with the person who designs and builds your project.",
+    },
+    p2: {
+      es: "Trabajamos desde Oporto para toda España, Portugal, Reino Unido y Estados Unidos. Y no nos limitamos a hacer webs: diseñamos percepción, confianza y sistemas digitales — desde una landing simple hasta una tienda online con login, pagos y todo lo que tu negocio necesite. Sin techo técnico.",
+      en: "We work from Porto for all of Spain, Portugal, the UK and the United States. And we don't just build websites: we design perception, trust and digital systems — from a simple landing page to an online store with login, payments and whatever your business needs. No technical ceiling.",
+    },
+    point1Title: { es: "Estudio en Oporto", en: "Studio in Porto" },
+    point1: { es: "Base real en Portugal, servicio internacional.", en: "Real base in Portugal, international service." },
+    point2Title: { es: "Hablas con Alex", en: "You talk to Alex" },
+    point2: { es: "Trato directo con el fundador, no con un comercial.", en: "Direct contact with the founder, not a salesperson." },
+    point3Title: { es: "No vendemos webs", en: "We don't sell websites" },
+    point3: { es: "Diseñamos sistemas que ayudan a vender mejor.", en: "We design systems that help you sell better." },
+    point4Title: { es: "Sin límite técnico", en: "No technical limit" },
+    point4: { es: "De una landing a e-commerce con pagos y login.", en: "From a landing page to e-commerce with payments and login." },
+    cta: { es: "Hablar directamente con Alex", en: "Talk directly with Alex" },
+  },
 } as const;
 
 /** Devuelve el texto en el idioma dado, con fallback a ES. */

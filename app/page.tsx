@@ -17,6 +17,7 @@ import { WhyUsSection } from "@/components/sections/why-us";
 import { PricingSection } from "@/components/sections/pricing";
 import { FAQSection } from "@/components/sections/faq";
 import { ManifestoSection } from "@/components/sections/manifesto";
+import { AboutSection } from "@/components/sections/about";
 import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { AnimePageMotion } from "@/components/anime-page-motion";
@@ -47,6 +48,7 @@ export default function Home() {
         <PricingSection />
         <FAQSection />
         <ManifestoSection />
+        <AboutSection />
         <FinalCTA />
       </main>
       <SiteFooter />
