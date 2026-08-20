@@ -93,7 +93,7 @@ function HeroContent({
 }) {
   const { tr } = useLang();
   return (
-    <div className="mx-auto grid w-full max-w-7xl items-center gap-7 px-5 pb-8 pt-24 sm:gap-10 sm:px-8 sm:pb-16 sm:pt-28 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-0 lg:pt-0">
+    <div className="mx-auto grid w-full max-w-7xl items-center gap-7 px-5 pb-8 pt-28 sm:gap-10 sm:px-8 sm:pb-14 sm:pt-32 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:pb-12 lg:pt-28 xl:pt-32">
       {/* ── Copy (orden 2 en mobile para que el vídeo vaya arriba) ── */}
       <div className="order-1">
         <FadeUp delay={0}>
@@ -110,14 +110,14 @@ function HeroContent({
           {/* Mobile H1 */}
           <h1
             data-anime="hero-item"
-            className="md:hidden mt-4 font-display text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-ink"
+            className="md:hidden mt-3 font-display text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-ink"
           >
             {tr(dict.hero.titleMobile)}
           </h1>
           {/* Desktop H1 */}
           <h1
             data-anime="hero-item"
-            className="hidden md:block mt-6 font-display text-[2.18rem] font-semibold leading-[1.04] tracking-tight sm:text-5xl lg:text-[3.65rem]"
+            className="hidden md:block mt-4 sm:mt-5 font-display text-[2.18rem] font-semibold leading-[1.06] tracking-tight sm:text-4xl lg:text-[3.15rem] xl:text-[3.65rem]"
           >
             {tr(dict.hero.titleA)}
             <br className="hidden sm:block" /> {tr(dict.hero.titleB)}{" "}

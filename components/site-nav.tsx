@@ -57,8 +57,8 @@ export function SiteNav() {
       <div
         className={`mx-4 md:mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ${
           scrolled
-            ? "my-2 md:my-3 rounded-full border border-line bg-deep/80 px-4 py-1.5 md:px-6 md:py-2.5 backdrop-blur-xl shadow-lg"
-            : "my-3 md:my-5 rounded-full border border-transparent px-2 py-2"
+            ? "my-2 md:my-3 rounded-full border border-line bg-deep/85 px-4 py-1.5 md:px-6 md:py-2.5 backdrop-blur-xl shadow-lg"
+            : "my-3 md:my-4 rounded-full border border-line/30 bg-deep/40 px-3 py-1.5 md:px-5 md:py-2 backdrop-blur-md"
         }`}
       >
         <a href="#top" className="premium-focus rounded-2xl">
