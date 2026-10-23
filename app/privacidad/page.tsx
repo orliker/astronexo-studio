@@ -4,9 +4,10 @@ import { ArrowLeft } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacidad y cookies | AstroNexo Studio",
+  title: "Privacidad y cookies",
   description:
     "Política de privacidad y uso de cookies de AstroNexo Studio. Cómo tratamos los datos que nos facilitas al contactar con nosotros.",
+  alternates: { canonical: "/privacidad" },
   robots: { index: true, follow: true },
 };
 

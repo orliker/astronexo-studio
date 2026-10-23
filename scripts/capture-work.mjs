@@ -12,9 +12,6 @@ const SITES = [
   ["banqa", "https://banqa.es/"],
   ["bright-infinity", "https://www.brightinfinitypt.com/"],
   ["mundo-de-papel", "https://mundodepapelportugal.com/"],
-  ["elige-mejor", "https://elige-mejor.vercel.app/"],
-  ["anderbrows", "https://anderbrows.vercel.app/"],
-  ["curb", "https://curbwebpreviewe.vercel.app/"],
 ];
 
 const browser = await chromium.launch(

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
 import { SITE, WHATSAPP_URL, waLink } from "@/lib/site";
 import { SERVICES } from "@/lib/content";
+import { SOLUTIONS } from "@/lib/solutions";
+import { GUIDES } from "@/lib/guides";
 import { BrandLogo } from "@/components/brand-logo";
 import { Reveal } from "@/components/motion-primitives";
 
@@ -77,7 +79,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-line pb-28 pt-14 sm:pb-12">
-      <div className="shell grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div className="shell grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <BrandLogo />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-soft">
@@ -92,6 +94,32 @@ export function SiteFooter() {
               <li key={s.slug}>
                 <Link href={`/servicios/${s.slug}`} className="premium-focus rounded text-sm text-ink-soft hover:text-ink">
                   {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Por tipo de negocio y guías">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-mute">Para tu negocio</h2>
+          <ul className="mt-4 space-y-2.5">
+            {SOLUTIONS.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/soluciones/${s.slug}`} className="premium-focus rounded text-sm text-ink-soft hover:text-ink">
+                  {s.short}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <h2 className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-ink-mute">
+            <Link href="/guias" className="premium-focus rounded hover:text-ink">
+              Guías
+            </Link>
+          </h2>
+          <ul className="mt-4 space-y-2.5">
+            {GUIDES.map((g) => (
+              <li key={g.slug}>
+                <Link href={`/guias/${g.slug}`} className="premium-focus rounded text-sm text-ink-soft hover:text-ink">
+                  {g.short}
                 </Link>
               </li>
             ))}

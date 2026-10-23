@@ -93,6 +93,10 @@ html {
     padding-inline: 2rem;
   }
 }
+/* Columna de lectura de las guías (~70 caracteres por línea) */
+.shell-narrow {
+  max-width: 52rem;
+}
 
 /* Marco de navegador para las capturas del portafolio */
 .browser {

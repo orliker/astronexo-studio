@@ -27,31 +27,31 @@ const accent = Instrument_Serif({
   weight: ["400"],
 });
 
+const TITLE = "Diseño web, apps y automatización con IA | AstroNexo Studio";
 const DESCRIPTION =
-  "Diseño y desarrollo de webs premium, aplicaciones a medida, apps, automatizaciones e inteligencia artificial para negocios. Estudio en Oporto, trato directo con Alex y precio cerrado.";
+  "Páginas web desde 150 €, WhatsApp con IA, automatizaciones y apps a medida para negocios de España y Portugal. Estudio en Oporto, trato directo con Alex y precio cerrado sin IVA.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    default: TITLE,
     template: "%s | AstroNexo Studio",
   },
   description: DESCRIPTION,
   applicationName: SITE.name,
   authors: [{ name: SITE.founder, url: SITE.url }],
   creator: SITE.founder,
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: "/",
     siteName: SITE.name,
-    title: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    title: TITLE,
     description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    title: TITLE,
     description: DESCRIPTION,
   },
   robots: {
@@ -60,6 +60,14 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   formatDetection: { telephone: false },
+  // Códigos de Google Search Console y Bing Webmaster (variables de Vercel).
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
+  },
+  alternates: { canonical: "/", types: { "text/plain": "/llms.txt" } },
 };
 
 export const viewport: Viewport = {

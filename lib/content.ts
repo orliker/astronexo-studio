@@ -101,7 +101,7 @@ export const SERVICES: Service[] = [
       { title: "Pruebas y entrega", text: "Pruebas automáticas de lo crítico (cobros, altas, permisos) y documentación de uso." },
     ],
     stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "Supabase", "Stripe", "Vercel Functions"],
-    related: ["circulo-consciente", "elige-mejor"],
+    related: ["circulo-consciente", "banqa"],
     faq: [
       { q: "¿Por qué desde 1.500 €?", a: "Porque una aplicación con usuarios, pagos y datos necesita diseño, desarrollo, pruebas y seguridad. Si tu caso es más simple, a menudo una automatización resuelve lo mismo por mucho menos, y te lo digo." },
       { q: "¿Puedo empezar con algo pequeño?", a: "Es lo que recomiendo: una primera versión con lo imprescindible, en producción y usándose, y a partir de ahí se amplía con lo que pidan los usuarios reales." },
@@ -397,23 +397,6 @@ export const CASES: Case[] = [
       "Preguntas frecuentes, plazos y envíos claros",
     ],
     stack: ["Next.js", "React", "Vercel"],
-  },
-  {
-    slug: "elige-mejor",
-    client: "Elige Mejor",
-    sector: "Comparador de productos",
-    place: "España",
-    url: "https://elige-mejor.vercel.app",
-    image: "/work/elige-mejor.jpg",
-    status: "Producto propio",
-    summary:
-      "Proyecto propio: un comparador de productos con fichas, guías y un panel para publicar contenido sin tocar código.",
-    built: [
-      "Comparativas por categorías y tiendas",
-      "Panel de contenidos para publicar fichas y guías",
-      "Modo claro y oscuro, buscador y SEO por ficha",
-    ],
-    stack: ["Next.js", "Decap CMS", "TypeScript", "Vercel"],
   },
 ];
 
