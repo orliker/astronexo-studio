@@ -9,14 +9,14 @@ export function Pricing() {
     <section id="precios" className="scroll-mt-20 border-t border-line bg-deep/30 py-20 sm:py-28">
       <div className="shell">
         <SectionHeading
-          index="06"
+          index="05"
           kicker="Precios"
           title={
             <>
               Precios claros, <span className="premium-word">cerrados antes de empezar</span>
             </>
           }
-          intro="Puntos de partida orientativos. Después del diagnóstico recibes un precio cerrado para tu caso, por escrito."
+          intro="Puntos de partida orientativos. Después del diagnóstico recibes un precio cerrado para tu caso, por escrito. Cómo se paga: una parte al empezar y el resto al entregar; en proyectos grandes, por fases. Sin cuota obligatoria conmigo."
         />
 
         <Stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -43,6 +43,7 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-5 text-[13px] leading-relaxed text-ink-mute">{p.raises}</p>
                 <div className="mt-auto pt-8">
                   <a
                     href={waLink(p.message)}
@@ -66,10 +67,11 @@ export function Pricing() {
           <div className="panel-edge flex flex-col gap-6 rounded-card p-7 sm:p-9 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-nebula-soft">A medida · desde 1.500 €</p>
-              <h3 className="mt-3 font-display text-2xl font-semibold">¿Algo más grande? Aplicaciones, apps y CRM.</h3>
+              <h3 className="mt-3 font-display text-2xl font-semibold">¿Algo más grande? Aplicaciones, apps y CRM a medida.</h3>
               <p className="mt-3 leading-relaxed text-ink-soft">
                 Portales con login, pagos con Stripe, apps móviles y de escritorio, CRM y paneles a medida.
-                Empezamos por una primera versión útil y crece contigo.
+                Empezamos por una primera versión útil y crece contigo. Un panel de seguimiento sencillo
+                ya entra en el Sistema completo, desde 500 €.
               </p>
             </div>
             <a

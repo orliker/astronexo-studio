@@ -8,7 +8,7 @@ export function Approach() {
     <section id="enfoque" className="scroll-mt-20 border-t border-line bg-deep/30 py-20 sm:py-28">
       <div className="shell">
         <SectionHeading
-          index="04"
+          index="03"
           kicker="Cómo trabajo"
           title={
             <>

@@ -2,7 +2,7 @@ import { PROCESS } from "@/lib/content";
 import { SectionHeading } from "@/components/section-heading";
 import { Stagger, StaggerItem } from "@/components/motion-primitives";
 
-export function Process({ index = "05" }: { index?: string }) {
+export function Process({ index = "04" }: { index?: string }) {
   return (
     <section id="proceso" className="scroll-mt-20 py-20 sm:py-28">
       <div className="shell">

@@ -9,9 +9,9 @@ import { BrandLogo } from "@/components/brand-logo";
 const LINKS = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Proyectos", href: "/#trabajo" },
-  { label: "Laboratorio", href: "/#laboratorio" },
   { label: "Proceso", href: "/#proceso" },
   { label: "Precios", href: "/#precios" },
+  { label: "Laboratorio", href: "/#laboratorio" },
   { label: "FAQ", href: "/#faq" },
 ];
 

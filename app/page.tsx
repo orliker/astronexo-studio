@@ -26,11 +26,11 @@ export default function Home() {
         <StackStrip />
         <Services />
         <Work />
-        <Lab />
         <Approach />
         <Process />
         <Pricing />
         <About />
+        <Lab />
         <Faq items={FAQ} />
         <ContactCTA />
       </main>

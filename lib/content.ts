@@ -78,7 +78,7 @@ export const SERVICES: Service[] = [
     icon: "app",
     name: "Aplicaciones web y SaaS",
     pitch: "Software a medida en el navegador: reservas, pagos, áreas de cliente y paneles.",
-    examples: ["Reservas y pagos", "Áreas de cliente con login", "Portales internos", "Productos SaaS"],
+    examples: ["Reservas y pagos", "Áreas de cliente con login", "Portales internos", "Software de pago por suscripción"],
     price: "Desde 1.500 €",
     seoTitle: "Desarrollo de aplicaciones web y SaaS a medida",
     seoDescription:
@@ -113,7 +113,7 @@ export const SERVICES: Service[] = [
     icon: "mobile",
     name: "Apps móviles y de escritorio",
     pitch: "Apps para iPhone, Android, Windows y Mac cuando el navegador se queda corto.",
-    examples: ["Apps iOS y Android", "Apps de escritorio", "Herramientas internas", "Apps con IA local"],
+    examples: ["Apps iOS y Android", "Apps de escritorio", "Herramientas internas", "IA que no saca tus datos fuera"],
     price: "Desde 1.500 €",
     seoTitle: "Desarrollo de apps móviles y de escritorio a medida",
     seoDescription:
@@ -147,7 +147,7 @@ export const SERVICES: Service[] = [
     icon: "flow",
     name: "Automatización de procesos",
     pitch: "Facturas, presupuestos, citas y avisos que se hacen solos. Recuperas horas cada semana.",
-    examples: ["Facturas y Excel", "Presupuestos automáticos", "Citas y recordatorios", "Flujos con n8n"],
+    examples: ["Facturas y Excel", "Presupuestos automáticos", "Citas y recordatorios", "Tareas repetitivas que se hacen solas"],
     price: "Desde 90 €",
     seoTitle: "Automatización de facturas, presupuestos y procesos para pymes",
     seoDescription:
@@ -182,7 +182,7 @@ export const SERVICES: Service[] = [
     icon: "bot",
     name: "WhatsApp e inteligencia artificial",
     pitch: "Asistentes que responden, filtran y agendan, entrenados con la información de tu negocio.",
-    examples: ["Bots de WhatsApp", "Asistentes con tus documentos", "Agentes de voz", "Clasificación de leads"],
+    examples: ["Bots de WhatsApp", "Asistentes con tus documentos", "Agentes de voz", "Saber quién quiere comprar"],
     price: "Desde 250 €",
     seoTitle: "Automatización de WhatsApp con IA y asistentes inteligentes",
     seoDescription:
@@ -217,7 +217,7 @@ export const SERVICES: Service[] = [
     icon: "crm",
     name: "CRM y paneles de gestión",
     pitch: "Todos tus clientes, ventas y tareas en un solo sitio, sin pagar licencias de gigante.",
-    examples: ["CRM a medida", "CRM open source", "Paneles de ventas", "Seguimiento de clientes"],
+    examples: ["CRM a medida", "CRM sin licencias que pagar", "Paneles de ventas", "Seguimiento de clientes"],
     price: "Desde 500 €",
     seoTitle: "CRM a medida y paneles de gestión para pymes",
     seoDescription:
@@ -251,7 +251,7 @@ export const SERVICES: Service[] = [
     icon: "seo",
     name: "SEO técnico y local",
     pitch: "Que te encuentren en Google y en Maps quienes ya están buscando lo que haces.",
-    examples: ["Google Business Profile", "SEO técnico", "Datos estructurados", "Velocidad y Core Web Vitals"],
+    examples: ["Tu ficha de Google Maps", "Posicionamiento en Google", "Que Google entienda tu negocio", "Web rápida en el móvil"],
     price: "A medida",
     seoTitle: "SEO técnico y SEO local en Google y Google Maps",
     seoDescription:
@@ -428,31 +428,10 @@ export type LabItem = {
 /** Sistemas propios: demuestran hasta dónde llega el trabajo técnico. */
 export const LAB: LabItem[] = [
   {
-    name: "Motor de prospección B2B",
-    what: "Encuentra negocios, analiza su web y redacta mensajes personalizados.",
-    detail: "Mensajes escritos por IA que pasan por una capa de reglas que rechaza lo genérico antes de enviar.",
-    stack: ["Python", "Playwright", "Gemini", "OpenStreetMap"],
-    href: "https://github.com/orliker/astronexo",
-  },
-  {
-    name: "Asistente de escritorio con IA",
-    what: "App de escritorio con memoria local que organiza tareas y notas.",
-    detail: "Instalador ligero, datos guardados en el propio ordenador y respuestas en tiempo real.",
-    stack: ["Tauri 2", "React 19", "Groq", "SQLite"],
-    href: "https://github.com/orliker/nexos-os",
-  },
-  {
     name: "Agente de voz en portugués",
     what: "Conversa por voz en tiempo real y entiende el portugués de Portugal.",
     detail: "Reconocimiento de voz, razonamiento y voz sintética encadenados con baja latencia.",
     stack: ["Deepgram Nova-3", "LLM", "ElevenLabs"],
-  },
-  {
-    name: "Núcleo de comercio electrónico",
-    what: "Máquina de estados de pedidos y precios con control de margen.",
-    detail: "Cada cambio de estado es transaccional y auditado, con pruebas aisladas en SQLite.",
-    stack: ["TypeScript", "SQLite", "Tests"],
-    href: "https://github.com/orliker/astro-commerce-core",
   },
   {
     name: "Motor de fechas en lenguaje natural",
@@ -462,10 +441,31 @@ export const LAB: LabItem[] = [
     href: "https://github.com/orliker/astro-calendar-core",
   },
   {
+    name: "Núcleo de comercio electrónico",
+    what: "Máquina de estados de pedidos y precios con control de margen.",
+    detail: "Cada cambio de estado es transaccional y auditado, con pruebas aisladas en SQLite.",
+    stack: ["TypeScript", "SQLite", "Tests"],
+    href: "https://github.com/orliker/astro-commerce-core",
+  },
+  {
+    name: "Asistente de escritorio con IA",
+    what: "App de escritorio con memoria local que organiza tareas y notas.",
+    detail: "Instalador ligero, datos guardados en el propio ordenador y respuestas en tiempo real.",
+    stack: ["Tauri 2", "React 19", "Groq", "SQLite"],
+    href: "https://github.com/orliker/nexos-os",
+  },
+  {
     name: "Fábrica de vídeo vertical",
     what: "Genera guion, voz y montaje de vídeos cortos en dos idiomas.",
     detail: "Un pipeline automático que produce y prepara vídeos para redes en paralelo.",
     stack: ["Python", "FFmpeg", "LLM", "TTS"],
+  },
+  {
+    name: "Motor de prospección B2B",
+    what: "Encuentra negocios, analiza su web y redacta mensajes personalizados.",
+    detail: "Mensajes escritos por IA que pasan por una capa de reglas que rechaza lo genérico antes de enviar.",
+    stack: ["Python", "Playwright", "Gemini", "OpenStreetMap"],
+    href: "https://github.com/orliker/astronexo",
   },
 ];
 
@@ -484,7 +484,7 @@ export const PROCESS = [
 ];
 
 export const DO = [
-  "Webs, aplicaciones y automatizaciones de principio a fin, sin subcontratar.",
+  "Webs, aplicaciones y automatizaciones de principio a fin, construidas por mí.",
   "Precio cerrado antes de empezar, con el alcance por escrito.",
   "Vistas previas reales durante el proyecto, no solo maquetas.",
   "Código y accesos a tu nombre: la web es tuya.",
@@ -506,6 +506,8 @@ export type Pack = {
   price: string;
   for: string;
   includes: string[];
+  /** Qué hace subir el precio: evita que el "desde" parezca una trampa. */
+  raises: string;
   highlight?: boolean;
   message: string;
 };
@@ -516,6 +518,7 @@ export const PACKS: Pack[] = [
     price: "Desde 150 €",
     for: "Negocios y profesionales que necesitan una página seria para empezar a captar.",
     includes: ["Landing a medida y rápida", "Textos orientados a vender", "WhatsApp y contacto directo", "SEO básico e indexación", "Publicación incluida"],
+    raises: "Sube si necesitas varias páginas, varios idiomas, reservas o pagos.",
     message: "Hola Alex, me interesa la Web de lanzamiento para mi negocio.",
   },
   {
@@ -523,6 +526,7 @@ export const PACKS: Pack[] = [
     price: "Desde 250 €",
     for: "Negocios que responden las mismas preguntas cada día y agendan por chat.",
     includes: ["Asistente con tu información real", "Filtro de clientes potenciales", "Citas en Google Calendar", "Paso a humano con resumen", "Reglas de seguridad"],
+    raises: "Sube con el número de servicios, idiomas y conexiones con tu agenda.",
     highlight: true,
     message: "Hola Alex, me interesa el asistente de WhatsApp con IA para mi negocio.",
   },
@@ -531,6 +535,7 @@ export const PACKS: Pack[] = [
     price: "Desde 90 €",
     for: "Autónomos y pymes que aún llevan las facturas a mano.",
     includes: ["Panel de cobrado y pendiente", "Búsqueda por cliente y fecha", "Avisos de vencimiento", "Exportación para la gestoría"],
+    raises: "Sube si hay que conectar tu programa de facturación o varias empresas.",
     message: "Hola Alex, me interesa automatizar las facturas de mi negocio.",
   },
   {
@@ -538,15 +543,12 @@ export const PACKS: Pack[] = [
     price: "Desde 500 €",
     for: "Negocios que quieren web, captación y automatización trabajando juntos.",
     includes: ["Web completa de varias páginas", "WhatsApp con IA integrado", "SEO local y ficha de Google", "CRM o panel de seguimiento", "Revisión mensual opcional"],
+    raises: "Sube con el número de páginas, sedes y conexiones.",
     message: "Hola Alex, me interesa el sistema completo (web + WhatsApp + automatización).",
   },
 ];
 
 export const FAQ: { q: string; a: string }[] = [
-  {
-    q: "¿Eres una agencia o una persona?",
-    a: "Soy Alex y AstroNexo Studio es mi estudio, con base en Oporto. Diseño y programo yo mismo cada proyecto, así que hablas directamente con quien lo construye, sin comerciales ni intermediarios. Cuando un proyecto lo necesita, sumo especialistas de confianza y te lo digo antes.",
-  },
   {
     q: "¿Cuánto cuesta y cuánto tarda?",
     a: "Una automatización sencilla empieza en 90 €, una web de lanzamiento en 150 € y las aplicaciones a medida en 1.500 €. Una landing puede estar en pocos días; una aplicación, en semanas. Siempre con precio cerrado antes de empezar.",
@@ -560,8 +562,16 @@ export const FAQ: { q: string; a: string }[] = [
     a: "Trabajas con una vista previa real desde el principio y cada proyecto incluye rondas de ajustes. Así las sorpresas se ven pronto, cuando todavía son baratas de corregir.",
   },
   {
+    q: "¿Eres una agencia o una persona?",
+    a: "Soy Alex y AstroNexo Studio es mi estudio, con base en Oporto. Diseño y programo yo mismo cada proyecto, así que hablas directamente con quien lo construye, sin comerciales ni intermediarios. Si algún proyecto necesitara a alguien más, te lo digo antes y por escrito.",
+  },
+  {
     q: "¿La web y el código son míos?",
     a: "Sí. Dominio, código y accesos quedan a tu nombre. Puedes seguir conmigo o llevártelo a otro proveedor cuando quieras. Sin permanencias.",
+  },
+  {
+    q: "¿Y si te pasa algo o dejas de estar disponible?",
+    a: "El dominio, el código y los accesos están a tu nombre desde el primer día, y te entrego documentación de cómo está hecho. Si yo no pudiera seguir, cualquier otro profesional puede continuar sin empezar de cero. No dependes de mí.",
   },
   {
     q: "Ya tengo web en WordPress o Wix. ¿Me sirve?",

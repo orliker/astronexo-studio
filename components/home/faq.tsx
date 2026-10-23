@@ -22,12 +22,12 @@ export function Faq({
             index={index}
             kicker="Preguntas frecuentes"
             title={title}
-            intro="Y si tu pregunta no está aquí, escríbeme: respondo yo, normalmente el mismo día."
+            intro="Y si tu pregunta no está aquí, escríbeme: te contesto yo. El diagnóstico completo, por escrito, en 24 a 48 horas."
           />
         </div>
         <div className="divide-y divide-line border-y border-line">
           {items.map((f, i) => (
-            <details key={f.q} className="group" open={i === 0}>
+            <details key={f.q} className="group" open={i < 2}>
               <summary className="premium-focus flex cursor-pointer items-center justify-between gap-6 py-5 text-left font-display text-lg font-medium">
                 {f.q}
                 <span className="faq-icon grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-ember transition-transform duration-300">

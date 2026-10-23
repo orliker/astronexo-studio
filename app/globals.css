@@ -180,7 +180,7 @@ body {
   font-feature-settings: "ss01", "cv01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -243,6 +243,8 @@ body {
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0;
+  /* background-clip: text recorta la cola de la cursiva sin este margen */
+  padding-inline-end: 0.12em;
   background: linear-gradient(
     105deg,
     var(--color-ink) 0%,
@@ -411,5 +413,15 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Laboratorio plegado en móvil: 3 proyectos y un botón para el resto */
+@media (max-width: 767px) {
+  [data-open="false"] .lab-extra {
+    display: none;
+  }
+  [data-open="true"] .lab-more {
+    display: none;
   }
 }

@@ -17,7 +17,7 @@ export function About() {
       <div className="shell grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
           <SectionHeading
-            index="07"
+            index="06"
             kicker="Sobre mí"
             title={
               <>

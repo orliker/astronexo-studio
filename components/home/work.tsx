@@ -35,12 +35,12 @@ function Status({ c }: { c: Case }) {
   const own = c.status === "Producto propio";
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${
         own ? "border-nebula/30 bg-nebula/10 text-nebula-soft" : "border-aurora/30 bg-aurora/10 text-aurora"
       }`}
     >
       <span className={`h-1.5 w-1.5 rounded-full ${own ? "bg-nebula-soft" : "bg-aurora"}`} />
-      {c.status}
+      {own ? "Proyecto propio, no es cliente" : c.status}
     </span>
   );
 }
@@ -84,7 +84,7 @@ export function Work() {
               </ul>
               <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Tecnologías">
                 {featured.stack.map((t) => (
-                  <li key={t} className="rounded-full border border-line px-2.5 py-1 text-[11px] text-ink-mute">
+                  <li key={t} className="rounded-full border border-line px-2.5 py-1 text-xs text-ink-mute">
                     {t}
                   </li>
                 ))}
@@ -127,7 +127,7 @@ export function Work() {
                     {c.sector} · {c.place}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-soft">{c.summary}</p>
-                  <p className="mt-auto pt-4 text-[11px] text-ink-mute">{c.stack.join(" · ")}</p>
+                  <p className="mt-auto pt-4 text-xs text-ink-mute">{c.stack.join(" · ")}</p>
                 </div>
               </a>
             </Reveal>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
-import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { SITE, WHATSAPP_URL, waLink } from "@/lib/site";
 import { SERVICES } from "@/lib/content";
 import { BrandLogo } from "@/components/brand-logo";
 import { Reveal } from "@/components/motion-primitives";
@@ -37,6 +37,35 @@ export function ContactCTA() {
                 {SITE.email}
               </a>
             </div>
+            <p className="relative mx-auto mt-6 max-w-xl text-sm leading-relaxed text-ink-soft">
+              ¿Prefieres hablar? Llámame al{" "}
+              <a href={`tel:+${SITE.whatsappNumber}`} className="premium-focus whitespace-nowrap rounded font-semibold text-ink underline decoration-line underline-offset-4 hover:decoration-ink-mute">
+                {SITE.phoneDisplay}
+              </a>{" "}
+              o{" "}
+              <a
+                href={waLink("Hola Alex, prefiero que me llames. Mi nombre y horario: ")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="premium-focus rounded font-semibold text-ink underline decoration-line underline-offset-4 hover:decoration-ink-mute"
+              >
+                pídeme que te llame yo
+              </a>
+              .
+            </p>
+            <p className="relative mx-auto mt-3 max-w-xl text-sm italic leading-relaxed text-ink-mute">
+              Por ejemplo: «Tengo una clínica en Lisboa, contestamos WhatsApp a mano y perdemos citas. Esta es mi web: …»
+            </p>
+            <a
+              href={waLink("Olá Alex, vi o seu site e quero falar sobre um projeto. O meu negócio é: ")}
+              target="_blank"
+              rel="noopener noreferrer"
+              lang="pt"
+              className="premium-focus relative mt-6 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink-soft transition-colors hover:border-ink-mute hover:text-ink"
+            >
+              <MessageCircle size={14} aria-hidden="true" />
+              Escrever em português
+            </a>
           </div>
         </Reveal>
       </div>
