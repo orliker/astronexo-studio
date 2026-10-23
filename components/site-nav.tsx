@@ -1,47 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site";
 import { BrandLogo } from "@/components/brand-logo";
-import { useLang, dict } from "@/components/lang-provider";
 
 const LINKS = [
-  { label: dict.nav.automation, href: "#automatizaciones" },
-  { label: dict.nav.websQr, href: "#webs-y-qr" },
-  { label: dict.nav.invoices, href: "#facturas" },
-  { label: dict.nav.seo, href: "#seo-local" },
-  { label: dict.nav.campaigns, href: "#campanas-y-trafico" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Proyectos", href: "/#trabajo" },
+  { label: "Laboratorio", href: "/#laboratorio" },
+  { label: "Proceso", href: "/#proceso" },
+  { label: "Precios", href: "/#precios" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
-function LangToggle({ compact = false }: { compact?: boolean }) {
-  const { lang, setLang } = useLang();
-  return (
-    <div
-      className={`flex items-center gap-0.5 rounded-full border border-line bg-void/45 p-0.5 text-xs ${
-        compact ? "" : ""
-      }`}
-    >
-      {(["es", "en"] as const).map((l) => (
-        <button
-          key={l}
-          type="button"
-          onClick={() => setLang(l)}
-          className={`premium-focus rounded-full px-2.5 py-1 font-medium uppercase transition-colors ${
-            lang === l ? "bg-ink text-void" : "text-ink-soft hover:text-ink"
-          }`}
-          aria-pressed={lang === l}
-        >
-          {l}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 export function SiteNav() {
-  const { tr } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -52,84 +26,90 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div
-        className={`mx-4 md:mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ${
-          scrolled
-            ? "my-2 md:my-3 rounded-full border border-line bg-deep/85 px-4 py-1.5 md:px-6 md:py-2.5 backdrop-blur-xl shadow-lg"
-            : "my-3 md:my-4 rounded-full border border-line/30 bg-deep/40 px-3 py-1.5 md:px-5 md:py-2 backdrop-blur-md"
-        }`}
-      >
-        <a href="#top" className="premium-focus rounded-2xl">
-          <BrandLogo compact />
-        </a>
+      <div className="shell">
+        <div
+          className={`mt-3 flex items-center justify-between rounded-full border px-3 py-2 transition-all duration-500 md:px-5 ${
+            scrolled || open
+              ? "border-line bg-deep/85 shadow-lg backdrop-blur-xl"
+              : "border-transparent bg-transparent"
+          }`}
+        >
+          <Link href="/#top" className="premium-focus rounded-2xl" aria-label="AstroNexo Studio, inicio">
+            <BrandLogo compact />
+          </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((l) => (
+          <nav aria-label="Principal" className="hidden items-center gap-7 lg:flex">
+            {LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="premium-focus rounded-full px-1 text-sm text-ink-soft transition-colors hover:text-ink"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
             <a
-              key={l.href}
-              href={l.href}
-              className="premium-focus rounded-full px-1 text-sm text-ink-soft transition-colors hover:text-ink"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="premium-focus micro-glint hidden items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-white sm:inline-flex"
             >
-              {tr(l.label)}
+              <MessageCircle size={15} aria-hidden="true" />
+              Hablemos
             </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2.5">
-          <LangToggle />
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="premium-focus micro-glint hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-void transition-colors hover:bg-white sm:inline-flex"
-          >
-            {tr(dict.nav.privateAudit)}
-          </a>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="premium-focus grid h-8 w-8 place-items-center rounded-full border border-line text-ink-soft md:hidden"
-            aria-label={open ? tr(dict.nav.closeMenu) : tr(dict.nav.openMenu)}
-          >
-            {open ? <X size={15} /> : <Menu size={15} />}
-          </button>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="premium-focus grid h-10 w-10 place-items-center rounded-full border border-line text-ink-soft lg:hidden"
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={open}
+              aria-controls="menu-movil"
+            >
+              {open ? <X size={17} /> : <Menu size={17} />}
+            </button>
+          </div>
         </div>
-      </div>
 
-      <AnimatePresence>
         {open && (
-          <motion.nav
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="mx-4 overflow-hidden rounded-2xl border border-line bg-deep/95 p-2 backdrop-blur-xl md:hidden"
+          <nav
+            id="menu-movil"
+            aria-label="Menú móvil"
+            className="mt-2 overflow-hidden rounded-3xl border border-line bg-deep/95 p-2 backdrop-blur-xl lg:hidden"
           >
             {LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="premium-focus block rounded-xl px-4 py-3 text-ink-soft transition-colors hover:bg-panel hover:text-ink"
+                className="premium-focus block rounded-2xl px-4 py-3 text-ink-soft transition-colors hover:bg-panel hover:text-ink"
               >
-                {tr(l.label)}
+                {l.label}
               </a>
             ))}
-            <div className="px-4 py-3">
-              <LangToggle compact />
-            </div>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="premium-focus mt-1 block rounded-xl bg-ink px-4 py-3 text-center font-medium text-void"
+              className="premium-focus mt-1 flex items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-semibold text-void"
             >
-              {tr(dict.nav.requestAudit)}
+              <MessageCircle size={16} aria-hidden="true" />
+              Pedir diagnóstico gratis
             </a>
-          </motion.nav>
+          </nav>
         )}
-      </AnimatePresence>
+      </div>
     </header>
   );
 }

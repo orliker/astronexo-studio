@@ -1,7 +1,8 @@
-# AstroNexo Studio — Web portfolio
+# AstroNexo Studio
 
-Web portfolio comercial premium. Next.js + Tailwind + Framer Motion, con
-hero cinematic de vídeo sticky-scroll.
+Web de servicios de AstroNexo Studio (Alex, Oporto). Next.js 16 + Tailwind 4,
+publicada en Vercel (proyecto `astronexo-studio`, despliegue automático al
+hacer push a `master`).
 
 ## Desarrollo
 
@@ -12,57 +13,29 @@ npm run build    # build de producción
 npm run start    # sirve el build
 ```
 
-## Estructura
+## Dónde se cambia cada cosa
 
-```
-app/
-  layout.tsx          Metadata SEO + Open Graph + fuentes + scroll suave
-  page.tsx            Ensambla todas las secciones
-  globals.css         Sistema de diseño (paleta cosmos, tokens, utilidades)
-components/
-  hero-cinematic.tsx  Hero con vídeo sticky (encoge a panel al hacer scroll)
-  cosmos-backdrop.tsx Fondo de estrellas en canvas + nebulosas
-  site-nav.tsx        Navbar flotante con blur al hacer scroll
-  smooth-scroll.tsx   Lenis (se desactiva con prefers-reduced-motion)
-  sections/           Una sección por archivo
-lib/
-  site.ts             Número de WhatsApp, email y mensaje (edítalo aquí)
-public/videos/
-  astronexo-cinematic.mp4   Vídeo protagonista
-  hero-poster.svg           Poster/fallback del vídeo
-```
+| Qué | Archivo |
+| --- | --- |
+| Dominio, WhatsApp, email, GitHub | `lib/site.ts` (o `NEXT_PUBLIC_SITE_URL` en Vercel) |
+| Servicios, casos, laboratorio, precios, FAQ | `lib/content.ts` |
+| Datos estructurados (Schema.org) | `lib/schema.tsx` |
+| Secciones de la home | `components/home/*` |
+| Página de cada servicio | `app/servicios/[slug]/page.tsx` (una por cada entrada de `SERVICES`) |
+| Capturas del portafolio | `node scripts/capture-work.mjs` (guarda en `public/work`) |
 
-## Personalización rápida
+Añadir un servicio en `lib/content.ts` crea su página, su entrada en el
+sitemap, su enlace en el pie y su `Service` en el JSON-LD.
 
-- **WhatsApp / email:** edita `lib/site.ts` (`whatsappNumber`, `email`,
-  `whatsappMessage`). Se propaga a todos los CTAs.
-- **Vídeo:** sustituye `public/videos/astronexo-cinematic.mp4`.
-- **Proyectos:** edita el array `PROJECTS` en
-  `components/sections/projects.tsx`.
+## Reglas de contenido
 
-## Cómo funciona el vídeo
+- Solo datos comprobables: nada de métricas inventadas ni testimonios que no
+  hayan escrito los clientes. Si llega una reseña real, se añade con su permiso.
+- Sin raya larga (U+2014) en ningún texto.
 
-`<video autoPlay muted loop playsInline preload="metadata">` con
-`poster` SVG ligero como fallback. El scroll **no** controla el tiempo
-del vídeo (eso es frágil): el vídeo reproduce solo en loop y lo que se
-anima con el scroll es su escala, radio, blur y los overlays —
-estable y barato. Con `prefers-reduced-motion` se muestra una versión
-estática sin transformaciones.
+## Rendimiento
 
-## Subir a GitHub
-
-```bash
-git add -A
-git commit -m "AstroNexo Studio portfolio"
-git branch -M main
-git remote add origin https://github.com/USUARIO/REPO.git
-git push -u origin main
-```
-
-## Desplegar en Vercel
-
-1. Importa el repo en [vercel.com/new](https://vercel.com/new).
-2. Framework: **Next.js** (autodetectado). Sin variables de entorno.
-3. Deploy. El `.mp4` se sirve desde `public/` por el CDN de Vercel.
-
-# Auto-deploy reconectado a Vercel (2026-05-27)
+Sin librerías de animación: las entradas por scroll son CSS +
+`components/reveal-observer.tsx`. Sin JS todo se ve igual (el estado oculto
+solo existe bajo `html.js`). En móvil el fondo de estrellas queda estático y
+Lenis se desactiva.

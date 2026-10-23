@@ -1,13 +1,14 @@
 import { ImageResponse } from "next/og";
+import { SITE } from "@/lib/site";
 
 /**
  * Tarjeta social (OG image) generada dinámicamente.
- * Es lo que se ve al compartir astronexo.com en WhatsApp, LinkedIn, etc.
+ * Es lo que se ve al compartir la web en WhatsApp, LinkedIn, etc.
  * Mantiene la identidad cosmos: fondo profundo + acento ámbar.
  */
 
 export const runtime = "edge";
-export const alt = "AstroNexo Studio — Sistemas digitales premium";
+export const alt = "AstroNexo Studio: webs, apps y automatizaciones a medida";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -67,13 +68,16 @@ export default function OpengraphImage() {
               fontWeight: 700,
               lineHeight: 1.05,
               maxWidth: 980,
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            Tu WhatsApp puede vender{" "}
-            <span style={{ color: "#ff9d57" }}>mientras tú trabajas</span>.
+            <span>Webs, apps y</span>
+            <span>automatizaciones que</span>
+            <span style={{ color: "#ff9d57" }}>trabajan por tu negocio.</span>
           </div>
           <div style={{ color: "#aab0c4", fontSize: 30, maxWidth: 900 }}>
-            Webs premium · WhatsApp IA · Automatización de facturas
+            Diseño web · Aplicaciones · Automatización · IA
           </div>
         </div>
 
@@ -87,7 +91,7 @@ export default function OpengraphImage() {
             fontSize: 24,
           }}
         >
-          <span>astronexo.com</span>
+          <span>{SITE.url.replace(/^https?:\/\//, "")}</span>
           <span style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span
               style={{

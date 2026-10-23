@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { LangProvider } from "@/components/lang-provider";
+import { RevealObserver } from "@/components/reveal-observer";
+import { SITE } from "@/lib/site";
+import { JsonLd, organizationSchema } from "@/lib/schema";
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -25,53 +27,39 @@ const accent = Instrument_Serif({
   weight: ["400"],
 });
 
-const SITE_URL = "https://www.astronexo.com";
+const DESCRIPTION =
+  "Diseño y desarrollo de webs premium, aplicaciones a medida, apps, automatizaciones e inteligencia artificial para negocios. Estudio en Oporto, trato directo con Alex y precio cerrado.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: "AstroNexo Studio | Webs premium, estrategia y automatización",
-  description:
-    "Estudio digital con base en Oporto. Diseñamos activos digitales premium para negocios que necesitan verse más serios, explicar mejor su oferta y convertir visitas en oportunidades reales. Servicio en Portugal, España, Reino Unido y EE. UU.",
-  keywords: [
-    "estudio diseño web Oporto",
-    "diseño web Portugal",
-    "web premium negocio local",
-    "automatización WhatsApp IA",
-    "bot WhatsApp negocio",
-    "automatización de facturas",
-    "menú QR restaurante",
-    "landing page premium",
-    "página web restaurante",
-    "página web clínica estética",
-    "página web barbería",
-    "SEO local Google Maps",
-    "desarrollo web Next.js",
-    "embudo WhatsApp",
-    "auditoría presencia digital",
-    "AstroNexo Studio",
-  ],
-  authors: [{ name: "AstroNexo Studio" }],
-  creator: "AstroNexo Studio",
-  alternates: { canonical: SITE_URL },
-  icons: {
-    icon: "/icon.svg",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    template: "%s | AstroNexo Studio",
   },
+  description: DESCRIPTION,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.founder, url: SITE.url }],
+  creator: SITE.founder,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: SITE_URL,
-    siteName: "AstroNexo Studio",
-    title: "AstroNexo Studio | Activos digitales premium para negocios serios",
-    description:
-      "Webs premium, estrategia visual, WhatsApp y automatización para convertir una presencia floja en un activo de confianza.",
+    url: "/",
+    siteName: SITE.name,
+    title: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AstroNexo Studio | Activos digitales premium",
-    description:
-      "Pide una auditoría: envíanos tu Instagram o web y te decimos qué está frenando tu presencia digital.",
+    title: "AstroNexo Studio | Webs, apps y automatizaciones a medida",
+    description: DESCRIPTION,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -81,66 +69,27 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="es"
       className={`${display.variable} ${sans.variable} ${accent.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "AstroNexo Studio",
-              "image": "https://www.astronexo.com/icon.svg",
-              "@id": "https://www.astronexo.com/#organization",
-              "url": "https://www.astronexo.com",
-              "telephone": "+351931056365",
-              "email": "hola@astronexostudio.com",
-              "priceRange": "€€",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Oporto",
-                "addressCountry": "PT"
-              },
-              "areaServed": [
-                { "@type": "Country", "name": "Portugal" },
-                { "@type": "Country", "name": "España" },
-                { "@type": "Country", "name": "Reino Unido" },
-                { "@type": "Country", "name": "Estados Unidos" }
-              ],
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 41.157944,
-                "longitude": -8.629105
-              },
-              "description": "Estudio digital con base en Oporto. Desarrollo web premium, automatización de WhatsApp con IA, automatización de facturas y consultoría digital para escalar la presencia de tu negocio en piloto automático. Servicio internacional.",
-              "founder": { "@type": "Person", "name": "Alex" },
-              "knowsLanguage": ["es", "pt", "en"],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Servicios AstroNexo Studio",
-                "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatización de WhatsApp con IA" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo web premium y menús QR" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatización de facturas" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO local y Google Maps" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Campañas y embudos de captación" } }
-                ]
-              }
-            }),
-          }}
-        />
+        {/* Activa las animaciones de entrada solo si hay JS (si no, todo visible). */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <LangProvider>
-          <SmoothScroll>{children}</SmoothScroll>
-        </LangProvider>
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-void"
+        >
+          Saltar al contenido
+        </a>
+        <JsonLd data={organizationSchema()} />
+        <SmoothScroll>{children}</SmoothScroll>
+        <RevealObserver />
       </body>
     </html>
   );

@@ -39,7 +39,7 @@ export function BrandLogo({
             </linearGradient>
           </defs>
           <circle cx="24" cy="24" r="17" fill="none" stroke="#1B2030" />
-          <g data-gsap-orbit>
+          <g>
             <ellipse
               cx="24"
               cy="24"

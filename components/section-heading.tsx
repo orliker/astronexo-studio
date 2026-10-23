@@ -11,7 +11,7 @@ export function SectionHeading({
   intro,
   align = "left",
 }: {
-  index: string;
+  index?: string;
   kicker: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
@@ -31,8 +31,12 @@ export function SectionHeading({
             align === "center" ? "justify-center" : ""
           }`}
         >
-          <span className="text-nebula-soft">{index}</span>
-          <span className="h-px w-8 bg-line" />
+          {index && (
+            <>
+              <span className="text-nebula-soft">{index}</span>
+              <span className="h-px w-8 bg-line" />
+            </>
+          )}
           <span>{kicker}</span>
         </div>
       </Reveal>

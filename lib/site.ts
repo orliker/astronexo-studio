@@ -1,16 +1,27 @@
 /**
- * Datos del estudio en un solo sitio. Cambia el número y el mensaje aquí
- * y se propaga a todos los CTAs de WhatsApp de la web.
+ * Datos del estudio en un solo sitio. Cambia aquí el dominio, el número o el
+ * email y se propaga a metadatos, sitemap, CTAs y datos estructurados.
  */
 export const SITE = {
   name: "AstroNexo Studio",
-  // Sustituye por tu número real en formato internacional sin "+" ni espacios.
+  founder: "Alex",
+  // Dominio público. Si la web pasa a astronexo.com, basta con cambiar esto
+  // (o definir NEXT_PUBLIC_SITE_URL en Vercel).
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://astronexo-studio.vercel.app").replace(/\/$/, ""),
   whatsappNumber: "351931056365",
-  whatsappMessage:
-    "Hola AstroNexo. Quiero una auditoría gratuita de mi presencia digital. Mi Instagram/web es: ",
-  email: "hola@astronexostudio.com",
+  phoneDisplay: "+351 931 056 365",
+  email: "alex@astronexo.com",
+  city: "Oporto",
+  country: "Portugal",
+  github: "https://github.com/orliker",
+  languages: ["Español", "Português", "English"],
 };
 
-export const WHATSAPP_URL = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(
-  SITE.whatsappMessage,
-)}`;
+export const DEFAULT_WA_MESSAGE =
+  "Hola Alex, he visto tu web y quiero contarte un proyecto. Mi negocio es: ";
+
+export function waLink(message: string = DEFAULT_WA_MESSAGE) {
+  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export const WHATSAPP_URL = waLink();

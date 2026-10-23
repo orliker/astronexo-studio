@@ -1,55 +1,38 @@
 import { CosmosBackdrop } from "@/components/cosmos-backdrop";
 import { SiteNav } from "@/components/site-nav";
-import { HeroCinematic } from "@/components/hero-cinematic";
-import { ImproveFirst } from "@/components/sections/improve-first";
-import { TrustBar } from "@/components/sections/trust-bar";
-import { AuthorityStrip } from "@/components/sections/authority";
-import { ProblemSection } from "@/components/sections/problem";
-import { AutomationSection } from "@/components/sections/automation-section";
-import { WebSection } from "@/components/sections/web-section";
-import { InvoicesSection } from "@/components/sections/invoices-section";
-import { SEOSection } from "@/components/sections/seo-section";
-import { MarketingSection } from "@/components/sections/marketing-section";
-import { IdentitySection } from "@/components/sections/identity-section";
-import { ProjectsSection } from "@/components/sections/projects";
-import { TestimonialsSection } from "@/components/sections/testimonials";
-import { WhyUsSection } from "@/components/sections/why-us";
-import { PricingSection } from "@/components/sections/pricing";
-import { FAQSection } from "@/components/sections/faq";
-import { ManifestoSection } from "@/components/sections/manifesto";
-import { AboutSection } from "@/components/sections/about";
-import { FinalCTA, SiteFooter } from "@/components/sections/final-cta";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
-import { AnimePageMotion } from "@/components/anime-page-motion";
-import { GsapPremiumEffects } from "@/components/gsap-premium-effects";
+import { Hero } from "@/components/home/hero";
+import { StackStrip } from "@/components/home/stack-strip";
+import { Services } from "@/components/home/services";
+import { Work } from "@/components/home/work";
+import { Lab } from "@/components/home/lab";
+import { Approach } from "@/components/home/approach";
+import { Process } from "@/components/home/process";
+import { Pricing } from "@/components/home/pricing";
+import { About } from "@/components/home/about";
+import { Faq } from "@/components/home/faq";
+import { ContactCTA, SiteFooter } from "@/components/home/contact";
+import { FAQ } from "@/lib/content";
+import { JsonLd, faqSchema } from "@/lib/schema";
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={faqSchema(FAQ)} />
       <CosmosBackdrop />
       <SiteNav />
-      <AnimePageMotion />
-      <GsapPremiumEffects />
-      <main className="relative overflow-x-clip">
-        <HeroCinematic />
-        <TrustBar />
-        <ImproveFirst />
-        <AuthorityStrip />
-        <ProblemSection />
-        <AutomationSection />
-        <WebSection />
-        <InvoicesSection />
-        <SEOSection />
-        <MarketingSection />
-        <IdentitySection />
-        <ProjectsSection />
-        <TestimonialsSection />
-        <WhyUsSection />
-        <PricingSection />
-        <FAQSection />
-        <ManifestoSection />
-        <AboutSection />
-        <FinalCTA />
+      <main id="contenido" className="relative overflow-x-clip">
+        <Hero />
+        <StackStrip />
+        <Services />
+        <Work />
+        <Lab />
+        <Approach />
+        <Process />
+        <Pricing />
+        <About />
+        <Faq items={FAQ} />
+        <ContactCTA />
       </main>
       <SiteFooter />
       <FloatingWhatsApp />

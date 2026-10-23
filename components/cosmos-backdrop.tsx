@@ -16,9 +16,12 @@ export function CosmosBackdrop() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    // En móvil (o con menos movimiento) las estrellas se pintan una vez y
+    // quedan quietas: la animación continua no compensa la batería ni el INP.
+    const reduce =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 1024;
 
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
@@ -113,8 +116,8 @@ export function CosmosBackdrop() {
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-void" />
       {/* Nebulosa nebula superior-izquierda */}
-      <div className="absolute -left-[15%] -top-[20%] h-[60vh] w-[60vh] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.22),transparent_65%)] blur-3xl animate-pulse-slow" />
-      {/* Brasa cálida inferior-derecha — el contrapunto cromático */}
+      <div className="absolute -left-[15%] -top-[20%] h-[60vh] w-[60vh] rounded-full bg-[radial-gradient(circle,rgba(124,108,255,0.22),transparent_65%)] blur-3xl" />
+      {/* Brasa cálida inferior-derecha: el contrapunto cromático */}
       <div className="absolute -bottom-[25%] -right-[10%] h-[55vh] w-[55vh] rounded-full bg-[radial-gradient(circle,rgba(255,157,87,0.14),transparent_65%)] blur-3xl" />
       {/* Halo aurora central muy tenue */}
       <div className="absolute left-1/2 top-1/3 h-[40vh] w-[70vh] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(56,224,201,0.07),transparent_70%)] blur-3xl" />

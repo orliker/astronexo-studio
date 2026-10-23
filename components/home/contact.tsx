@@ -1,0 +1,105 @@
+import Link from "next/link";
+import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
+import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { SERVICES } from "@/lib/content";
+import { BrandLogo } from "@/components/brand-logo";
+import { Reveal } from "@/components/motion-primitives";
+
+export function ContactCTA() {
+  return (
+    <section id="contacto" className="scroll-mt-20 py-20 sm:py-28">
+      <div className="shell">
+        <Reveal>
+          <div className="panel-edge premium-surface relative overflow-hidden rounded-[2rem] px-6 py-14 text-center sm:px-12 sm:py-20">
+            <div className="pointer-events-none absolute left-1/2 top-0 h-80 w-[48rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,157,87,0.16),transparent)]" />
+            <p className="relative text-xs font-semibold uppercase tracking-[0.2em] text-ember">Diagnóstico gratis</p>
+            <h2 className="relative mx-auto mt-5 max-w-3xl font-display text-4xl font-semibold leading-[1.05] text-balance sm:text-5xl lg:text-6xl">
+              Cuéntame qué te quita tiempo o clientes. <span className="premium-word">Te digo cómo lo resolvería.</span>
+            </h2>
+            <p className="relative mx-auto mt-6 max-w-xl text-pretty text-ink-soft sm:text-lg">
+              Mándame tu web, tu Instagram o tu idea. En 24 a 48 horas tienes una respuesta concreta, sin compromiso.
+            </p>
+            <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="premium-focus micro-glint inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-void transition-colors hover:bg-white sm:w-auto"
+              >
+                <MessageCircle size={17} aria-hidden="true" />
+                Escribir por WhatsApp
+              </a>
+              <a
+                href={`mailto:${SITE.email}?subject=${encodeURIComponent("Proyecto para AstroNexo Studio")}`}
+                className="premium-focus inline-flex w-full items-center justify-center gap-2 rounded-full border border-line bg-void/40 px-7 py-4 text-sm font-semibold transition-colors hover:border-ink-mute sm:w-auto"
+              >
+                <Mail size={17} aria-hidden="true" />
+                {SITE.email}
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function SiteFooter() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="border-t border-line pb-28 pt-14 sm:pb-12">
+      <div className="shell grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+        <div>
+          <BrandLogo />
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-soft">
+            Webs, aplicaciones, automatizaciones e inteligencia artificial para negocios. Estudio de {SITE.founder} en{" "}
+            {SITE.city}, {SITE.country}.
+          </p>
+        </div>
+        <nav aria-label="Servicios">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-mute">Servicios</h2>
+          <ul className="mt-4 space-y-2.5">
+            {SERVICES.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/servicios/${s.slug}`} className="premium-focus rounded text-sm text-ink-soft hover:text-ink">
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-mute">Contacto</h2>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="premium-focus inline-flex items-center gap-2 rounded text-ink-soft hover:text-ink">
+                <MessageCircle size={15} aria-hidden="true" /> WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href={`tel:+${SITE.whatsappNumber}`} className="premium-focus inline-flex items-center gap-2 rounded text-ink-soft hover:text-ink">
+                <Phone size={15} aria-hidden="true" /> {SITE.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${SITE.email}`} className="premium-focus inline-flex items-center gap-2 rounded text-ink-soft hover:text-ink">
+                <Mail size={15} aria-hidden="true" /> {SITE.email}
+              </a>
+            </li>
+            <li>
+              <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="premium-focus inline-flex items-center gap-2 rounded text-ink-soft hover:text-ink">
+                <ArrowUpRight size={15} aria-hidden="true" /> GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="shell mt-12 flex flex-col justify-between gap-3 border-t border-line pt-6 text-xs text-ink-mute sm:flex-row">
+        <p>© {year} AstroNexo Studio. Hecho a mano en Oporto.</p>
+        <Link href="/privacidad" className="premium-focus rounded hover:text-ink">
+          Privacidad y cookies
+        </Link>
+      </div>
+    </footer>
+  );
+}

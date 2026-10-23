@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ───────────────────────────────────────────────────────────
-   AstroNexo Studio — sistema de diseño
+   AstroNexo Studio: sistema de diseño
    Paleta cosmos profunda + acento ámbar cálido (anti-genérico).
    ─────────────────────────────────────────────────────────── */
 
@@ -73,6 +73,106 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Raíz fluida en pantallas grandes: 16 px a 1536, 18 px a 1920.
+   Todo lo que va en rem (caja, tipo, espacios) crece con ella. */
+@media (min-width: 1536px) {
+  html {
+    font-size: clamp(16px, calc(0.5208vw + 8px), 18px);
+  }
+}
+
+/* Caja de contenido común a todas las secciones */
+.shell {
+  width: 100%;
+  max-width: 86rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+/* Marco de navegador para las capturas del portafolio */
+.browser {
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  box-shadow:
+    0 40px 120px -50px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 1.6rem;
+  padding-inline: 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  background: color-mix(in oklch, var(--color-panel) 80%, black);
+}
+.browser-bar i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #2a3044;
+}
+
+/* Cinta de tecnologías */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+.float-a { animation: float-a 7s ease-in-out infinite; }
+.float-b { animation: float-a 9s ease-in-out -3s infinite; }
+
+/* Reveal por scroll: solo se oculta si hay JS (html.js) y movimiento permitido */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+  }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-group > .reveal:nth-child(2) { --d: 0.07s; }
+  .reveal-group > .reveal:nth-child(3) { --d: 0.14s; }
+  .reveal-group > .reveal:nth-child(4) { --d: 0.21s; }
+  .reveal-group > .reveal:nth-child(5) { --d: 0.07s; }
+  .reveal-group > .reveal:nth-child(6) { --d: 0.14s; }
+  .reveal-group > .reveal:nth-child(7) { --d: 0.21s; }
+  .reveal-group > .reveal:nth-child(8) { --d: 0.28s; }
+}
+
+/* Acordeón nativo de la FAQ */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
 body {
   background-color: var(--color-void);
   color: var(--color-ink);
@@ -119,7 +219,7 @@ body {
   letter-spacing: 0;
 }
 
-/* Texto con gradiente sutil — usado con mesura */
+/* Texto con gradiente sutil: usado con mesura */
 .text-gradient {
   background: linear-gradient(
     100deg,
