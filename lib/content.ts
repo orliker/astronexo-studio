@@ -252,7 +252,7 @@ export const SERVICES: Service[] = [
     name: "SEO técnico y local",
     pitch: "Que te encuentren en Google y en Maps quienes ya están buscando lo que haces.",
     examples: ["Tu ficha de Google Maps", "Posicionamiento en Google", "Que Google entienda tu negocio", "Web rápida en el móvil"],
-    price: "A medida",
+    price: "Desde 120 €",
     seoTitle: "SEO técnico y SEO local en Google y Google Maps",
     seoDescription:
       "Posicionamiento local en Google Maps, ficha de Google Business Profile, SEO técnico, datos estructurados y velocidad web. Sin promesas imposibles: trabajo medible.",
@@ -285,7 +285,7 @@ export const SERVICES: Service[] = [
     name: "Juegos y experiencias interactivas",
     pitch: "Webs con 3D y scroll cinematográfico, minijuegos y configuradores que se recuerdan.",
     examples: ["Webs 3D y animadas", "Minijuegos de marca", "Configuradores", "Presentaciones interactivas"],
-    price: "A medida",
+    price: "Desde 300 €",
     seoTitle: "Juegos web, experiencias 3D y configuradores interactivos",
     seoDescription:
       "Webs con animación 3D y scroll cinematográfico, minijuegos de marca, configuradores de producto y experiencias interactivas para lanzamientos y campañas.",
@@ -417,6 +417,41 @@ export const CASES: Case[] = [
   },
 ];
 
+export type Testimonial = {
+  quote: string;
+  author: string;
+  business: string;
+  caseSlug: string;
+};
+
+/** Lo que han dicho los clientes a Alex (23-oct-2026), redactado sin añadir nada que no dijeran. */
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: "Da gusto trabajar con Alex. Es muy aplicado y siempre está disponible: si algo falla o queremos añadir algo nuevo, lo resuelve en el momento.",
+    author: "Gaudencio",
+    business: "Círculo Consciente, Burgos",
+    caseSlug: "circulo-consciente",
+  },
+  {
+    quote: "Quedamos encantados con el resultado. Para todo lo que tenga que ver con lo digital, contamos con él. Vale cada céntimo.",
+    author: "Equipo de BANQA",
+    business: "Mobiliario de diseño, Barcelona",
+    caseSlug: "banqa",
+  },
+  {
+    quote: "La web es exactamente como la imaginaba, y ya me están llegando más clientes.",
+    author: "Mundo de Papel",
+    business: "Topos de tarta personalizados, Portugal",
+    caseSlug: "mundo-de-papel",
+  },
+  {
+    quote: "Su disponibilidad es excelente. Me gustó mucho su forma de trabajar: fácil y muy rápido.",
+    author: "Bright Infinity",
+    business: "Limpiezas, Portugal y Angola",
+    caseSlug: "bright-infinity",
+  },
+];
+
 export type LabItem = {
   name: string;
   what: string;
@@ -477,14 +512,15 @@ export const STACK: { group: string; items: string[] }[] = [
 ];
 
 export const PROCESS = [
-  { title: "Diagnóstico gratis", time: "24-48 h", text: "Me mandas tu web, tu Instagram o tu idea. Te digo qué cambiaría y qué no merece la pena, por escrito y sin compromiso." },
+  { title: "Diagnóstico gratis", time: "24-48 h", text: "Me mandas tu web, tu Instagram o tu idea, y si quieres webs que te gusten como inspiración. Te digo qué cambiaría y qué no merece la pena, por escrito y sin compromiso." },
   { title: "Propuesta cerrada", time: "2-3 días", text: "Alcance, plazos y precio cerrado. Muchas veces con una vista previa real para que veas la dirección antes de pagar." },
-  { title: "Construcción a la vista", time: "Según proyecto", text: "Trabajas con un enlace en vivo que se actualiza. Opinas sobre algo real, no sobre promesas." },
+  { title: "Construcción a la vista", time: "Días a 1 mes", text: "Trabajas con un enlace en vivo que se actualiza y opinas sobre algo real. Una web completa con pagos, panel e idiomas, como Círculo Consciente, está lista en torno a un mes si la comunicación es fluida." },
   { title: "Entrega y soporte", time: "Siempre", text: "Publico, te enseño a usarlo y te quedas con el código y los accesos. Soporte mensual solo si lo quieres." },
 ];
 
 export const DO = [
   "Webs, aplicaciones y automatizaciones de principio a fin, construidas por mí.",
+  "El diseño corre de mi cuenta: me das tu idea o webs que te gusten y lo convierto en algo propio.",
   "Precio cerrado antes de empezar, con el alcance por escrito.",
   "Vistas previas reales durante el proyecto, no solo maquetas.",
   "Código y accesos a tu nombre: la web es tuya.",
@@ -551,11 +587,11 @@ export const PACKS: Pack[] = [
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "¿Cuánto cuesta y cuánto tarda?",
-    a: "Una automatización sencilla empieza en 90 €, una web de lanzamiento en 150 € y las aplicaciones a medida en 1.500 €. Una landing puede estar en pocos días; una aplicación, en semanas. Siempre con precio cerrado antes de empezar.",
+    a: "Una automatización sencilla empieza en 90 €, una web de lanzamiento en 150 € y las aplicaciones a medida en 1.500 €. Una landing puede estar en pocos días, y un proyecto completo con pagos, panel e idiomas, como Círculo Consciente, en torno a un mes si la comunicación es fluida. Siempre con precio cerrado antes de empezar y sin IVA añadido.",
   },
   {
     q: "¿Cómo se paga?",
-    a: "Normalmente una parte al empezar y el resto al entregar. En proyectos grandes, por fases. Sin costes ocultos: lo que no está en la propuesta, no se cobra.",
+    a: "Según el proyecto, puedes pagarlo de una vez o fraccionarlo: hasta 2 pagos en proyectos de 400 a 1.000 € y hasta 3 en los de más de 1.000 €. Por debajo de 400 €, un solo pago. Lo dejamos por escrito en la propuesta. Mis precios no llevan IVA y no hay costes ocultos: lo que no está en la propuesta, no se cobra.",
   },
   {
     q: "¿Y si no me gusta el resultado?",
@@ -568,6 +604,10 @@ export const FAQ: { q: string; a: string }[] = [
   {
     q: "¿La web y el código son míos?",
     a: "Sí. Dominio, código y accesos quedan a tu nombre. Puedes seguir conmigo o llevártelo a otro proveedor cuando quieras. Sin permanencias.",
+  },
+  {
+    q: "No tengo claro el diseño. ¿Me ayudas?",
+    a: "Sí, el diseño es parte de mi trabajo. Puedes mandarme webs que te gusten como inspiración, contarme más o menos cómo lo imaginas o dejarlo en mis manos. Te enseño una primera dirección visual y la ajustamos juntos antes de construir.",
   },
   {
     q: "¿Y si te pasa algo o dejas de estar disponible?",

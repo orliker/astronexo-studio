@@ -124,7 +124,9 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="shell mt-12 flex flex-col justify-between gap-3 border-t border-line pt-6 text-xs text-ink-mute sm:flex-row">
-        <p>© {year} AstroNexo Studio. Hecho a mano en Oporto.</p>
+        <p>
+          © {year} AstroNexo Studio · {SITE.legalName} · NIF {SITE.taxId} · {SITE.city}, {SITE.country}
+        </p>
         <Link href="/privacidad" className="premium-focus rounded hover:text-ink">
           Privacidad y cookies
         </Link>

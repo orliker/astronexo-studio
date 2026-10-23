@@ -20,7 +20,13 @@ export function organizationSchema() {
         address: { "@type": "PostalAddress", addressLocality: SITE.city, addressCountry: "PT" },
         areaServed: ["Portugal", "España", "Europa"].map((name) => ({ "@type": "Place", name })),
         knowsLanguage: ["es", "pt", "en"],
-        founder: { "@type": "Person", name: SITE.founder, jobTitle: "Diseñador y desarrollador" },
+        founder: {
+          "@type": "Person",
+          name: SITE.fullName,
+          jobTitle: "Diseñador y desarrollador",
+          image: `${SITE.url}${SITE.photo}`,
+        },
+        taxID: SITE.taxId.replace(/\s/g, ""),
         sameAs: [SITE.github],
         hasOfferCatalog: {
           "@type": "OfferCatalog",

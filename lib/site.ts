@@ -5,6 +5,11 @@
 export const SITE = {
   name: "AstroNexo Studio",
   founder: "Alex",
+  fullName: "Alexander Ruiz",
+  // Facturo como autónomo con este nombre y NIF (dato de Alex, 23-oct-2026).
+  legalName: "Alexander Ruiz",
+  taxId: "320 675 670",
+  photo: "/alex.jpg",
   // Dominio público. Si la web pasa a astronexo.com, basta con cambiar esto
   // (o definir NEXT_PUBLIC_SITE_URL en Vercel).
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://astronexo-studio.vercel.app").replace(/\/$/, ""),

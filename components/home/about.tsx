@@ -1,8 +1,8 @@
+import Image from "next/image";
 import { Languages, MapPin, MessageCircle, Wrench } from "lucide-react";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/motion-primitives";
-import { BrandLogo } from "@/components/brand-logo";
 
 const FACTS = [
   { icon: MapPin, title: "Oporto, Portugal", text: "Trabajo en remoto con negocios de España, Portugal y otros países." },
@@ -28,7 +28,7 @@ export function About() {
           <Reveal delay={0.1}>
             <div className="mt-6 space-y-4 text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
               <p>
-                Soy {SITE.founder} y construyo para internet de principio a fin: webs para negocios locales,
+                Soy {SITE.fullName}, Alex para los clientes, y construyo para internet de principio a fin: webs para negocios locales,
                 aplicaciones con pagos y bases de datos, automatizaciones que ahorran horas y sistemas con
                 inteligencia artificial que funcionan en producción, no solo en una demo.
               </p>
@@ -43,11 +43,22 @@ export function About() {
 
         <Reveal delay={0.08}>
           <div className="panel-edge premium-surface rounded-card p-6 sm:p-8">
-            <div className="flex items-center justify-between gap-4 border-b border-line pb-5">
-              <BrandLogo />
-              <span className="rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-ember">
-                Desde Oporto
-              </span>
+            <div className="flex items-center gap-5 border-b border-line pb-6">
+              <Image
+                src={SITE.photo}
+                alt={`${SITE.fullName}, fundador de AstroNexo Studio`}
+                width={800}
+                height={800}
+                sizes="112px"
+                className="h-24 w-24 shrink-0 rounded-2xl object-cover ring-1 ring-line sm:h-28 sm:w-28"
+              />
+              <div className="min-w-0">
+                <p className="font-display text-xl font-semibold">{SITE.fullName}</p>
+                <p className="mt-1 text-sm text-ink-soft">Fundador de AstroNexo Studio</p>
+                <span className="mt-3 inline-flex rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-ember">
+                  Desde Oporto
+                </span>
+              </div>
             </div>
             <ul className="mt-6 grid gap-5 sm:grid-cols-2">
               {FACTS.map((f) => (

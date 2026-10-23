@@ -1,5 +1,6 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { WHATSAPP_URL, waLink } from "@/lib/site";
+import Image from "next/image";
+import { SITE, WHATSAPP_URL, waLink } from "@/lib/site";
 import { HeroDeck } from "./hero-deck";
 
 /** Cada visitante encuentra su puerta: abre WhatsApp con el mensaje ya empezado. */
@@ -43,6 +44,14 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
+            <Image
+              src={SITE.photo}
+              alt=""
+              width={800}
+              height={800}
+              sizes="32px"
+              className="mr-2 inline-block h-8 w-8 rounded-full object-cover align-middle ring-1 ring-line"
+            />
             Soy Alex, diseñador y desarrollador. Construyo de principio a fin lo que
             tu negocio necesita para vender más y trabajar menos: desde una web que
             da confianza hasta el software que te quita horas de trabajo manual.

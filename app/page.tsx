@@ -5,6 +5,7 @@ import { Hero } from "@/components/home/hero";
 import { StackStrip } from "@/components/home/stack-strip";
 import { Services } from "@/components/home/services";
 import { Work } from "@/components/home/work";
+import { Testimonials } from "@/components/home/testimonials";
 import { Lab } from "@/components/home/lab";
 import { Approach } from "@/components/home/approach";
 import { Process } from "@/components/home/process";
@@ -26,6 +27,7 @@ export default function Home() {
         <StackStrip />
         <Services />
         <Work />
+        <Testimonials />
         <Approach />
         <Process />
         <Pricing />
