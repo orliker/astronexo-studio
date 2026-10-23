@@ -16,7 +16,7 @@ export function Pricing() {
               Precios claros, <span className="premium-word">cerrados antes de empezar</span>
             </>
           }
-          intro="Puntos de partida orientativos. Después del diagnóstico recibes un precio cerrado para tu caso, por escrito. Precios sin IVA añadido. Según el proyecto, puedes pagar en 2 o 3 cuotas. Sin cuota mensual obligatoria."
+          intro="Puntos de partida orientativos. Después del diagnóstico recibes un precio cerrado para tu caso, por escrito. Mis precios no llevan IVA. Según el proyecto, puedes pagar en 2 o 3 cuotas. Sin cuota mensual obligatoria."
         />
 
         <Stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

@@ -4,6 +4,7 @@ import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { Hero } from "@/components/home/hero";
 import { StackStrip } from "@/components/home/stack-strip";
 import { Services } from "@/components/home/services";
+import { Sectors } from "@/components/home/sectors";
 import { Work } from "@/components/home/work";
 import { Testimonials } from "@/components/home/testimonials";
 import { Lab } from "@/components/home/lab";
@@ -25,6 +26,7 @@ export default function Home() {
       <main id="contenido" className="relative overflow-x-clip">
         <Hero />
         <StackStrip />
+        <Sectors />
         <Services />
         <Work />
         <Testimonials />

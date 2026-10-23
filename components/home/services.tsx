@@ -44,14 +44,14 @@ export function Services() {
                 </div>
                 <h3 className="mt-6 font-display text-lg font-semibold leading-snug">{s.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.pitch}</p>
-                <ul className="mt-5 flex flex-wrap gap-1.5">
+                <ul className="mt-5 hidden flex-wrap gap-1.5 sm:flex">
                   {s.examples.map((e) => (
-                    <li key={e} className="rounded-full border border-line bg-void/40 px-2.5 py-1 text-[11px] text-ink-soft">
+                    <li key={e} className="rounded-full border border-line bg-void/40 px-2.5 py-1 text-xs text-ink-soft">
                       {e}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-auto pt-6 text-xs font-semibold uppercase tracking-[0.14em] text-nebula-soft">
+                <p className="mt-auto pt-5 text-xs font-semibold uppercase tracking-[0.14em] text-nebula-soft">
                   {s.price}
                 </p>
               </Link>

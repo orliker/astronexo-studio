@@ -587,7 +587,7 @@ export const PACKS: Pack[] = [
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "¿Cuánto cuesta y cuánto tarda?",
-    a: "Una automatización sencilla empieza en 90 €, una web de lanzamiento en 150 € y las aplicaciones a medida en 1.500 €. Una landing puede estar en pocos días, y un proyecto completo con pagos, panel e idiomas, como Círculo Consciente, en torno a un mes si la comunicación es fluida. Siempre con precio cerrado antes de empezar y sin IVA añadido.",
+    a: "Una automatización sencilla empieza en 90 €, una web de lanzamiento en 150 € y las aplicaciones a medida en 1.500 €. Una landing puede estar en pocos días, y un proyecto completo con pagos, panel e idiomas, como Círculo Consciente, en torno a un mes si la comunicación es fluida. Siempre con precio cerrado antes de empezar, y mis precios no llevan IVA.",
   },
   {
     q: "¿Cómo se paga?",
